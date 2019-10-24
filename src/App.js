@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router} from 'react-router-dom';
 
+import Catalog from './views/Catalog';
+import DollDetail from './views/DollDetail';
+
 import PrivateView from './views/PrivateView';
 import Login from './views/auth/Login';
 import Signup from './views/auth/Signup';
@@ -18,6 +21,8 @@ class App extends Component {
           <Router>
             <AnonRoute exact path="/login" component={Login} />
             <AnonRoute exact path="/signup" component={Signup} />
+            <AnonRoute exact path="/catalog" component={Catalog} />
+            <AnonRoute exact path="/catalog/:id" component={DollDetail} />
             <PrivateRoute exact path="/private" component={PrivateView} />
           </Router>
       </>
