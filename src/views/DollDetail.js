@@ -37,7 +37,7 @@ class DollDetail extends Component {
              {doll.character} {doll.name} - {doll.subBrand}
             </div>
             <div>
-              <img src="https://lh3.googleusercontent.com/TVQklh-UriQ6ZI1x99Qmi5oHKzsNDYliZcq5mKsKIAeeAFwIOSsZ8pc8RhTCDh-yPzwfAvau-2u0wb1CDZkDiuX1p6NNMSPrwwpVUEhU9Y88R9n5Mzk2zG8-SvaDj1K0wrMcNeYZxj-ey6MBUyxuDR6fO5-ldGT1E-a2B99VTFycKVePJ5MtXQSYe6PUpyAf_2Mlp4B-lSlC7mxRrqhnm-FKMZmytJ4QKgNBuMMhVWmsf9cf_Fz4jVhAa9F_P35mKtnnvSgMr7Qk_HMasSKJ755Z0FyMN4EzUol3Rry8zcGcdlQ3ly-S6RdL_oJCxNGJktuiYuAYqfy-uyDMMOndW5RVRj2F1RAulCoEeCyMQ9BlNFr-J_bIh22n5TT31H_9ZL2SoGx0MHyAlr5y-jbbTuPv6xWI7T_2O8fb0bambvVxUZ8-kPE7dkSm-U21ZO-2HM-VGwL_Kxh5ppvQnRwaKevfmJrDM85o3AyKl2D0q4KglKmCaG-DGV-HLs3qYR0otAVl3_VNQXw96PNaZ1z5o0u9CjeUiqKOxo6OFmnyieAOA2zDBzSZglZY2IJ-R38W78tqjh2KzG4MYONuEy9NSeNfsebc0jBn7dsqQ_zseaBoq61lq0QWYgjSJgF3ZAGGJZsEkp4EVXtpHb-iyG1s7WEy_YmoZDT1j0isktYTltInKOAMnEpecg=w600-h900-no" alt="doll"/> 
+              <img src={doll.closeUpImage} alt="doll"/> 
             </div>
             <div>
                 <p>Mold: {doll.mold}</p>

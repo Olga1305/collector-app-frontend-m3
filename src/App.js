@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router} from 'react-router-dom';
 
+import Navbar from './components/Navbar';
+
+
 import Catalog from './views/Catalog';
 import DollDetail from './views/DollDetail';
 
@@ -13,18 +16,23 @@ import PrivateRoute from './components/PrivateRoute';
 import AnonRoute from './components/AnonRoute';
 
 class App extends Component {
+
   render() {
-    const { handleLogout } = this.props;
+    // const { handleLogout } = this.props;
+    
     return (
       <>
-          <button onClick={handleLogout}>logout</button>
-          <Router>
-            <AnonRoute exact path="/login" component={Login} />
-            <AnonRoute exact path="/signup" component={Signup} />
-            <AnonRoute exact path="/catalog" component={Catalog} />
-            <AnonRoute exact path="/catalog/:id" component={DollDetail} />
-            <PrivateRoute exact path="/private" component={PrivateView} />
-          </Router>
+          {/* <button onClick={handleLogout}>logout</button> */}
+         
+              <Router>
+                <Navbar></Navbar>
+                <AnonRoute exact path="/login" component={Login} />
+                <AnonRoute exact path="/signup" component={Signup} />
+                <AnonRoute exact path="/catalog" component={Catalog} />
+                <AnonRoute exact path="/catalog/:id" component={DollDetail} />
+                <PrivateRoute exact path="/private" component={PrivateView} />
+              </Router>
+            
       </>
     );
   }
