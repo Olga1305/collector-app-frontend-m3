@@ -1,0 +1,38 @@
+// Footer
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  /* max-width: 540px; */
+  width: 100%;
+  padding: 10px;
+  height: 60px;
+  background: #2EB2FF;
+  z-index: 2;
+}
+
+.footer-icons {
+  float: left;
+
+  div {
+    display: inline-block;
+    padding: 5px;
+
+    img {
+      height: 35px;
+    }
+  }
+}
+
+.about {
+  float: right;
+  margin-right: 0.6em;
+
+  a,
+  a:visited {
+    color: white;
+    font-family: 'Raleway', Arial, sans-serif;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+}

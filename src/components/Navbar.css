@@ -3,13 +3,14 @@
 header{
 	display: flex;
 	justify-content: space-between;
-	background: #ffffff;
+	/* background: #ffffff; */
 	/* background: #2EB2FF; */
+	background: rgb(174, 215, 240);
 	
 	position: fixed;
 	width: 100%;
 	padding: 15px;
-	z-index: 2
+	z-index: 2;
 }
 
 #menu_on{
@@ -60,7 +61,8 @@ nav{
 	width: 300px;
 	z-index: 1;
 	padding: 90px 30px 30px;
-	background: #68C5DB;
+	/* background: #68C5DB; */
+	background: rgb(143, 201, 214);
 	opacity: 0;
 	transition: all 0.75s ease;
 	font-size: 1.2em;
