@@ -1,0 +1,32 @@
+.InfoBox {
+    border-bottom: solid 1px grey;
+    padding: 20px;
+    display: flex;
+  }
+
+.InfoBox span {
+    font-weight: bold;
+}
+
+.doll-image {
+    width: 150px;
+    display: flex;
+    justify-content: center;    
+} 
+
+.doll-image img {
+    height: 150px;
+}
+
+.doll-info h2 {
+    color: black;
+}
+
+.doll-info h3 {
+    color: grey;
+}
+
+.doll-info p {
+    color: black;
+    font-size: 0.9rem;
+}

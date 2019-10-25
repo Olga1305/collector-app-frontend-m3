@@ -7,6 +7,6 @@
   }
 
   .content-wrap {
-    
-    padding: 65px 15px 75px 15px;  
+    max-width: 640px;    
+    padding: 65px 10px 75px 10px;  
   }
