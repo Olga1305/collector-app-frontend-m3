@@ -13,8 +13,13 @@ class CatalogService {
       .then(({ data: dolls }) => dolls)
   }
 
-  getDollById(id){
-    return this.axios.get(`/catalog/${id}`)
+  getDollsByBrand(brand) {
+    return this.axios.get(`/catalog/${brand}`)
+      .then(({ data: dolls }) => dolls)
+  }
+
+  getDollById(brand, id){
+    return this.axios.get(`/catalog/${brand}/${id}`)
       .then(({ data: doll }) => doll);
   }
 

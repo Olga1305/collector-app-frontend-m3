@@ -9,9 +9,9 @@ const InfoBox = props => {
                     <img src={props.image} alt="doll"/>
                 </div>
                 <div className="doll-info">
-                    <h2>{props.name}</h2>
-                    {/* <h3>{props.tagline}</h3>
-                    <p><span>Created by:</span> {props.contributed_by}</p>  */}
+                    <h2>{props.character} {props.name}</h2>
+                    <h3>Mold: {props.mold}</h3>
+                    <p><span>Release price: ${props.releasePrice}</span></p> 
                 </div>   
 
             </div>

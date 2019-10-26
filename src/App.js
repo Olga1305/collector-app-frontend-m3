@@ -5,9 +5,8 @@ import './App.css';
 import Navbar from './components/Navbar';
 // import Footer from './components/Footer';
 
-
-
 import Catalog from './views/Catalog';
+import DollsList from './views/DollsList';
 import DollDetail from './views/DollDetail';
 
 import PrivateView from './views/PrivateView';
@@ -17,7 +16,7 @@ import { withAuth } from './Context/AuthContext';
 
 import PrivateRoute from './components/PrivateRoute';
 import AnonRoute from './components/AnonRoute';
-import DollsList from './views/DollsList';
+
 
 class App extends Component {
 
@@ -31,13 +30,14 @@ class App extends Component {
               <Router>
                 <Navbar></Navbar>
                 <div className="content-wrap">
+                  <AnonRoute exact path="/" component={Catalog} />
                   <AnonRoute exact path="/login" component={Login} />
                   <AnonRoute exact path="/signup" component={Signup} />
-                  <AnonRoute exact path="/catalog" component={Catalog} />
-                  <AnonRoute exact path="/fashionroyalty" component={DollsList} />   
-                  <AnonRoute exact path="/nuface" component={DollsList} />  
-                  <AnonRoute exact path="/poppyparker" component={DollsList} />  
-                  <AnonRoute exact path="/catalog/:id" component={DollDetail} />
+                  <AnonRoute exact path="/catalog" component={Catalog} />                 
+                  <AnonRoute exact path="/catalog/:brand" component={DollsList} />   
+                  {/* <AnonRoute exact path="/catalog/nuface" component={DollsList} />  
+                  <AnonRoute exact path="/catalog/poppyparker" component={DollsList} />   */}
+                  <AnonRoute exact path="/catalog/:brand/:id" component={DollDetail} />
                   <PrivateRoute exact path="/private" component={PrivateView} />                  
                 </div>     
                       

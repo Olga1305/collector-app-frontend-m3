@@ -10,13 +10,14 @@ class DollDetail extends Component {
   }
 
   async componentDidMount() {
-    const { match: {params: { id }} } = this.props;
+    const { match: {params: { brand, id }} } = this.props;
+    console.log(brand, id)
     try {
-      const doll = await catalogService.getDollById(id)  
+      const doll = await catalogService.getDollById(brand, id)  
       this.setState({
         doll,
         loading: false,
-      })
+      }, () => console.log(doll))
     } catch (error) {
       console.log(error);
       this.setState({

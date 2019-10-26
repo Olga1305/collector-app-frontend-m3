@@ -5,7 +5,7 @@ const MenuBox = props => {
     return (
         <div className="MenuBox">
             <div className="image">
-                <img src={props.img} alt="beers"></img>
+                <img src={props.img} alt="subbrand"></img>
             </div>
             <div className="info">
                 <h2>{props.title}</h2>

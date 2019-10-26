@@ -12,31 +12,55 @@ class DollsList extends Component {
     state = {
         dolls: [],
         loading: true,
+        brand: undefined,
       }
 
+    // async componentDidMount() {
+    //     try {
+    //       const dolls = await catalogService.getAllDolls()  
+    //       this.setState({
+    //         dolls,
+    //         loading: false
+    //       })
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    // }
+
     async componentDidMount() {
+        console.log(this.props)
+        const { match: {params: brand} } = this.props;
+        // console.log(brand)
         try {
-          const dolls = await catalogService.getAllDolls()  
+          const dolls = await catalogService.getDollsByBrand(brand)  
           this.setState({
             dolls,
-            loading: false
+            loading: false,
+            brand
           })
         } catch (error) {
           console.log(error);
+          this.setState({
+            loading: false,
+          })
         }
-    }
-
-
+      }
 
     render() {
-        const { dolls, loading } = this.state;
+        const { dolls, loading, brand } = this.state;
+
         return (
             <div>
                 
                 {!loading && dolls.map((doll, index) => {
                     return (
-                        <Link className="link-to-doll" to={`/catalog/${doll._id}`} key={`${doll.name}-${index}`}>
-                            <InfoBox image={doll.closeUpImage} name={doll.name} />
+                        <Link className="link-to-doll" to={`/catalog/${brand}/${doll._id}`} key={`${doll.name}-${index}`}>
+                            <InfoBox 
+                            image={doll.closeUpImage} 
+                            character={doll.character} 
+                            name={doll.name} 
+                            mold={doll.mold} 
+                            releasePrice={doll.releasePrice}/>
                         </Link>
                         )
                 })}
