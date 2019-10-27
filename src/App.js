@@ -34,8 +34,9 @@ class App extends Component {
                   <AnonRoute exact path="/login" component={Login} />
                   <AnonRoute exact path="/signup" component={Signup} />
                   <AnonRoute exact path="/catalog" component={Catalog} />                 
-                  <AnonRoute exact path="/catalog/:brand" component={DollsList} />   
-                  {/* <AnonRoute exact path="/catalog/nuface" component={DollsList} />  
+                  <AnonRoute exact path="/catalog/:brand" component={DollsList} />  
+                  {/* <AnonRoute exact path="/catalog/fashionroyalty" component={DollsList} />  
+                  <AnonRoute exact path="/catalog/nuface" component={DollsList} />  
                   <AnonRoute exact path="/catalog/poppyparker" component={DollsList} />   */}
                   <AnonRoute exact path="/catalog/:brand/:id" component={DollDetail} />
                   <PrivateRoute exact path="/private" component={PrivateView} />                  

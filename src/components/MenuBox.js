@@ -6,11 +6,7 @@ const MenuBox = props => {
         <div className="MenuBox">
             <div className="image">
                 <img src={props.img} alt="subbrand"></img>
-            </div>
-            <div className="info">
-                <h2>{props.title}</h2>
-                <p>{props.description}</p>
-            </div>                
+            </div>            
         </div>
     )
 }
