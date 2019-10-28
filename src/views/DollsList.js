@@ -11,39 +11,43 @@ class DollsList extends Component {
 
     state = {
         dolls: [],
-        dolls2019: [],
-        dolls2018: [],
+        years: [],
+        collections: [],
+        finalCollections: [],
         loading: true,
         brand: undefined,
-      }
+    }
 
 
     async componentDidMount() {
-        // console.log(this.props)
-        const { match: {params: brand} } = this.props;      
+        
+        const { match: { params: { brand } } } = this.props;  
+    
         try {
           const dolls = await catalogService.getDollsByBrand(brand);  
           this.setState({
             dolls,
             brand
           })
-          try {
-            // console.log(dolls)
-            const dolls2019 = this.findDollsByYear(2019);
-            const dolls2018 = this.findDollsByYear(2018);
-            console.log(dolls2019)
-            this.setState({
-              dolls2019,
-              dolls2018,
-              loading: false,
-            })
+          try {            
+            this.findYearsAndCollections();
+            try {
+              this.findFinalCollections();
+              console.log(this.state)
+              
+            }
+            catch (error) {
+              console.log(error);
+              this.setState({
+                loading: false,
+              })
+            } 
           }
-          catch (ex) {
-            console.log(ex);
+          catch (error) {
+            console.log(error);
             this.setState({
               loading: false,
             })
-            throw ex;
           } 
         } 
         catch (error) {
@@ -54,59 +58,133 @@ class DollsList extends Component {
         }
     }    
 
-    findDollsByYear = (year) => {
-      const { dolls } = this.state;      
+
+    findYearsAndCollections = () => {
+      const { dolls } = this.state;
+      const allYears = [];
+      const years = [];
+      const allCollections = [];
+      const collections = [];
+
+      dolls.forEach(doll => {
+        if (doll.year !== "") {
+          allYears.push(doll.year);
+        } else {
+          return allYears;}
+      });
+
+      if (allYears.length > 0) {        
+        allYears.forEach(item => {
+          if (years.indexOf(item) === -1) {
+            years.push(item);
+          } 
+          return years;               
+        });
+      }
+
+      dolls.forEach(doll => {
+        if (doll.collectionName !== "") {
+          allCollections.push(doll.collectionName);
+        } else {
+          return allCollections;}
+      });
+
+      if (allCollections.length > 0) {        
+         allCollections.forEach(item => {
+          if (collections.indexOf(item) === -1) {
+            collections.push(item);
+          } 
+          return collections;               
+        });
+      }  
+
+      this.setState({
+        years,
+        collections,                
+    })              
+    }
+
+
+    findDollsByYear = (year) => {    
+      const { dolls } = this.state;    
       return dolls.filter(doll => {      
           return doll.year === year;
         });        
+    } 
+    
+    findCollectionsByYear = (arr, year) => {    
+      const result = {year: year, yearColl: []};
+      result.yearColl.push(arr.filter(el => {          
+          return el.collection[0][0].year === year;
+        }));  
+        
+      return result;      
+    }    
+
+    findDollsByCollection = (collection) => {   
+        const { dolls } = this.state; 
+        const result = {collName: collection, collection: []};   
+        result.collection.push(dolls.filter(doll => {      
+          return doll.collectionName.includes(collection);
+        }));   
+        return result;      
     }
 
-    // findCollections = () => {
-    //   const { dolls2019 } = this.state;
-    //   let collections = [];
-    //   dolls2019.forEach(doll => {
+    findFinalCollections = () => {
+      const { years, collections } = this.state;
+      const dollsByCollection = [];
+      const collectionsByYear = [];
 
-    //     if ()
+      collections.forEach(collection => {
+        dollsByCollection.push(this.findDollsByCollection(collection))
+      })
 
-    //   })
-    // }
+      years.forEach(year => {
+        collectionsByYear.push(this.findCollectionsByYear(dollsByCollection, year))
+      })
 
-    // findDollsByCollection = (collection) => {
-    //   const { dolls2019 } = this.state;      
-    //   if (collection !== "") {
-    //     const result = dolls2019.filter(doll => {      
-    //       return doll.collectionName.toLowerCase().includes(collection.toLowerCase());
-    //     });
-    //     this.setState({
-    //       searched: result
-    //     })
-    //   } else {
-    //     this.setState({
-    //       searched: []
-    //     })
-    //   }            
-    // }
+      console.log(dollsByCollection)
+      console.log(collectionsByYear)
+      console.log(collectionsByYear[0].year)
 
-
+      this.setState({
+        finalCollections: collectionsByYear,
+        loading: false,                
+      })   
+      
+    }
 
 
     render() {
-        const { dolls2019, loading, brand } = this.state;
+        const { dolls, brand, years, collections, finalCollections, loading } = this.state;
 
         return (
-            <div>
-              <h2>2019</h2>
+            <div>    
+                       
                 
-                {!loading && dolls2019.map((doll, index) => {
+                {!loading && finalCollections.map((el, index) => {
                     return (
-                        <Link className="link-to-doll" to={`/catalog/${brand}/${doll._id}`} key={`${doll.name}-${index}`}>
-                            <InfoBox 
-                            image={doll.closeUpImage} 
-                            character={doll.character} 
-                            name={doll.name} 
-                            mold={doll.mold} 
-                            releasePrice={doll.releasePrice}/>
-                        </Link>
+                      <h1>hola</h1> 
+                      
+                      // <h2 key={`${index}`}>{el.year}</h2>
+                      // {year.map((collection) => {
+                      //   // return (
+                      //     <h3>{collection[0].collectionName}</h3>
+                      //   // )
+                        
+
+                      // })}
+                      
+                    
+
+                        // <Link className="link-to-doll" to={`/catalog/${brand}/${doll._id}`} key={`${doll.name}-${index}`}>
+                        //     <InfoBox 
+                        //     image={doll.closeUpImage} 
+                        //     character={doll.character} 
+                        //     name={doll.name} 
+                        //     mold={doll.mold} 
+                        //     releasePrice={doll.releasePrice}/>
+                        // </Link>
                         )
                 })}
 
