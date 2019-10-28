@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './DollsList.css';
 
-import { Link } from "react-router-dom";
 
 import catalogService from '../services/catalogSevice';
 
@@ -16,6 +15,7 @@ class DollsList extends Component {
         finalCollections: [],
         loading: true,
         brand: undefined,
+        subBrand: undefined,
     }
 
 
@@ -24,10 +24,19 @@ class DollsList extends Component {
         const { match: { params: { brand } } } = this.props;  
     
         try {
-          const dolls = await catalogService.getDollsByBrand(brand);  
+          const dolls = await catalogService.getDollsByBrand(brand);
+          let subBrand;
+          if (brand === 'fashionroyalty') {
+            subBrand = 'Fashion Royalty';
+          } else if (brand === 'nuface') {
+            subBrand = 'Nu Face';
+          } else {
+            subBrand = 'Poppy Parker';
+          }  
           this.setState({
             dolls,
-            brand
+            brand,
+            subBrand
           })
           try {            
             this.findYearsAndCollections();
@@ -105,12 +114,12 @@ class DollsList extends Component {
     }
 
 
-    findDollsByYear = (year) => {    
-      const { dolls } = this.state;    
-      return dolls.filter(doll => {      
-          return doll.year === year;
-        });        
-    } 
+    // findDollsByYear = (year) => {    
+    //   const { dolls } = this.state;    
+    //   return dolls.filter(doll => {      
+    //       return doll.year === year;
+    //     });        
+    // } 
     
     findCollectionsByYear = (arr, year) => {    
       const result = {year: year, yearColl: []};
@@ -145,7 +154,15 @@ class DollsList extends Component {
 
       console.log(dollsByCollection)
       console.log(collectionsByYear)
-      console.log(collectionsByYear[0].year)
+
+      collectionsByYear.forEach(el => {
+        console.log(el.year)
+        console.log(el.yearColl)
+        el.yearColl.forEach(coll => {
+          console.log(coll.collName)
+        })
+
+      })
 
       this.setState({
         finalCollections: collectionsByYear,
@@ -156,37 +173,46 @@ class DollsList extends Component {
 
 
     render() {
-        const { dolls, brand, years, collections, finalCollections, loading } = this.state;
+        const { dolls, brand, subBrand, years, collections, finalCollections, loading } = this.state;
 
         return (
             <div>    
-                       
+                      
                 
-                {!loading && finalCollections.map((el, index) => {
+                {!loading && <div>
+                  <h1>{subBrand}</h1> 
+                
+                 {finalCollections.map((el, index) => {
                     return (
-                      <h1>hola</h1> 
-                      
-                      // <h2 key={`${index}`}>{el.year}</h2>
-                      // {year.map((collection) => {
-                      //   // return (
-                      //     <h3>{collection[0].collectionName}</h3>
-                      //   // )
-                        
+                      <div>
+                         <h2 key={`${el.year}-${index}`}>{el.year}</h2>
+                         {el.yearColl.map((coll, index) => {
+                           return (
+                            <h3 key={`${index}`}>hola{coll.collName}</h3>
+                           )
+                           
 
-                      // })}
+                         })}
                       
-                    
 
-                        // <Link className="link-to-doll" to={`/catalog/${brand}/${doll._id}`} key={`${doll.name}-${index}`}>
-                        //     <InfoBox 
-                        //     image={doll.closeUpImage} 
-                        //     character={doll.character} 
-                        //     name={doll.name} 
-                        //     mold={doll.mold} 
-                        //     releasePrice={doll.releasePrice}/>
-                        // </Link>
+
+                      </div>
+                      
+                
+                        // <InfoBox key={`${doll.name}-${index}`}
+                        // brand = {brand}
+                        // id = {doll._id}
+                        // image={doll.closeUpImage} 
+                        // character={doll.character} 
+                        // name={doll.name} 
+                        // editionSize = {doll.editionSize}
+                        // mold={doll.mold} 
+                        // skinTone={doll.skinTone}
+                        // releasePrice={doll.releasePrice}></InfoBox>
+
                         )
-                })}
+                 })}
+                </div>}
 
                 {loading && <div className="loading">Loading...</div>}
             </div>

@@ -9,8 +9,8 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 body {
   margin: 0;
-  font-family: 'Raleway', sans-serif; 
-	 background: #fff;
+  font-family: 'Raleway', sans-serif;
+	background: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -19,3 +19,5 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
