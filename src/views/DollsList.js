@@ -152,18 +152,10 @@ class DollsList extends Component {
         collectionsByYear.push(this.findCollectionsByYear(dollsByCollection, year))
       })
 
-      console.log(dollsByCollection)
-      console.log(collectionsByYear)
+      // console.log(dollsByCollection)
+      // console.log(collectionsByYear)
 
-      collectionsByYear.forEach(el => {
-        console.log(el.year)
-        console.log(el.yearColl)
-        el.yearColl.forEach(coll => {
-          console.log(coll.collName)
-        })
-
-      })
-
+      
       this.setState({
         finalCollections: collectionsByYear,
         loading: false,                
@@ -173,46 +165,50 @@ class DollsList extends Component {
 
 
     render() {
-        const { dolls, brand, subBrand, years, collections, finalCollections, loading } = this.state;
+        const { brand, subBrand, finalCollections, loading } = this.state;
+        let options = [];
+
+        finalCollections.forEach((el, index) => {
+          options.push(
+            <h2 key={`${el.year}-${index}`}>{el.year}</h2>
+          );
+          el.yearColl.forEach((coll) => {            
+            coll.forEach((name) => {
+              options.push(
+                <div className="collection-name">
+                  <h3 key={`${name.collName}`}>{name.collName}</h3> 
+                </div>                               
+              );
+              name.collection.forEach((collection) => {
+                collection.forEach((doll) => {
+                  options.push(
+                    
+                        <InfoBox key={`${doll._id}`} 
+                        brand = {brand}
+                        id = {doll._id}
+                        image={doll.closeUpImage} 
+                        character={doll.character} 
+                        name={doll.name} 
+                        editionSize = {doll.editionSize}
+                        mold={doll.mold} 
+                        skinTone={doll.skinTone}
+                        releasePrice={doll.releasePrice}></InfoBox> 
+                  );
+                })
+              })
+            });
+          });
+        });
+    
+      
 
         return (
-            <div>    
-                      
-                
+            <div>                 
+
                 {!loading && <div>
                   <h1>{subBrand}</h1> 
-                
-                 {finalCollections.map((el, index) => {
-                    return (
-                      <div>
-                         <h2 key={`${el.year}-${index}`}>{el.year}</h2>
-                         {el.yearColl.map((coll, index) => {
-                           return (
-                            <h3 key={`${index}`}>hola{coll.collName}</h3>
-                           )
-                           
-
-                         })}
-                      
-
-
-                      </div>
-                      
-                
-                        // <InfoBox key={`${doll.name}-${index}`}
-                        // brand = {brand}
-                        // id = {doll._id}
-                        // image={doll.closeUpImage} 
-                        // character={doll.character} 
-                        // name={doll.name} 
-                        // editionSize = {doll.editionSize}
-                        // mold={doll.mold} 
-                        // skinTone={doll.skinTone}
-                        // releasePrice={doll.releasePrice}></InfoBox>
-
-                        )
-                 })}
-                </div>}
+                  {options}                  
+                  </div>}
 
                 {loading && <div className="loading">Loading...</div>}
             </div>
