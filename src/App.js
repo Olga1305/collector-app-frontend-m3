@@ -20,6 +20,7 @@ import AnonRoute from './components/AnonRoute';
 
 class App extends Component {
 
+  // eslint-disable-next-line class-methods-use-this
   render() {
     // const { handleLogout } = this.props;
     

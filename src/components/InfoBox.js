@@ -18,8 +18,8 @@ const InfoBox = props => {
                     <h3>Mold: {props.mold}</h3>
                     <h3>Skin tone: {props.skinTone}</h3> 
                     <h3>Release price: ${props.releasePrice}</h3> 
-                    <button className="button-blue">+ to my collection</button>
-                    <button className="button-blue">+ to my wishlist</button>
+                    <button className="button">+ to my collection</button>
+                    <button className="button">+ to my wishlist</button>
                 </div>   
 
             </div>

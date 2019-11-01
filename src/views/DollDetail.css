@@ -25,27 +25,3 @@
     padding-left: 35px;
 }
 
-
-.button-blue {
-    text-align: center;
-    width: 93px;
-    font-size: 12px;
-    font-weight: 700;
-    color: #ffffff !important;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: #8FC9D6;
-    padding: 5px;
-    margin: 0 5px 30px 0;
-    border-radius: 12px;
-    display: inline-block;
-    border: none;
-    transition: all 0.4s ease 0s;
-  }
-  
-  .button-blue:hover {
-    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
-    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
-    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
-    transition: all 0.4s ease 0s;
-  }
