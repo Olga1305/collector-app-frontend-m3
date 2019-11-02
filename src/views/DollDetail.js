@@ -67,7 +67,7 @@ class DollDetail extends Component {
                 <p>Edition Size: {doll.editionSize}</p>
                 <p>Release Price: ${doll.releasePrice}</p>
                 <button className="button" onClick={userService.addMyDollToMyCollection(brand, id)}>+ to my collection</button>
-                <button className="button">+ to my wishlist</button>
+                <button className="button"onClick={userService.addMyDollToMyWishlist(brand, id)}>+ to my wishlist</button>
               
             </div>          
 

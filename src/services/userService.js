@@ -24,6 +24,12 @@ class UserService {
     return this.axios.post(`/catalog/${brand}/${id}`, user)
       .then(({ data: user }) => user);
   }
+
+  addMyDollToMyWishlist(brand, id, user) {
+    return this.axios.post(`/catalog/${brand}/${id}`, user)
+      .then(({ data: user }) => user);
+  }
+
 }
 
 const userService = new UserService();
