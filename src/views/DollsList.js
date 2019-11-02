@@ -73,7 +73,7 @@ class DollsList extends Component {
                   mold={doll.mold}
                   skinTone={doll.skinTone}
                   releasePrice={doll.releasePrice}
-                ></InfoBox>,
+                ></InfoBox>
               );
             });
           });
