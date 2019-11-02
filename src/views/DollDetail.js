@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './DollDetail.css';
 import catalogService from '../services/catalogSevice';
+import userService from '../services/userService';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 
@@ -12,6 +13,8 @@ class DollDetail extends Component {
     loading: true,
   }
 
+  
+
   async componentDidMount() {
     const { match: {params: { brand, id }} } = this.props;
     console.log(brand, id)
@@ -20,7 +23,7 @@ class DollDetail extends Component {
       this.setState({
         doll,
         loading: false,
-      }, () => console.log(doll))
+      }, () => console.log(this.props))
     } catch (error) {
       console.log(error);
       this.setState({
@@ -31,6 +34,7 @@ class DollDetail extends Component {
 
   render() {
     const { doll, loading } = this.state;
+    const { match: {params: { brand, id }} } = this.props;
     
     return (
       <>
@@ -62,7 +66,7 @@ class DollDetail extends Component {
                 <p>Hair: {doll.hair}</p>
                 <p>Edition Size: {doll.editionSize}</p>
                 <p>Release Price: ${doll.releasePrice}</p>
-                <button className="button">+ to my collection</button>
+                <button className="button" onClick={userService.addMyDollToMyCollection(brand, id)}>+ to my collection</button>
                 <button className="button">+ to my wishlist</button>
               
             </div>          

@@ -17,7 +17,7 @@ class Mycollection extends Component {
   async componentDidMount() {
     try {
       const dolls = await userService.getMyCollection();
-
+      
       this.setState(
         {
           dolls,
@@ -39,7 +39,8 @@ class Mycollection extends Component {
       <div>
         {!loading && (
           <div>
-            {dolls.map(doll => {
+            {dolls}
+            {/* {dolls.map(doll => {
               return (
                 <InfoBox
                   key={`${doll._id}`}
@@ -53,7 +54,7 @@ class Mycollection extends Component {
                   releasePrice={doll.releasePrice}
                 ></InfoBox>
               );
-            })}
+            })} */}
           </div>
         )}
 

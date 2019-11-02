@@ -13,11 +13,16 @@ class UserService {
 //   }
 
   getMyCollection() {
-    return this.axios.get(`/mycollection`).then(({ data: dolls }) => dolls);
+    return this.axios.get(`/mycollection`).then(({ data: user }) => user);
   }
 
   getMyWhishlist() {
     return this.axios.get(`/mywishlist`).then(({ data: dolls }) => dolls);
+  }
+
+  addMyDollToMyCollection(brand, id, user) {
+    return this.axios.post(`/catalog/${brand}/${id}`, user)
+      .then(({ data: user }) => user);
   }
 }
 
