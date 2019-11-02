@@ -9,6 +9,8 @@ import Catalog from './views/Catalog';
 import DollsList from './views/DollsList';
 import DollDetail from './views/DollDetail';
 import Profile from './views/user/Profile';
+import Mycollection from './views/user/Mycollection';
+import Mywishlist from './views/user/Mywishlist';
 
 import Login from './views/auth/Login';
 import Signup from './views/auth/Signup';
@@ -16,6 +18,7 @@ import { withAuth } from './Context/AuthContext';
 
 import PrivateRoute from './components/PrivateRoute';
 import AnonRoute from './components/AnonRoute';
+
 
 
 class App extends Component {
@@ -31,14 +34,17 @@ class App extends Component {
               <Router>
                 <Navbar/>
                 
-                <div className="content-wrap">
-                  <Route exact path="/" component={Catalog} />
+                <div className="content-wrap">                  
                   <AnonRoute exact path="/login" component={Login} />
                   <AnonRoute exact path="/signup" component={Signup} />
+                  <Route exact path="/" component={Catalog} />
                   <Route exact path="/catalog" component={Catalog} />                 
                   <Route exact path="/catalog/:brand" component={DollsList} />                    
                   <Route exact path="/catalog/:brand/:id" component={DollDetail} />                
-                  <PrivateRoute exact path="/profile" component={Profile} />  
+                  <PrivateRoute exact path="/profile" component={Profile} />
+                  <PrivateRoute exact path="/mycollection" component={Mycollection} />
+                  <PrivateRoute exact path="/mywishlist" component={Mywishlist} />
+
                   <button className="logout" onClick={handleLogout}>logout</button>
                  
                 </div>     
