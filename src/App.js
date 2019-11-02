@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router} from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.css';
 
 import Navbar from './components/Navbar';
@@ -22,22 +22,24 @@ class App extends Component {
 
   // eslint-disable-next-line class-methods-use-this
   render() {
-    // const { handleLogout } = this.props;
+    const { handleLogout } = this.props;
     
     return (
       <div className="main-container">
-          {/* <button onClick={handleLogout}>logout</button> */}
+          
           
               <Router>
-                <Navbar></Navbar>
+                <Navbar/>
+                <button className="logout" onClick={handleLogout}>logout</button>
                 <div className="content-wrap">
-                  <AnonRoute exact path="/" component={Catalog} />
+                  <Route exact path="/" component={Catalog} />
                   <AnonRoute exact path="/login" component={Login} />
                   <AnonRoute exact path="/signup" component={Signup} />
-                  <AnonRoute exact path="/catalog" component={Catalog} />                 
-                  <AnonRoute exact path="/catalog/:brand" component={DollsList} />                    
-                  <AnonRoute exact path="/catalog/:brand/:id" component={DollDetail} />
-                  <PrivateRoute exact path="/private" component={PrivateView} />                  
+                  <Route exact path="/catalog" component={Catalog} />                 
+                  <Route exact path="/catalog/:brand" component={DollsList} />                    
+                  <Route exact path="/catalog/:brand/:id" component={DollDetail} />
+                  <PrivateRoute exact path="/private" component={PrivateView} />  
+                 
                 </div>     
                       
                 

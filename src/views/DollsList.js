@@ -55,8 +55,8 @@ class DollsList extends Component {
       el.yearColl.forEach(coll => {
         coll.forEach(name => {
           options.push(
-            <div className="collection-name">
-              <h3 key={`${name.collName}`}>{name.collName}</h3>
+            <div className="collection-name" key={`${name.collName}`}>
+              <h3>{name.collName}</h3>
             </div>,
           );
           name.collection.forEach(collection => {

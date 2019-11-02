@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { withAuth } from '../../Context/AuthContext';
 
 class Login extends Component {
@@ -14,23 +15,30 @@ class Login extends Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     this.props.handleLogin({
-      username,
+      email,
       password
     })
   }
 
   render() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     return (
-      <form onSubmit={this.handleFormSubmit}>
-        <label>Username:</label>
-        <input type="text" name="username" value={username} onChange={this.handleChange}/>
-        <label>Password:</label>
-        <input type="password" name="password" value={password} onChange={this.handleChange} />
-        <input type="submit" value="Login" />
-      </form>
+      <div>
+        <h1>Log in</h1>
+        <form onSubmit={this.handleFormSubmit}>
+          <label>Email:</label>
+          <input type="text" name="email" value={email} onChange={this.handleChange}/><br/>
+          <label>Password:</label>
+          <input type="password" name="password" value={password} onChange={this.handleChange} /><br/>
+          <input className="button" type="submit" value="Login" />
+        </form>
+        <p>Don't have account? 
+          <Link className="button" to={"/signup"}>Sign up</Link>
+        </p>
+      </div>
+      
     )
   }
 }

@@ -5,7 +5,7 @@ const PrivateView = ({ user }) => {
   return (
     <div>
       PrivateView
-      user: {user.username}
+      user: {user.email}
     </div>
   );
 };
