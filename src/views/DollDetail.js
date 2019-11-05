@@ -14,8 +14,6 @@ class DollDetail extends Component {
     ebay: [],
     loading: true,
   }
-
-  
   
   
 
@@ -48,11 +46,10 @@ class DollDetail extends Component {
       <>
         {loading && <div>Loading...</div> }
         {!loading && 
-        <div>
+        <div className="doll-detail">
             <div>
-              <h1 className="doll-detail">{doll.character} {doll.name} - {doll.subBrand}</h1>             
-            </div>
-            <div>
+              <h1>{doll.character} {doll.name} - {doll.subBrand}</h1>             
+              
               <Carousel className="carousel"                
                 slidesPerPage={1}
                 slidesPerScroll={1}

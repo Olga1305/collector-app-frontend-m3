@@ -13,3 +13,68 @@
   .logout {
     margin-top: 100px;
   }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display',  sans-serif;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #5898BE;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  h4 {
+    font-size: 20px;
+    font-style: italic;
+  }
+
+  p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+  }
+
+
+.button {
+  text-align: center;
+  width: 93px;
+  font-family: Montserrat;
+  font-size: 10px;
+  font-weight: 900;
+  color: black !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #FFF952;
+  padding: 5px;
+  margin: 3px;
+  border-radius: 12px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+}
+
+.button:hover {
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.4s ease 0s;
+}
+
+@media only screen and (min-width: 768px) {
+  .main-container h1, h2 {    
+    text-align: center;
+  }  
+}
+
+

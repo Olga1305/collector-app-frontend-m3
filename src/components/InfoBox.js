@@ -14,10 +14,12 @@ const InfoBox = props => {
                     
                 </div>
                 <div className="doll-info">
-                    <h2>{props.name} - {props.character} - LE{props.editionSize}</h2>
-                    <h3>Mold: {props.mold}</h3>
-                    <h3>Skin tone: {props.skinTone}</h3> 
-                    <h3>Release price: ${props.releasePrice}</h3> 
+                    <Link to={`/catalog/${props.brand}/${props.id}`}>
+                      <h4>{props.name} - {props.character} - LE{props.editionSize}</h4>
+                    </Link>                    
+                    <p>Mold: {props.mold}</p>
+                    <p>Skin tone: {props.skinTone}</p> 
+                    <p>Release price: ${props.releasePrice}</p> 
                     <button className="button">+ to my collection</button>
                     <button className="button">+ to my wishlist</button>
                 </div>   

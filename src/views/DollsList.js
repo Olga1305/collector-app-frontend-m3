@@ -51,7 +51,7 @@ class DollsList extends Component {
     const options = [];
 
     dolls.forEach((el, index) => {
-      options.push(<h2 key={`${el.year}-${index}`}>{el.year}</h2>);
+      options.push(<h2 className="doll-list-h2" key={`${el.year}-${index}`}>{el.year}</h2>);
       el.yearColl.forEach(coll => {
         coll.forEach(name => {
           options.push(
@@ -82,16 +82,16 @@ class DollsList extends Component {
     });
 
     return (
-      <div>
+      <>
         {!loading && (
-          <div>
-            <h1>{subBrand}</h1>
+          <div className="doll-list">
+            <h1 className="doll-list-h1">{subBrand}</h1>
             {options}
           </div>
         )}
 
         {loading && <div className="loading">Loading...</div>}
-      </div>
+      </>
     );
   }
 }
