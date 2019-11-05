@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from './logo02.png';
 import './Navbar.css';
-
+import { withAuth } from '../Context/AuthContext';
 
 class Navbar extends Component {
 
@@ -10,15 +10,17 @@ class Navbar extends Component {
         visibleMenu: false,
       }
     
-      showMenu = () => {
-            const { visibleMenu } = this.state;
-            this.setState({
-                visibleMenu: !visibleMenu,
-            });
-        }
+    showMenu = () => {
+        const { visibleMenu } = this.state;
+        this.setState({
+            visibleMenu: !visibleMenu,
+        });
+    }
+
 
     render() {
         const { visibleMenu } = this.state;
+        const { user, handleLogout } = this.props;
 
         return (            
             <>
@@ -36,7 +38,7 @@ class Navbar extends Component {
                         </header>                
                     </div>
                 }
-                {visibleMenu && 
+                {visibleMenu && !user &&
                     <div className="visible_menu">
                         <header id="#header">
                         <div id="menu_on" onClick={this.showMenu}>
@@ -56,7 +58,28 @@ class Navbar extends Component {
                             </ul>
                         </nav>                                   
                     </div>
-                }              
+                } 
+                {visibleMenu && user &&
+                    <div className="visible_menu">
+                        <header id="#header">
+                        <div id="menu_on" onClick={this.showMenu}>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div className="logo">
+                                <Link to="/" onClick={this.showMenu}><img src={logo} alt="logo"/></Link>                        
+                            </div>
+                        </header>                    
+                        <nav>	
+                            <ul>
+                                <li><Link to="/profile" onClick={this.showMenu}>Profile</Link></li>
+                                <li><Link to="/" onClick={handleLogout}>Log out</Link></li>
+                                <li><Link to="/catalog" onClick={this.showMenu}>Catalog</Link></li>                        
+                            </ul>
+                        </nav>                                   
+                    </div>
+                }                 
               
             </>
             
@@ -64,4 +87,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+export default withAuth(Navbar);

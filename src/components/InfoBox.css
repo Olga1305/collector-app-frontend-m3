@@ -50,5 +50,17 @@
     font-size: 0.9rem;
 }
 
+.btns {
+    display: flex;
+}
+
+.wislist-icon {
+    width: 30px;
+    padding: 3px;
+}
+
+.wislist-icon img{
+    width: 100%;
+}
 
   

@@ -39,22 +39,22 @@ class Mycollection extends Component {
       <div>
         {!loading && (
           <div>
-            {dolls}
-            {/* {dolls.map(doll => {
+            
+            {dolls.map(el => {
               return (
                 <InfoBox
-                  key={`${doll._id}`}
-                  id={doll._id}
-                  image={doll.closeUpImage}
-                  character={doll.character}
-                  name={doll.name}
-                  editionSize={doll.editionSize}
-                  mold={doll.mold}
-                  skinTone={doll.skinTone}
-                  releasePrice={doll.releasePrice}
+                  key={`${el.doll._id}`}
+                  id={el.doll._id}
+                  image={el.doll.closeUpImage}
+                  character={el.doll.character}
+                  name={el.doll.name}
+                  editionSize={el.doll.editionSize}
+                  mold={el.doll.mold}
+                  skinTone={el.doll.skinTone}
+                  releasePrice={el.doll.releasePrice}
                 ></InfoBox>
               );
-            })} */}
+            })}
           </div>
         )}
 

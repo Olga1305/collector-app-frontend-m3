@@ -1,6 +1,8 @@
 import React from 'react';
 import './InfoBox.css';
 
+import heart01 from '../assets/heart01.png';
+
 import { Link } from "react-router-dom";
 
 const InfoBox = props => {
@@ -22,6 +24,15 @@ const InfoBox = props => {
                     <p>Release price: ${props.releasePrice}</p> 
                     <button className="button">+ to my collection</button>
                     <button className="button">+ to my wishlist</button>
+                    {/* <div className="btns">
+                        <div>
+                             <button className="button">+ to my collection</button>
+                        </div>                     
+                        <div className="wislist-icon">
+                            <img src={heart01} alt="wishlis icon"></img>
+                        </div> 
+                    </div> */}
+                    
                 </div>   
 
             </div>
