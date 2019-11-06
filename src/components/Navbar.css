@@ -78,6 +78,7 @@ nav{
 nav a{
 	display:block;
 	font-family: "Montserrat", sans-serif;
+	font-weight: bold;
 	text-decoration: none;
 	padding: 10px;
 	color: rgba(255,255,255,0.75);

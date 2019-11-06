@@ -3,9 +3,14 @@
     padding-left: 35px;
 }
 
+.BrainhubCarousel {
+    z-index: -100 !important;
+}
+
 .carousel {
     max-width: 660px;
     max-height: 725px;
+    
 }
 
 .carousel img {

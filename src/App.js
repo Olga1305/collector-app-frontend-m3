@@ -24,8 +24,8 @@ import AnonRoute from './components/AnonRoute';
 class App extends Component {
 
   
+  // eslint-disable-next-line class-methods-use-this
   render() {
-    const { handleLogout } = this.props;
     
     return (
       <div className="main-container">
@@ -44,8 +44,6 @@ class App extends Component {
                   <PrivateRoute exact path="/profile" component={Profile} />
                   <PrivateRoute exact path="/mycollection" component={Mycollection} />
                   <PrivateRoute exact path="/mywishlist" component={Mywishlist} />
-
-                  <button className="logout" onClick={handleLogout}>logout</button>
                  
                 </div>     
                       

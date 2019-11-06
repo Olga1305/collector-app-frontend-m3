@@ -1,0 +1,34 @@
+.profile {
+    /* position: relative;     */
+}
+
+.profile h1 {
+    color: black;
+    text-shadow: 4px 4px #FFF952;
+    font-size: 48px;
+}
+
+.profile-btns {
+    text-align: center;        
+}
+
+.profile-bgd-img {  
+    text-align: left;  
+    width: 100%;    
+}
+
+.profile-bgd-img img {    
+    width: 100%;    
+}
+
+.logout {
+    background: #fff952;
+    color: black;
+}
+
+.logout:hover {
+    background: #fff952;
+}
+
+
+

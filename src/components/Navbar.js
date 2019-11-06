@@ -74,8 +74,10 @@ class Navbar extends Component {
                         <nav>	
                             <ul>
                                 <li><Link to="/profile" onClick={this.showMenu}>Profile</Link></li>
-                                <li><Link to="/" onClick={handleLogout}>Log out</Link></li>
-                                <li><Link to="/catalog" onClick={this.showMenu}>Catalog</Link></li>                        
+                                <li><Link to="/mycollection" onClick={this.showMenu}>My collection</Link></li>
+                                <li><Link to="/mywishlist" onClick={this.showMenu}>My wishlist</Link></li>
+                                <li><Link to="/catalog" onClick={this.showMenu}>Catalog</Link></li>  
+                                <li><Link to="/" onClick={handleLogout}>Log out</Link></li>                      
                             </ul>
                         </nav>                                   
                     </div>

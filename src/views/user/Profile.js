@@ -1,21 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { withAuth } from '../../Context/AuthContext';
+
 import './Profile.css';
+import image from '../../assets/dc06.png';
 
-const Profile = () => {
-  return (
-    <div>
-      <h1>My profile</h1>
-      <Link className="button" to="/mycollection">
-        My collection
-      </Link>
-      <br />
-      <Link className="button" to="/mywishlist">
-        My wishlist
-      </Link>
-      <br />
-    </div>
-  );
-};
+class Profile extends Component {
 
-export default Profile;
+  render() {
+
+    const { handleLogout } = this.props;
+
+    return (
+      <div className="profile">
+              
+        
+        <div className="profile-btns">
+        <h1>My profile</h1>
+          <Link className="button-profile" to="/mycollection">
+            My collection
+          </Link>
+          <br/>
+          <Link className="button-profile" to="/mywishlist">
+            My wishlist
+          </Link>
+          <br/>
+          <Link className="button-profile" to="/personaldata">
+            Personal data
+          </Link>
+          <br/>
+          <Link className="button-profile logout" to="/" onClick={handleLogout}>
+            Log out
+          </Link>
+          <br/>
+          <div className="profile-bgd-img">
+            <img src={image} alt="dolls"/>
+          </div>
+
+        </div>
+        
+      </div>
+    );
+  };
+}
+
+export default withAuth(Profile);

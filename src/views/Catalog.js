@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import './Catalog.css';
 
 import MenuBox from '../components/MenuBox';
-import fashionRoylaty from '../assets/fr03.png';
-import nuFace from '../assets/nu03.png';
-import poppyParker from '../assets/pp03.png';
+import fashionRoylaty from '../assets/fr04.png';
+import nuFace from '../assets/nu04.png';
+import poppyParker from '../assets/pp04.png';
 
 const brandsMenu = [
   { link: 'fashionroyalty', img: fashionRoylaty, title: 'Fashion Royalty' },

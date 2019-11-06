@@ -1,50 +1,57 @@
-.main-container {    
-    width: 100%;
-    position: relative;
-    min-height: calc(-105px + 100vh);
-    display: block;
-    margin: -8px;
-  }
+.main-container {
+  width: 100%;
+  position: relative;
+  min-height: calc(-105px + 100vh);
+  display: block;
+  margin: -8px;
+}
 
-  .content-wrap {   
-    padding: 65px 0 75px 10px;  
-  }
+.main-container h1,
+h2 {
+  text-align: center;
+}
 
-  .logout {
-    margin-top: 100px;
-  }
+.content-wrap {
+  padding: 65px 0 75px 10px;
+}
 
-  h1, h2, h3, h4 {
-    font-family: 'Playfair Display',  sans-serif;
-  }
+.logout {
+  margin-top: 100px;
+}
 
-  h1 {
-    font-size: 40px;
-    font-weight: bold;
-    color: #5898BE;
-  }
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Playfair Display', sans-serif;
+}
 
-  h2 {
-    font-size: 32px;
-    font-weight: bold;
-  }
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #5898be;
+}
 
-  h3 {
-    font-size: 24px;
-    font-weight: bold;
-    font-style: italic;
-  }
+h2 {
+  font-size: 32px;
+  font-weight: bold;
+}
 
-  h4 {
-    font-size: 20px;
-    font-style: italic;
-  }
+h3 {
+  font-size: 24px;
+  font-weight: bold;
+  font-style: italic;
+}
 
-  p {
-    font-family: "Montserrat", sans-serif;
-    font-size: 18px;
-  }
+h4 {
+  font-size: 20px;
+  font-style: italic;
+}
 
+p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+}
 
 .button {
   text-align: center;
@@ -52,10 +59,10 @@
   font-family: Montserrat;
   font-size: 16px;
   font-weight: bold;
-  color: black !important;
+  color: black;
   /* text-transform: uppercase; */
   text-decoration: none;
-  background: #FFF952;
+  background: #fff952;
   padding: 5px;
   margin: 3px;
   border-radius: 12px;
@@ -71,10 +78,28 @@
   transition: all 0.4s ease 0s;
 }
 
-@media only screen and (min-width: 768px) {
-  .main-container h1, h2 {    
-    text-align: center;
-  }  
+.button-profile {
+  text-align: center;
+  width: 250px;
+  font-family: Montserrat;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #81BADC;
+  padding: 30px;
+  margin: 10px;
+  border-radius: 25px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
 }
 
-
+.button-profile:hover {
+  background: #5898BE;
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.4s ease 0s;
+}
