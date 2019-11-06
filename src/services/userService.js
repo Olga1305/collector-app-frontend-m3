@@ -16,6 +16,10 @@ class UserService {
     return this.axios.get(`/mycollection`).then(({ data: user }) => user);
   }
 
+  getMyDollDetail(id) {
+    return this.axios.get(`/mycollection/${id}`).then(({ data: doll }) => doll);
+  }
+
   getMyWhishlist() {
     return this.axios.get(`/mywishlist`).then(({ data: dolls }) => dolls);
   }

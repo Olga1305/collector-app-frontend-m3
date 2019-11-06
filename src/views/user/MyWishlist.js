@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-import './Mywishlist.css';
+import './MyWishlist.css';
 
 import userService from '../../services/userService';
 
 import InfoBox from '../../components/InfoBox';
 
-class Mywishlist extends Component {
+class MyWishlist extends Component {
   state = {
     dolls: [],
     loading: true,
@@ -63,4 +63,4 @@ class Mywishlist extends Component {
   }
 }
 
-export default Mywishlist;
+export default MyWishlist;

@@ -1,25 +1,29 @@
-.InfoBox {
+.InfoBoxCollection {
     border-bottom: solid 1px grey;
     padding: 20px 0 20px 10px;
     display: flex;
   }
 
-.doll-image {
+.InfoBoxCollection span {
+    font-weight: bold;
+}
+
+.my-doll-image {
     width: 108px;
     display: flex;
     justify-content: center;    
 } 
 
-.doll-image img {
+.my-doll-image img {
     max-height: 162px;
     max-width: 108px;
 }
 
-.doll-info {
+.my-doll-info {
     padding-left: 10px;
 }
 
-.doll-info h4 {
+.my-doll-info h4 {
     color: black;
     font-style: normal;
     text-shadow: 4px 4px #FFF952;
@@ -27,22 +31,25 @@
     margin: 0;
 }
 
-.doll-info a {
+.my-doll-info a {
     text-decoration: none;
 }
 
-.doll-info h4:hover {
+.my-doll-info h4:hover {
     color: #5898BE;
 }
 
-.doll-info p {
+.my-doll-info p {
     font-size: 16px;
     font-weight: bold;
     margin: 5px 0;
 }
 
-.doll-info p {
+.my-doll-info p {
     color: black;
     font-size: 0.9rem;
 }
 
+
+
+  

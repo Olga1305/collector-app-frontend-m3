@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-import './Mycollection.css';
+import './MyCollection.css';
 
 import userService from '../../services/userService';
 
-import InfoBox from '../../components/InfoBox';
+import InfoBoxCollection from '../../components/InfoBoxCollection';
 
-class Mycollection extends Component {
+class MyCollection extends Component {
   state = {
     dolls: [],
-    loading: true,
-    brand: undefined,
-    subBrand: undefined,
+    loading: true,    
   };
 
   async componentDidMount() {
@@ -38,21 +36,21 @@ class Mycollection extends Component {
     return (
       <div>
         {!loading && (
-          <div>
+          <div className="MyCollection">
+            <h1>My collection</h1>
             
             {dolls.map(el => {
               return (
-                <InfoBox
-                  key={`${el.doll._id}`}
-                  id={el.doll._id}
+                <InfoBoxCollection
+                  key={`${el._id}`}
+                  id={el._id}
                   image={el.doll.closeUpImage}
                   character={el.doll.character}
                   name={el.doll.name}
-                  editionSize={el.doll.editionSize}
-                  mold={el.doll.mold}
-                  skinTone={el.doll.skinTone}
-                  releasePrice={el.doll.releasePrice}
-                ></InfoBox>
+                  state={el.state}
+                  complete={el.complete}
+                  purchasePrice={el.purchasePrice}
+                ></InfoBoxCollection>
               );
             })}
           </div>
@@ -64,4 +62,4 @@ class Mycollection extends Component {
   }
 }
 
-export default Mycollection;
+export default MyCollection;

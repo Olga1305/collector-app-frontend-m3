@@ -9,8 +9,9 @@ import Catalog from './views/Catalog';
 import DollsList from './views/DollsList';
 import DollDetail from './views/DollDetail';
 import Profile from './views/user/Profile';
-import Mycollection from './views/user/Mycollection';
-import Mywishlist from './views/user/Mywishlist';
+import MyCollection from './views/user/MyCollection';
+import MyDollDetail from './views/user/MyDollDetail';
+import MyWishlist from './views/user/MyWishlist';
 
 import Error404 from './views/Error404';
 import Error500 from './views/Error500';
@@ -47,8 +48,9 @@ class App extends Component {
                   <Route exact path="/catalog/:brand" component={DollsList} />                    
                   <Route exact path="/catalog/:brand/:id" component={DollDetail} />                
                   <PrivateRoute exact path="/profile" component={Profile} />
-                  <PrivateRoute exact path="/mycollection" component={Mycollection} />
-                  <PrivateRoute exact path="/mywishlist" component={Mywishlist} />
+                  <PrivateRoute exact path="/mycollection" component={MyCollection} />
+                  <PrivateRoute exact path="/mycollection/:id" component={MyDollDetail} />
+                  <PrivateRoute exact path="/mywishlist" component={MyWishlist} />
                   <Route path="*" component={Error404} />
                 </Switch> 
                 </div>     

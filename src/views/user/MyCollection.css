@@ -1,0 +1,37 @@
+.loading {
+    padding: 60px;
+    text-align: center;
+    font-size: 28px;
+} 
+
+.MyCollection h1 {
+    color: black;
+    text-shadow: 4px 4px #FFF952;
+}
+
+
+@media only screen and (min-width: 768px) {
+    .MyCollection {
+        display: inline-block;        
+    }
+    .MyCollection > .InfoBoxCollection {
+        display: inline-block;
+        width:23%;
+        height: 420px;
+        margin-left: 1%;  
+        border: none;     
+    }
+    .my-doll-image {
+        padding-left: 30px; 
+        margin-bottom: 10px;
+        height: 203px !important;      
+    }
+    .my-doll-image img {
+        max-height: 203px !important;
+        max-width: 135px !important;
+    }
+    .MyCollection h1 {
+        text-align: center;
+    }    
+}
+
