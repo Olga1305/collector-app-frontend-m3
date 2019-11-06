@@ -1,0 +1,32 @@
+.error404 {
+    background-image: url("../assets/404.png");
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+}
+
+.error404 img {
+    width: 100%;
+}
+
+.error404 p {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0 30px 50px 30px;
+}
+
+@media only screen and (min-width: 768px) {
+    .error404 {
+        flex-direction: row;
+     }
+
+    .error404 img {
+       max-width: 600px;    
+       height: 100%;
+    }
+
+    .error404 p {
+        font-size: 80px;
+        margin-top: 300px;
+    }
+}

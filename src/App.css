@@ -78,6 +78,24 @@ p {
   transition: all 0.4s ease 0s;
 }
 
+.button-inactive {
+  text-align: center;
+  width: 100px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  /* text-transform: uppercase; */
+  text-decoration: none;
+  background: #AED7F0;
+  padding: 5px;
+  margin: 3px;
+  border-radius: 12px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+}
+
 .button-profile {
   text-align: center;
   width: 250px;

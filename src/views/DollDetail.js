@@ -19,7 +19,7 @@ class DollDetail extends Component {
 
   async componentDidMount() {
     const { match: {params: { brand, id }} } = this.props;
-    console.log(brand, id)
+    
     try {
       const doll = await catalogService.getDollById(brand, id);
       // const query = encodeURI(doll.ebayQueries[0]+ ' nrfb');      
@@ -29,7 +29,7 @@ class DollDetail extends Component {
         doll,
         // ebay,
         loading: false,
-      }, () => console.log(this.props))
+      })
     } catch (error) {
       console.log(error);
       this.setState({
@@ -73,7 +73,7 @@ class DollDetail extends Component {
                 <p>Release Price: ${doll.releasePrice}</p>
                 <button className="button" onClick={() => userService.addMyDollToMyCollection(brand, id)}>+ to my collection</button>
                 <button className="button"onClick={ () => userService.addMyDollToMyWishlist(brand, id)}>+ to my wishlist</button>
-                {/* {ebay} */}
+                
             </div>          
 
 
