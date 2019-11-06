@@ -13,6 +13,7 @@ import Mycollection from './views/user/Mycollection';
 import Mywishlist from './views/user/Mywishlist';
 
 import Error404 from './views/Error404';
+import Error500 from './views/Error500';
 
 import Login from './views/auth/Login';
 import Signup from './views/auth/Signup';
