@@ -74,8 +74,8 @@ class MyDollDetail extends Component {
                 <p>Purchase date: {myDoll.purchaseDate}</p>
                 <p>Purchase way: {myDoll.purchaseWay}</p>
                 <p>Purchase Price: ${myDoll.purchasePrice}</p>
-                <button className="button" >Update</button>
-                <button className="button">Delete</button>
+                <button className="button" onClick={() => userService.deleteMyDoll(myDoll)}>Update</button>
+                <button className="button" onClick={() => userService.deleteMyDoll(myDoll)}>Delete</button>
                 
             </div>          
 

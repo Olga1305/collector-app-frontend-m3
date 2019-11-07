@@ -20,17 +20,27 @@ class UserService {
     return this.axios.get(`/mycollection/${id}`).then(({ data: doll }) => doll);
   }
 
+  updateMyDoll(doll) {
+    return this.axios.put(`/mycollection/${doll._id}`, doll)
+      .then(({ data: doll }) => doll);
+  }
+
+  deleteMyDoll(doll) {
+    return this.axios.delete(`/mycollection/${doll._id}`, doll)
+      .then(({ data: doll }) => doll);
+  }
+
   getMyWhishlist() {
     return this.axios.get(`/mywishlist`).then(({ data: dolls }) => dolls);
   }
 
-  addMyDollToMyCollection(brand, id, user) {
-    return this.axios.post(`/catalog/${brand}/${id}`, user)
+  addMyDollToMyCollection( id, user) {
+    return this.axios.post(`/mycollection/${id}`, user)
       .then(({ data: user }) => user);
   }
 
-  addMyDollToMyWishlist(brand, id, user) {
-    return this.axios.post(`/catalog/${brand}/${id}`, user)
+  addMyDollToMyWishlist( id, user) {
+    return this.axios.post(`/mywishlist/${id}`, user)
       .then(({ data: user }) => user);
   }
 
