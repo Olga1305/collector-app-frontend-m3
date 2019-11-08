@@ -12,6 +12,7 @@ import Profile from './views/user/Profile';
 import MyCollection from './views/user/MyCollection';
 import MyDollDetail from './views/user/MyDollDetail';
 import MyWishlist from './views/user/MyWishlist';
+import WishlistDollDetail from './views/user/WishlistDollDetail';
 
 import Error404 from './views/Error404';
 import Error500 from './views/Error500';
@@ -51,6 +52,7 @@ class App extends Component {
                   <PrivateRoute exact path="/mycollection" component={MyCollection} />
                   <PrivateRoute exact path="/mycollection/:id" component={MyDollDetail} />
                   <PrivateRoute exact path="/mywishlist" component={MyWishlist} />
+                  <PrivateRoute exact path="/mywishlist/:id" component={WishlistDollDetail} />
                   <Route path="*" component={Error404} />
                 </Switch> 
                 </div>     

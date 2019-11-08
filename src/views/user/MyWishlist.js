@@ -4,20 +4,18 @@ import './MyWishlist.css';
 
 import userService from '../../services/userService';
 
-import InfoBox from '../../components/InfoBox';
+import InfoBoxWishlist from '../../components/InfoBoxWishlist';
 
 class MyWishlist extends Component {
   state = {
     dolls: [],
-    loading: true,
-    brand: undefined,
-    subBrand: undefined,
+    loading: true,    
   };
 
   async componentDidMount() {
     try {
-      const dolls = await userService.getMyWhishlist();
-
+      const dolls = await userService.getMyWishlist();
+      
       this.setState(
         {
           dolls,
@@ -38,20 +36,20 @@ class MyWishlist extends Component {
     return (
       <div>
         {!loading && (
-          <div>
-            {dolls.map(doll => {
+          <div className="MyCollection">
+            <h1>My wishlist</h1>
+            
+            {dolls.map(el => {
               return (
-                <InfoBox
-                  key={`${doll._id}`}
-                  id={doll._id}
-                  image={doll.closeUpImage}
-                  character={doll.character}
-                  name={doll.name}
-                  editionSize={doll.editionSize}
-                  mold={doll.mold}
-                  skinTone={doll.skinTone}
-                  releasePrice={doll.releasePrice}
-                ></InfoBox>
+                <InfoBoxWishlist
+                  key={`${el._id}`}
+                  id={el._id}
+                  image={el.doll.closeUpImage}
+                  character={el.doll.character}
+                  name={el.doll.name}
+                  state={el.state}
+                  complete={el.complete}                  
+                ></InfoBoxWishlist>
               );
             })}
           </div>

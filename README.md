@@ -12,7 +12,7 @@ Webapp that helps to organize your doll collection.
 
 **Homepage** - As a user I want to be able to access the homepage so that I see what the app is about and login and signup
 
-**Sign up** - As a user I want to sign up on the webpage so that I can see all the events that I could attend
+**Sign up** - As a user I want to sign up on the webpage so that I can see my profile, my collection and my wishlist
 
 **Login** - As a user I want to be able to log in on the webpage so that I can get back to my account
 
@@ -44,6 +44,7 @@ List of other features outside of the MVPs scope:
 - As a user I want to see the doll's current price (from Ebay API) and the difference between release and current prices
 
 **User profile:**
+- As a user I want to sign up and log in with my social profiles (Facebook, Google)
 - As a user I want to see another user profiles, collections, wishlists and selling lists
 - As a user I want to contact to another user 
 
@@ -66,4 +67,4 @@ List of other features outside of the MVPs scope:
 
 ### Slides
 
-[Slides Link](slides)
+[Slides Link](https://slides.com/olga1305/doll-collector#/)

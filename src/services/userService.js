@@ -12,12 +12,30 @@ class UserService {
 //     return this.axios.get('/profile').then(({ data: user }) => user);
 //   }
 
+  addMyDollToMyCollection( id ) {
+    return this.axios.post(`/mycollection/${id}`)
+      .then(({ data: doll }) => doll);
+  }
+
+  addMyDollToMyWishlist( id ) {
+    return this.axios.post(`/mywishlist/${id}`)
+      .then(({ data: doll }) => doll);
+  }
+
   getMyCollection() {
-    return this.axios.get(`/mycollection`).then(({ data: user }) => user);
+    return this.axios.get(`/mycollection`).then(({ data: dolls }) => dolls);
+  }
+
+  getMyWishlist() {
+    return this.axios.get(`/mywishlist`).then(({ data: dolls }) => dolls);
   }
 
   getMyDollDetail(id) {
     return this.axios.get(`/mycollection/${id}`).then(({ data: doll }) => doll);
+  }
+
+  getWishlistDollDetail(id) {
+    return this.axios.get(`/mywishlist/${id}`).then(({ data: doll }) => doll);
   }
 
   updateMyDoll(doll) {
@@ -30,19 +48,9 @@ class UserService {
       .then(({ data: doll }) => doll);
   }
 
-  getMyWhishlist() {
-    return this.axios.get(`/mywishlist`).then(({ data: dolls }) => dolls);
-  }
+  
 
-  addMyDollToMyCollection( id, user) {
-    return this.axios.post(`/mycollection/${id}`, user)
-      .then(({ data: user }) => user);
-  }
-
-  addMyDollToMyWishlist( id, user) {
-    return this.axios.post(`/mywishlist/${id}`, user)
-      .then(({ data: user }) => user);
-  }
+ 
 
 }
 
