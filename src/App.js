@@ -15,7 +15,7 @@ import MyWishlist from './views/user/MyWishlist';
 import WishlistDollDetail from './views/user/WishlistDollDetail';
 
 import Error404 from './views/Error404';
-import Error500 from './views/Error500';
+// import Error500 from './views/Error500';
 
 import Login from './views/auth/Login';
 import Signup from './views/auth/Signup';

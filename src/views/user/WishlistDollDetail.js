@@ -72,8 +72,8 @@ class WishlistDollDetail extends Component {
                 <p>Edition Size: {myDoll.doll.editionSize}</p>
                 <p>Release Price: ${myDoll.doll.releasePrice}</p>
                 
-                <button className="button" onClick={() => userService.deleteMyDoll(myDoll)}>Update</button>
-                <button className="button" onClick={() => userService.deleteMyDoll(myDoll)}>Delete</button>
+                <button className="button" onClick={() => userService.deleteWishlistDoll(myDoll)}>Update</button>
+                <button className="button" onClick={() => userService.deleteWishlistDoll(myDoll)}>Delete</button>
                 
             </div>          
 

@@ -48,6 +48,11 @@ class UserService {
       .then(({ data: doll }) => doll);
   }
 
+  deleteWishlistDoll(doll) {
+    return this.axios.delete(`/mywishlist/${doll._id}`, doll)
+      .then(({ data: doll }) => doll);
+  }
+
   
 
  
