@@ -63,12 +63,12 @@ class WishlistDollDetail extends Component {
               
             </div>
             <div className="info">
-                <h2>My collection doll:</h2>                
+                <h2>My wishlist doll:</h2>                
                 <p>Mold: {myDoll.doll.mold}</p>
                 <p>Skin Tone: {myDoll.doll.skinTone}</p>
                 <p>Hair: {myDoll.doll.hair}</p>                
-                <p>Condition: {myDoll.state}</p>
-                <p>Complete: {myDoll.complete}</p>
+                <p>Condition: {myDoll.condition}</p>
+                <p>Kit: {myDoll.kit}</p>
                 <p>Edition Size: {myDoll.doll.editionSize}</p>
                 <p>Release Price: ${myDoll.doll.releasePrice}</p>
                 
