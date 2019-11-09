@@ -20,8 +20,10 @@ const InfoBoxCollection = props => {
                     <p>Condition: {props.condition}</p>
                     <p>Kit: {props.kit}</p> 
                     <p>Purchase price: ${props.purchasePrice}</p> 
-                    <button className="button">Update</button>
-                    <button className="button">Delete</button>
+                    <Link className="button" to={`/mycollection/${props.id}/update`}>
+                     Update
+                    </Link>
+                    <button className="button" onClick={() => props.handleDelete(props.id)}>Delete</button>
                     
                     
                 </div>   

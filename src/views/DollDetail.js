@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import './DollDetail.css';
 import catalogService from '../services/catalogSevice';
 import userService from '../services/userService';
@@ -13,10 +14,10 @@ class DollDetail extends Component {
     doll: {},
     ebay: [],
     loading: true,
+    collection: false,
+    wishlist: false,
   }
   
-  
-
   async componentDidMount() {
     const { match: {params: { brand, id }} } = this.props;
     
@@ -38,12 +39,36 @@ class DollDetail extends Component {
     }
   }
 
+  addToCollection = () => {   
+    const { match: {params: { id }} } = this.props; 
+    userService
+      .addMyDollToMyCollection(id)
+      .then(() => this.setState({ collection: true }));
+  };
+
+  addToWishlist = () => {   
+    const { match: {params: { id }} } = this.props; 
+    userService
+      .addMyDollToMyWishlist(id)
+      .then(() => this.setState({ wishlist: true }));
+  };
+
   render() {
-    const { doll, loading } = this.state;
+    const { doll, loading, collection, wishlist } = this.state;
     const { match: {params: { brand, id }} } = this.props;
     
     return (
       <>
+        {collection && <Redirect
+            to={{
+              pathname: "/mycollection",
+            }}
+          />}  
+        {wishlist && <Redirect
+            to={{
+              pathname: "/mywishlist",
+            }}
+          />}    
         {loading && <div>Loading...</div> }
         {!loading && 
         <div className="doll-detail">
@@ -71,8 +96,8 @@ class DollDetail extends Component {
                 <p>Hair: {doll.hair}</p>
                 <p>Edition Size: {doll.editionSize}</p>
                 <p>Release Price: ${doll.releasePrice}</p>
-                <button className="button" onClick={() => userService.addMyDollToMyCollection(id)}>+ to my collection</button>
-                <button className="button" onClick={() => userService.addMyDollToMyWishlist(id)}>+ to my wishlist</button>
+                <button className="button" onClick={() => this.addToCollection()}>+ to my collection</button>
+                <button className="button" onClick={() => this.addToWishlist()}>+ to my wishlist</button>
                 
             </div>          
 

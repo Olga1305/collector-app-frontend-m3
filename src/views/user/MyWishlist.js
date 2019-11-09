@@ -9,20 +9,17 @@ import InfoBoxWishlist from '../../components/InfoBoxWishlist';
 class MyWishlist extends Component {
   state = {
     dolls: [],
-    loading: true,    
+    loading: true, 
   };
 
   async componentDidMount() {
     try {
-      const dolls = await userService.getMyWishlist();
-      
+      const dolls = await userService.getMyWishlist();      
       this.setState(
         {
           dolls,
           loading: false,
-        },
-        () => console.log("my wish", dolls),
-      );
+        });
     } catch (error) {
       console.log(error);
       this.setState({
@@ -30,6 +27,19 @@ class MyWishlist extends Component {
       });
     }
   }
+
+  handleDelete = async (id) => {
+    try {
+      await userService.deleteWishlistDoll(id);
+      const dolls = await userService.getMyWishlist();
+      this.setState(
+        {
+          dolls,
+        });
+    } catch (error) {
+      console.log(error);
+    }    
+  };
 
   render() {
     const { dolls, loading } = this.state;
@@ -48,7 +58,8 @@ class MyWishlist extends Component {
                   character={el.doll.character}
                   name={el.doll.name}
                   condition={el.condition}
-                  kit={el.kit}                  
+                  kit={el.kit}    
+                  handleDelete={this.handleDelete}              
                 ></InfoBoxWishlist>
               );
             })}

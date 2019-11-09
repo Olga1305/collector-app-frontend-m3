@@ -31,6 +31,19 @@ class MyCollection extends Component {
     }
   }
 
+  handleDelete = async (id) => {
+    try {
+      await userService.deleteMyDoll(id);
+      const dolls = await userService.getMyCollection();
+      this.setState(
+        {
+          dolls,
+        });
+    } catch (error) {
+      console.log(error);
+    }    
+  };
+
   render() {
     const { dolls, loading } = this.state;
     return (
@@ -50,6 +63,7 @@ class MyCollection extends Component {
                   condition={el.condition}
                   kit={el.kit}
                   purchasePrice={el.purchasePrice}
+                  handleDelete={this.handleDelete}
                 ></InfoBoxCollection>
               );
             })}

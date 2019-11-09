@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import './MyDollDetail.css';
 import { Link } from 'react-router-dom';
 import catalogService from '../../services/catalogSevice';
@@ -14,8 +15,8 @@ class WishlistDollDetail extends Component {
     myDoll: {},
     ebay: [],
     loading: true,
-  }  
-  
+    redirect: false,
+  }    
 
   async componentDidMount() {
     const { match: {params: { id }} } = this.props;
@@ -35,12 +36,25 @@ class WishlistDollDetail extends Component {
     }
   }
 
+  handleDelete = () => {   
+    const { match: {params: { id }} } = this.props; 
+    userService
+      .deleteWishlistDoll(id)
+      .then(() => this.setState({ redirect: true }));
+  };
+
+
   render() {
-    const { myDoll, loading } = this.state;
+    const { myDoll, loading, redirect } = this.state;
     const { match: {params: { id }} } = this.props;
     
     return (
-      <>
+      <>        
+        {redirect && <Redirect
+            to={{
+              pathname: "/mywishlist",
+            }}
+          />}
         {loading && <div>Loading...</div> }
         {!loading && 
         <div className="doll-detail">
@@ -73,7 +87,7 @@ class WishlistDollDetail extends Component {
                 <p>Edition Size: {myDoll.doll.editionSize}</p>
                 <p>Release Price: ${myDoll.doll.releasePrice}</p>
                 <Link className="button" to={`/mywishlist/${myDoll._id}/update`}>Update</Link>
-                <button className="button" onClick={() => userService.deleteWishlistDoll(myDoll)}>Delete</button>
+                <button className="button" onClick={() => this.handleDelete()}>Delete</button>
                 
             </div>          
 

@@ -8,16 +8,12 @@ class UserService {
     });
   }
 
-//   getProfile() {
-//     return this.axios.get('/profile').then(({ data: user }) => user);
-//   }
-
-  addMyDollToMyCollection( id ) {
+  addMyDollToMyCollection(id) {
     return this.axios.post(`/mycollection/${id}`)
       .then(({ data: doll }) => doll);
   }
 
-  addMyDollToMyWishlist( id ) {
+  addMyDollToMyWishlist(id) {
     return this.axios.post(`/mywishlist/${id}`)
       .then(({ data: doll }) => doll);
   }
@@ -48,22 +44,19 @@ class UserService {
       .then(({ data: doll }) => doll);
   }
 
-  deleteMyDoll(doll) {
-    return this.axios.delete(`/mycollection/${doll._id}`, doll)
+  deleteMyDoll(id) {
+    return this.axios.delete(`/mycollection/${id}`)
       .then(({ data: doll }) => doll);
   }
 
-  deleteWishlistDoll(doll) {
-    return this.axios.delete(`/mywishlist/${doll._id}`, doll)
-      .then(({ data: doll }) => doll);
+  deleteWishlistDoll(id) {   
+    return this.axios.delete(`/mywishlist/${id}`)
+      .then(({ data: doll }) => doll);      
   }
-
-  
-
- 
 
 }
 
 const userService = new UserService();
 
 export default userService;
+

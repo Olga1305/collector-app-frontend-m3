@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import './MyDollDetail.css';
 import { Link } from 'react-router-dom';
 import userService from '../../services/userService';
@@ -13,6 +14,7 @@ class MyDollDetail extends Component {
     myDoll: {},
     ebay: [],
     loading: true,
+    redirect: false,
   }  
   
 
@@ -34,12 +36,24 @@ class MyDollDetail extends Component {
     }
   }
 
+  handleDelete = () => {   
+    const { match: {params: { id }} } = this.props; 
+    userService
+      .deleteMyDoll(id)
+      .then(() => this.setState({ redirect: true }));
+  };
+
   render() {
-    const { myDoll, loading } = this.state;
+    const { myDoll, loading, redirect } = this.state;
     const { match: {params: { id }} } = this.props;
     
     return (
       <>
+        {redirect && <Redirect
+            to={{
+              pathname: "/mycollection",
+            }}
+          />}
         {loading && <div>Loading...</div> }
         {!loading && 
         <div className="doll-detail">
@@ -75,7 +89,7 @@ class MyDollDetail extends Component {
                 <p>Purchase way: {myDoll.purchaseWay}</p>
                 <p>Purchase Price: ${myDoll.purchasePrice}</p>
                 <Link className="button" to={`/mycollection/${myDoll._id}/update`}>Update</Link> 
-                <button className="button" onClick={() => userService.deleteMyDoll(myDoll)}>Delete</button>
+                <button className="button" onClick={() => this.handleDelete()}>Delete</button>
                 
             </div>          
 

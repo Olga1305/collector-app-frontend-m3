@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './DollsList.css';
 
 import catalogService from '../services/catalogSevice';
+import userService from '../services/userService';
 
 import InfoBox from '../components/InfoBox';
 
@@ -45,6 +46,16 @@ class DollsList extends Component {
     }
   }
 
+  addToCollection = (id) => {
+    userService.addMyDollToMyCollection(id);
+  }
+
+  addToWishlist = (id) => {
+    userService.addMyDollToMyWishlist(id);
+  }
+
+  
+
 
   render() {
     const { brand, subBrand, dolls, loading } = this.state;
@@ -73,6 +84,8 @@ class DollsList extends Component {
                   mold={doll.mold}
                   skinTone={doll.skinTone}
                   releasePrice={doll.releasePrice}
+                  addToCollection={this.addToCollection}
+                  addToWishlist={this.addToWishlist}
                 ></InfoBox>
               );
             });

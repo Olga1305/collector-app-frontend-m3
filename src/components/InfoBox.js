@@ -20,8 +20,8 @@ const InfoBox = props => {
                     <p>Mold: {props.mold}</p>
                     <p>Skin tone: {props.skinTone}</p> 
                     <p>Release price: ${props.releasePrice}</p> 
-                    <button className="button">+ to my collection</button>
-                    <button className="button">+ to my wishlist</button>
+                    <button className="button" onClick={() => props.addToCollection(props.id)}>+ to my collection</button>
+                    <button className="button" onClick={() => props.addToWishlist(props.id)}>+ to my wishlist</button>
                     
                     
                 </div>   
