@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './MyDollDetail.css';
+import { Link } from 'react-router-dom';
 import catalogService from '../../services/catalogSevice';
 import userService from '../../services/userService';
 import ebayService from '../../services/ebayService';
@@ -71,8 +72,7 @@ class WishlistDollDetail extends Component {
                 <p>Kit: {myDoll.kit}</p>
                 <p>Edition Size: {myDoll.doll.editionSize}</p>
                 <p>Release Price: ${myDoll.doll.releasePrice}</p>
-                
-                <button className="button" onClick={() => userService.deleteWishlistDoll(myDoll)}>Update</button>
+                <Link className="button" to={`/mywishlist/${myDoll._id}/update`}>Update</Link>
                 <button className="button" onClick={() => userService.deleteWishlistDoll(myDoll)}>Delete</button>
                 
             </div>          

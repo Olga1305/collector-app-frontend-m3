@@ -17,8 +17,8 @@ const InfoBoxWishlist = props => {
                     <Link to={`/mywishlist/${props.id}`}>
                       <h4>{props.name} - {props.character}</h4>
                     </Link>                    
-                    <p>Condition: {props.state}</p>
-                    <p>Complete: {props.complete}</p> 
+                    <p>Condition: {props.condition}</p>
+                    <p>Kit: {props.kit}</p> 
                    
                     <button className="button">Update</button>
                     <button className="button">Delete</button>

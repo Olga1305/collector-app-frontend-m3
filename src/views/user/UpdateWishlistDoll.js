@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import userService from '../../services/userService';
 
-class UpdateMyDoll extends Component {
+class UpdateWishlistDoll extends Component {
   state = {
     doll: {},
     loading: true,
@@ -16,7 +16,7 @@ class UpdateMyDoll extends Component {
       },
     } = this.props;
     try {
-      const doll = await userService.getMyDollDetail(id);
+      const doll = await userService.getWishlistDollDetail(id);
       this.setState({
         doll,
         loading: false,
@@ -47,9 +47,9 @@ class UpdateMyDoll extends Component {
     } = this.props;
     console.log(doll);
     userService
-      .updateMyDoll(doll)
+      .updateWishlistDoll(doll)
       .then(() => {
-        push(`/mycollection/${doll._id}`);
+        push(`/mywishlist/${doll._id}`);
       })
       .catch(() => {});
   };
@@ -57,15 +57,17 @@ class UpdateMyDoll extends Component {
   
   render() {
     const {
-      doll: { condition, kit, purchaseDate, purchasePrice, purchaseWay },
+      doll: { condition, kit },
       loading,
     } = this.state;
+
     return (
       <div>
+        
         {loading && <div>Loading...</div>}
         {!loading && (
           <div>          
-            <h1>Update my doll</h1>
+            <h1>Update my wishlist doll</h1>
             <form onSubmit={this.handleSubmit}>
             <label htmlFor="condition">Condition</label>
             <select name="condition" id="condition" value={condition} onChange={this.handleChange}>
@@ -82,13 +84,7 @@ class UpdateMyDoll extends Component {
                 <option value="Head only">Head only</option>
                 <option value="Outfit only">Outfit only</option>
                 <option value="Partial outfit">Partial outfit</option>
-            </select><br/>
-            <label htmlFor="purchaseDate">Purchase date</label>
-            <input type="date" name="purchaseDate" id="purchaseDate" value={purchaseDate} onChange={this.handleChange}/><br/>
-            <label htmlFor="purchasePrice">Purchase price</label>
-            <input type="number" name="purchasePrice" id="purchasePrice" value={purchasePrice} onChange={this.handleChange}/><br/>
-            <label htmlFor="purchaseWay">Purchase way</label>
-            <input type="text" name="purchaseWay" id="purchaseWay" value={purchaseWay} onChange={this.handleChange}/><br/>
+            </select><br/>    
             <input type="submit" value="submit"/>
            </form>
           </div>        
@@ -98,4 +94,4 @@ class UpdateMyDoll extends Component {
   }
 }
 
-export default UpdateMyDoll;
+export default UpdateWishlistDoll;

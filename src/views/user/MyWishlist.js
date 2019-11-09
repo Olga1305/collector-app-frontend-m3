@@ -47,8 +47,8 @@ class MyWishlist extends Component {
                   image={el.doll.closeUpImage}
                   character={el.doll.character}
                   name={el.doll.name}
-                  state={el.state}
-                  complete={el.complete}                  
+                  condition={el.condition}
+                  kit={el.kit}                  
                 ></InfoBoxWishlist>
               );
             })}

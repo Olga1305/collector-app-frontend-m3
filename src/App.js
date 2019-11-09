@@ -14,6 +14,7 @@ import MyDollDetail from './views/user/MyDollDetail';
 import UpdateMyDoll from './views/user/UpdateMyDoll';
 import MyWishlist from './views/user/MyWishlist';
 import WishlistDollDetail from './views/user/WishlistDollDetail';
+import UpdateWishlistDoll from './views/user/UpdateWishlistDoll';
 
 import Error404 from './views/Error404';
 // import Error500 from './views/Error500';
@@ -55,11 +56,10 @@ class App extends Component {
                   <PrivateRoute exact path="/mycollection/:id/update" component={UpdateMyDoll} />
                   <PrivateRoute exact path="/mywishlist" component={MyWishlist} />
                   <PrivateRoute exact path="/mywishlist/:id" component={WishlistDollDetail} />
+                  <PrivateRoute exact path="/mywishlist/:id/update" component={UpdateWishlistDoll} />
                   <Route path="*" component={Error404} />
                 </Switch> 
-                </div>     
-
-      
+                </div>           
                       
                 
               </Router>

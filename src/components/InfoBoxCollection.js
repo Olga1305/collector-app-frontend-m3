@@ -17,8 +17,8 @@ const InfoBoxCollection = props => {
                     <Link to={`/mycollection/${props.id}`}>
                       <h4>{props.name} - {props.character}</h4>
                     </Link>                    
-                    <p>Condition: {props.state}</p>
-                    <p>Complete: {props.complete}</p> 
+                    <p>Condition: {props.condition}</p>
+                    <p>Kit: {props.kit}</p> 
                     <p>Purchase price: ${props.purchasePrice}</p> 
                     <button className="button">Update</button>
                     <button className="button">Delete</button>

@@ -43,6 +43,11 @@ class UserService {
       .then(({ data: doll }) => doll);
   }
 
+  updateWishlistDoll(doll) {
+    return this.axios.put(`/mywishlist/${doll._id}`, doll)
+      .then(({ data: doll }) => doll);
+  }
+
   deleteMyDoll(doll) {
     return this.axios.delete(`/mycollection/${doll._id}`, doll)
       .then(({ data: doll }) => doll);
