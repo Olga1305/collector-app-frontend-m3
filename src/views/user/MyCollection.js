@@ -20,9 +20,7 @@ class MyCollection extends Component {
         {
           dolls,
           loading: false,
-        },
-        () => console.log("my coll", dolls),
-      );
+        });
     } catch (error) {
       console.log(error);
       this.setState({

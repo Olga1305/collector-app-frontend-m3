@@ -54,6 +54,16 @@ class UserService {
       .then(({ data: doll }) => doll);      
   }
 
+  checkIfDollInCollection(id) {
+    return this.axios.get(`/mycollection/${id}/check`, id)
+      .then(({ data: doll }) => doll);
+  }
+
+  checkIfDollInWishlist(id) {
+    return this.axios.get(`/mywishlist/${id}/check`, id)
+      .then(({ data: doll }) => doll);
+  }
+
 }
 
 const userService = new UserService();

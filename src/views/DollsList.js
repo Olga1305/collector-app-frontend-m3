@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './DollsList.css';
 
 import catalogService from '../services/catalogSevice';
-import userService from '../services/userService';
 
 import InfoBox from '../components/InfoBox';
 
@@ -14,6 +13,18 @@ class DollsList extends Component {
     subBrand: undefined,
   };
 
+  checkSubBrand = (brand) => {
+    let subBrand;
+      if (brand === 'fashionroyalty') {
+        subBrand = 'Fashion Royalty';
+      } else if (brand === 'nuface') {
+        subBrand = 'Nu Face';
+      } else {
+        subBrand = 'Poppy Parker';
+      }
+      return subBrand;
+  }
+
   async componentDidMount() {
     const {
       match: {
@@ -23,14 +34,7 @@ class DollsList extends Component {
 
     try {
       const dolls = await catalogService.getDollsByBrand(brand);
-      let subBrand;
-      if (brand === 'fashionroyalty') {
-        subBrand = 'Fashion Royalty';
-      } else if (brand === 'nuface') {
-        subBrand = 'Nu Face';
-      } else {
-        subBrand = 'Poppy Parker';
-      }
+      const subBrand = this.checkSubBrand(brand);
       this.setState({
         dolls,
         brand,
@@ -45,16 +49,6 @@ class DollsList extends Component {
       });
     }
   }
-
-  addToCollection = (id) => {
-    userService.addMyDollToMyCollection(id);
-  }
-
-  addToWishlist = (id) => {
-    userService.addMyDollToMyWishlist(id);
-  }
-
-  
 
 
   render() {
@@ -83,9 +77,7 @@ class DollsList extends Component {
                   editionSize={doll.editionSize}
                   mold={doll.mold}
                   skinTone={doll.skinTone}
-                  releasePrice={doll.releasePrice}
-                  addToCollection={this.addToCollection}
-                  addToWishlist={this.addToWishlist}
+                  releasePrice={doll.releasePrice}                  
                 ></InfoBox>
               );
             });
