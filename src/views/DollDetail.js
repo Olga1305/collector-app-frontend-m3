@@ -5,8 +5,7 @@ import './DollDetail.css';
 import catalogService from '../services/catalogSevice';
 import userService from '../services/userService';
 import ebayService from '../services/ebayService';
-import Carousel from '@brainhubeu/react-carousel';
-import '@brainhubeu/react-carousel/lib/style.css';
+import Carousel from 'react-elastic-carousel';
 import Button from '../components/Button';
 
 
@@ -83,13 +82,7 @@ class DollDetail extends Component {
             <div>
               <h1>{doll.character} {doll.name} - {doll.subBrand}</h1>             
               
-              <Carousel className="carousel"                
-                slidesPerPage={1}
-                slidesPerScroll={1}
-                infinite          
-                offset={20}
-                arrows                
-              >
+              <Carousel className="carousel">                
                 {doll.images.map((image, index) => {
                   return (
                     <img src={image} alt="doll" key={`${image}-${index}`} />

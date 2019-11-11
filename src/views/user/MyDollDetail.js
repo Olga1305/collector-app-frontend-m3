@@ -4,8 +4,7 @@ import './MyDollDetail.css';
 import { Link } from 'react-router-dom';
 import userService from '../../services/userService';
 import ebayService from '../../services/ebayService';
-import Carousel from '@brainhubeu/react-carousel';
-import '@brainhubeu/react-carousel/lib/style.css';
+import Carousel from 'react-elastic-carousel';
 
 
 class MyDollDetail extends Component {
@@ -61,13 +60,7 @@ class MyDollDetail extends Component {
               
               <h1>{myDoll.doll.character} {myDoll.doll.name} - {myDoll.doll.subBrand}</h1>             
               
-              <Carousel className="carousel"                
-                slidesPerPage={1}
-                slidesPerScroll={1}
-                infinite          
-                offset={20}
-                arrows                
-              >
+              <Carousel className="carousel">
                 {myDoll.doll.images.map((image, index) => {
                   return (
                     <img src={image} alt="doll" key={`${image}-${index}`} />

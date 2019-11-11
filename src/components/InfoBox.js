@@ -67,8 +67,7 @@ class InfoBox extends Component {
                 <div className="doll-image">
                     <Link to={`/catalog/${brand}/${id}`}>
                        <img src={image} alt="doll"/>
-                    </Link>
-                    
+                    </Link>                    
                 </div>
                 <div className="doll-info">
                     <Link to={`/catalog/${brand}/${id}`}>
@@ -82,11 +81,8 @@ class InfoBox extends Component {
                     </Button> 
                     <Button kind={inWishlist} disabled={inWishlist} onClick={() => this.addToWishlist(id)}>
                     + to my wishlist
-                    </Button> 
-                    
-                    
+                    </Button>                   
                 </div>   
-
             </div>
         )
     }    
