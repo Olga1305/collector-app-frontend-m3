@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import './MyCollection.css';
@@ -20,9 +21,7 @@ class MyCollection extends Component {
         {
           dolls,
           loading: false,
-        },
-        () => console.log("my coll", dolls),
-      );
+        });
     } catch (error) {
       console.log(error);
       this.setState({

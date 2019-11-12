@@ -87,7 +87,7 @@ p {
   color: white;
   /* text-transform: uppercase; */
   text-decoration: none;
-  background: #AED7F0;
+  background: #DDF0FC;
   padding: 5px;
   margin: 3px;
   border-radius: 12px;
@@ -106,7 +106,7 @@ p {
   text-transform: uppercase;
   text-decoration: none;
   background: #81BADC;
-  padding: 30px;
+  padding: 20px;
   margin: 10px;
   border-radius: 25px;
   display: inline-block;
@@ -120,4 +120,25 @@ p {
   -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
   -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
   transition: all 0.4s ease 0s;
+}
+
+.carousel {
+  max-width: 660px;
+  max-height: 725px;
+  z-index: -100 !important;
+  /* position: relative; */
+}
+
+.carousel img {
+  max-width: 100%;
+  max-height: 100%;
+  margin-right: 10px;
+}
+
+.carousel button {
+  background-color: #6aadd5;    
+}
+
+.carousel button:hover {
+  background-color: #FFF952;    
 }

@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../../Context/AuthContext';
@@ -9,15 +10,14 @@ class Signup extends Component {
     password: "",
   };
 
-  handleChange = (event) => {  
-    const {name, value} = event.target;
+  handleChange = (e) => {  
+    const {name, value} = e.target;
     this.setState({[name]: value});
   }
 
   handleFormSubmit = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
-    // authService.signup({
     this.props.handleSignup({
       email,
       password

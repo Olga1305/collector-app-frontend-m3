@@ -1,3 +1,4 @@
+// @flow
 // eslint-disable-next-line max-classes-per-file
 import React, { Component, createContext } from 'react';
 import authService from '../services/authService';

@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 
 import userService from '../../services/userService';
@@ -45,7 +46,6 @@ class UpdateMyDoll extends Component {
     const {
       history: { push },
     } = this.props;
-    console.log(doll);
     userService
       .updateMyDoll(doll)
       .then(() => {

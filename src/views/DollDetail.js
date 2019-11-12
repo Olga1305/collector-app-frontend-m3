@@ -1,11 +1,14 @@
+// @flow
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import './DollDetail.css';
+
+import { withAuth } from '../Context/AuthContext';
 import catalogService from '../services/catalogSevice';
 import userService from '../services/userService';
 import ebayService from '../services/ebayService';
-import Carousel from '@brainhubeu/react-carousel';
-import '@brainhubeu/react-carousel/lib/style.css';
+import Carousel from 'react-elastic-carousel';
+import Button from '../components/Button';
 
 
 class DollDetail extends Component {
@@ -14,23 +17,38 @@ class DollDetail extends Component {
     doll: {},
     ebay: [],
     loading: true,
-    collection: false,
-    wishlist: false,
+    gotToCollection: false,
+    gotToWishlist: false,
+    inCollection: false,
+    inWishlist: false,
   }
   
   async componentDidMount() {
     const { match: {params: { brand, id }} } = this.props;
+    const { user } = this.props;
     
     try {
       const doll = await catalogService.getDollById(brand, id);
       // const query = encodeURI(doll.ebayQueries[0]+ ' nrfb');      
       // const ebay = await ebayService.findByKeyword(`&keywords=${query}`);  
       // console.log(ebay)
-      this.setState({
-        doll,
-        // ebay,
-        loading: false,
-      })
+      if (user) {
+        const inCollection = await userService.checkIfDollInCollection(id);
+        const inWishlist = await userService.checkIfDollInWishlist(id);      
+        this.setState({
+          doll,
+          // ebay,
+          inCollection,
+          inWishlist,
+          loading: false,
+        }, () => console.log(this.state))
+      } else {
+        this.setState({
+          doll,
+          // ebay,
+          loading: false,
+        }, () => console.log(this.state))
+      }   
     } catch (error) {
       console.log(error);
       this.setState({
@@ -43,28 +61,28 @@ class DollDetail extends Component {
     const { match: {params: { id }} } = this.props; 
     userService
       .addMyDollToMyCollection(id)
-      .then(() => this.setState({ collection: true }));
+      .then(() => this.setState({ gotToCollection: true }));
   };
 
   addToWishlist = () => {   
     const { match: {params: { id }} } = this.props; 
     userService
       .addMyDollToMyWishlist(id)
-      .then(() => this.setState({ wishlist: true }));
+      .then(() => this.setState({ gotToWishlist: true }));
   };
 
   render() {
-    const { doll, loading, collection, wishlist } = this.state;
+    const { doll, loading, gotToCollection, gotToWishlist, inCollection, inWishlist } = this.state;
     const { match: {params: { brand, id }} } = this.props;
     
     return (
       <>
-        {collection && <Redirect
+        {gotToCollection && <Redirect
             to={{
               pathname: "/mycollection",
             }}
           />}  
-        {wishlist && <Redirect
+        {gotToWishlist && <Redirect
             to={{
               pathname: "/mywishlist",
             }}
@@ -75,13 +93,7 @@ class DollDetail extends Component {
             <div>
               <h1>{doll.character} {doll.name} - {doll.subBrand}</h1>             
               
-              <Carousel className="carousel"                
-                slidesPerPage={1}
-                slidesPerScroll={1}
-                infinite          
-                offset={20}
-                arrows                
-              >
+              <Carousel className="carousel">                
                 {doll.images.map((image, index) => {
                   return (
                     <img src={image} alt="doll" key={`${image}-${index}`} />
@@ -96,8 +108,12 @@ class DollDetail extends Component {
                 <p>Hair: {doll.hair}</p>
                 <p>Edition Size: {doll.editionSize}</p>
                 <p>Release Price: ${doll.releasePrice}</p>
-                <button className="button" onClick={() => this.addToCollection()}>+ to my collection</button>
-                <button className="button" onClick={() => this.addToWishlist()}>+ to my wishlist</button>
+                <Button kind={inCollection} disabled={inCollection} onClick={() => this.addToCollection()}>
+                + to my collection
+                </Button> 
+                <Button kind={inWishlist} disabled={inWishlist} onClick={() => this.addToWishlist()}>
+                + to my wishlist
+                </Button>               
                 
             </div>          
 
@@ -108,7 +124,9 @@ class DollDetail extends Component {
   }
 }
 
-export default DollDetail;
+export default withAuth(DollDetail);
+
+
 
 // https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-NAME=FindingService&SERVICE-VERSION=1.13.0&GLOBAL-ID=EBAY-US&SECURITY-APPNAME=OlgaDoku-olgatest-PRD-fb31a1ca7-698edd80&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&itemFilter(0).name=ListingType&itemFilter(0).value(0)=FixedPrice&itemFilter(0).value(1)=StoreInventory&itemFilter(1).name=Currency&itemFilter(1).value=USD&keywords=fashion%20royalty%20adele%20makeda%20spring%20romance%20nrfb
 // https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-NAME=FindingService&SERVICE-VERSION=1.13.0&GLOBAL-ID=EBAY-US&SECURITY-APPNAME=OlgaDoku-olgatest-PRD-fb31a1ca7-698edd80&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&itemFilter(0).name=ListingType&itemFilter(0).value(0)=FixedPrice&itemFilter(0).value(1)=StoreInventory&itemFilter(1).name=Currency&itemFilter(1).value=USD&keywords=fashion%20royalty%20adele%20makeda%20spring%20romance
