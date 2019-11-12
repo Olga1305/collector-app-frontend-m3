@@ -10,16 +10,21 @@ import InfoBoxCollection from '../../components/InfoBoxCollection';
 class MyCollection extends Component {
   state = {
     dolls: [],
+    releaseValue: undefined,
+    purchaseValue: undefined,
     loading: true,    
   };
 
   async componentDidMount() {
     try {
       const dolls = await userService.getMyCollection();
-      
+      const releaseValue = this.calculateReleasePricesSum(dolls);
+      const purchaseValue = this.calculatePurchasePricesSum(dolls);
       this.setState(
         {
           dolls,
+          releaseValue,
+          purchaseValue,
           loading: false,
         });
     } catch (error) {
@@ -28,6 +33,30 @@ class MyCollection extends Component {
         loading: false,
       });
     }
+  }
+
+  calculateReleasePricesSum = (dolls) => {
+    let sum = [];
+    dolls.forEach(item => {
+      if (item.doll.releasePrice) {
+        return sum.push(item.doll.releasePrice);
+      }
+      return sum;
+    });
+    const result = sum.reduce((a, b) => { return a + b; });
+    return result;
+  }
+
+  calculatePurchasePricesSum = (dolls) => {
+    let sum = [];
+    dolls.forEach(item => {
+      if (item.purchasePrice) {
+        return sum.push(item.purchasePrice);
+      }
+      return sum;
+    });
+    const result = sum.reduce((a, b) => { return a + b; });
+    return result;
   }
 
   handleDelete = async (id) => {
@@ -44,12 +73,17 @@ class MyCollection extends Component {
   };
 
   render() {
-    const { dolls, loading } = this.state;
+    const { dolls, releaseValue, purchaseValue, loading } = this.state;
     return (
       <div>
         {!loading && (
           <div className="MyCollection">
             <h1>My collection</h1>
+            <div className="data">
+              <p>Items in collection: {dolls.length}</p>
+              <p>Release prices sum: ${releaseValue}</p>
+              <p>Purchase prices sum: ${purchaseValue}</p>
+            </div>
             
             {dolls.map(el => {
               return (
