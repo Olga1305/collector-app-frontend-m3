@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../../Context/AuthContext';
@@ -97,7 +98,7 @@ class PersonalData extends Component {
 
   render() {
     const { user } = this.props;
-    console.log(user)
+
     const { level, avatar, avatars, loading } = this.state;
 
     return (

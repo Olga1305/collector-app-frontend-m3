@@ -1,7 +1,9 @@
+// @flow
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import './DollDetail.css';
 
+import { withAuth } from '../Context/AuthContext';
 import catalogService from '../services/catalogSevice';
 import userService from '../services/userService';
 import ebayService from '../services/ebayService';
@@ -23,21 +25,30 @@ class DollDetail extends Component {
   
   async componentDidMount() {
     const { match: {params: { brand, id }} } = this.props;
+    const { user } = this.props;
     
     try {
       const doll = await catalogService.getDollById(brand, id);
-      const inCollection = await userService.checkIfDollInCollection(id);
-      const inWishlist = await userService.checkIfDollInWishlist(id);
       // const query = encodeURI(doll.ebayQueries[0]+ ' nrfb');      
       // const ebay = await ebayService.findByKeyword(`&keywords=${query}`);  
       // console.log(ebay)
-      this.setState({
-        doll,
-        // ebay,
-        inCollection,
-        inWishlist,
-        loading: false,
-      }, () => console.log(this.state))
+      if (user) {
+        const inCollection = await userService.checkIfDollInCollection(id);
+        const inWishlist = await userService.checkIfDollInWishlist(id);      
+        this.setState({
+          doll,
+          // ebay,
+          inCollection,
+          inWishlist,
+          loading: false,
+        }, () => console.log(this.state))
+      } else {
+        this.setState({
+          doll,
+          // ebay,
+          loading: false,
+        }, () => console.log(this.state))
+      }   
     } catch (error) {
       console.log(error);
       this.setState({
@@ -113,7 +124,7 @@ class DollDetail extends Component {
   }
 }
 
-export default DollDetail;
+export default withAuth(DollDetail);
 
 
 

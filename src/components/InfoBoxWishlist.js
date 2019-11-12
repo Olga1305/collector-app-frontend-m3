@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import './InfoBoxCollection.css';
 import { Link } from 'react-router-dom';

@@ -1,9 +1,11 @@
+// @flow
 import React, { Component } from 'react';
 import './InfoBox.css';
 
 import { Link } from "react-router-dom";
 import Button from './Button';
 import userService from '../services/userService';
+import { withAuth } from '../Context/AuthContext';
 
 class InfoBox extends Component {
 
@@ -13,15 +15,16 @@ class InfoBox extends Component {
       }
 
       async componentDidMount() {
-        const { id } = this.props;
-        
+        const { id, user} = this.props;       
         try {          
-          const inCollection = await userService.checkIfDollInCollection(id);
-          const inWishlist = await userService.checkIfDollInWishlist(id);          
-          this.setState({            
-            inCollection,
-            inWishlist,            
-          });
+          if (user) {
+            const inCollection = await userService.checkIfDollInCollection(id);
+            const inWishlist = await userService.checkIfDollInWishlist(id);          
+            this.setState({            
+              inCollection,
+              inWishlist,            
+            });
+          }       
         } catch (error) {
           console.log(error);          
         }
@@ -89,4 +92,4 @@ class InfoBox extends Component {
 
 }
 
-export default InfoBox;
+export default withAuth(InfoBox);
