@@ -1,34 +1,52 @@
 .profile {
-    /* position: relative;     */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
 .profile h1 {
-    color: black;
-    text-shadow: 4px 4px #FFF952;
-    font-size: 48px;
+  color: black;
+  text-shadow: 4px 4px #fff952;
+  font-size: 48px;
 }
 
 .profile-btns {
-    text-align: center;        
+  text-align: center;
 }
 
-.profile-bgd-img {  
-    text-align: left;  
-    width: 100%;    
+.profile-bgd-img {
+  text-align: left;
+  width: 100%;
 }
 
-.profile-bgd-img img {    
-    width: 100%;    
+.profile-bgd-img img {
+  width: 100%;
 }
 
 .logout {
-    background: #fff952;
-    color: black;
+  background: #fff952;
+  color: black;
 }
 
 .logout:hover {
-    background: #fff952;
+  background: #fff952;
 }
 
+.avatar {
+  text-align: center;
+  width: 100%;
+}
 
+.avatar img {
+  max-width: 100%;
+}
 
+.ltl-avatars {
+  display: flex;
+  justify-content: center;
+}
+
+.ltl-avtr img {
+  max-width: 40px;
+}
