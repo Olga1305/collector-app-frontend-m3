@@ -8,6 +8,11 @@ class UserService {
     });
   }
 
+  updateMyPersonalData( username, email ) {
+    return this.axios.put(`/personaldata/update`, username, email)
+      .then(({ data: user }) => user);
+  }
+
   addMyDollToMyCollection(id) {
     return this.axios.post(`/mycollection/${id}`)
       .then(({ data: doll }) => doll);

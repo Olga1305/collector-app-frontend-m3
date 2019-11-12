@@ -45,7 +45,6 @@ class UpdateMyDoll extends Component {
     const {
       history: { push },
     } = this.props;
-    console.log(doll);
     userService
       .updateMyDoll(doll)
       .then(() => {

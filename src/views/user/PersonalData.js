@@ -39,7 +39,6 @@ class PersonalData extends Component {
       const dolls = await userService.getMyCollection();
       const level = this.detectLevel(dolls.length);
       const avatars = this.avatarsArr(level.id);
-      console.log(avatars)
       this.setState({
         level: level.name,
         avatar: level.image,
@@ -98,6 +97,7 @@ class PersonalData extends Component {
 
   render() {
     const { user } = this.props;
+    console.log(user)
     const { level, avatar, avatars, loading } = this.state;
 
     return (
@@ -127,7 +127,7 @@ class PersonalData extends Component {
 
               <p>Username: {user.username}</p>
               <p>Email: {user.email}</p>
-              <Link className="button-profile" to="/profile">
+              <Link className="button-profile" to="/personaldata/update">
                 Update data
               </Link>
               <br />

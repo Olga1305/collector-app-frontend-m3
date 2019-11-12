@@ -9,15 +9,14 @@ class Signup extends Component {
     password: "",
   };
 
-  handleChange = (event) => {  
-    const {name, value} = event.target;
+  handleChange = (e) => {  
+    const {name, value} = e.target;
     this.setState({[name]: value});
   }
 
   handleFormSubmit = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
-    // authService.signup({
     this.props.handleSignup({
       email,
       password

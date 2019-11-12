@@ -10,6 +10,7 @@ import DollsList from './views/DollsList';
 import DollDetail from './views/DollDetail';
 import Profile from './views/user/Profile';
 import PersonalData from './views/user/PersonalData';
+import UpdatePersonalData from './views/user/UpdatePersonalData';
 import MyCollection from './views/user/MyCollection';
 import MyDollDetail from './views/user/MyDollDetail';
 import UpdateMyDoll from './views/user/UpdateMyDoll';
@@ -46,6 +47,7 @@ class App extends Component {
               <Route exact path="/catalog/:brand/:id" component={DollDetail} />
               <PrivateRoute exact path="/profile" component={Profile} />
               <PrivateRoute exact path="/personaldata" component={PersonalData} />
+              <PrivateRoute exact path="/personaldata/update" component={UpdatePersonalData} />
               <PrivateRoute exact path="/mycollection" component={MyCollection} />
               <PrivateRoute exact path="/mycollection/:id" component={MyDollDetail} />
               <PrivateRoute exact path="/mycollection/:id/update" component={UpdateMyDoll} />
