@@ -9,6 +9,9 @@
     text-shadow: 4px 4px #FFF952;
 }
 
+.data {
+    text-align: center;
+}
 
 @media only screen and (min-width: 768px) {
     .MyCollection {
