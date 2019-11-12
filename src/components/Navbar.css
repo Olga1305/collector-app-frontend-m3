@@ -68,6 +68,7 @@ nav{
 
 .visible_menu{
 	position: fixed;
+	z-index: 1;
 }
 
 .visible_menu nav{
