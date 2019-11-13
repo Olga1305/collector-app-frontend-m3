@@ -10,6 +10,7 @@ class Searchbar extends Component {
     dolls: [],
     searched: [],
     redirect: false,
+    visibleSearchbar: false,
   };
 
   async componentDidMount() {
@@ -21,7 +22,14 @@ class Searchbar extends Component {
     } catch (error) {
       console.log(error);
     }
-  }
+  } 
+
+  showSearchbar = () => {
+    const { visibleSearchbar } = this.state;
+    this.setState({
+        visibleSearchbar: !visibleSearchbar,
+    });
+  };
 
   findDoll = query => {
     const { dolls } = this.state;
@@ -34,11 +42,9 @@ class Searchbar extends Component {
           item.collectionName.toLowerCase().includes(query.toLowerCase())
         );
       });
-      this.setState(
-        {
-          searched: result,
-        },
-      );
+      this.setState({
+        searched: result,
+      });
     } else {
       this.setState({
         searched: [],
@@ -53,34 +59,43 @@ class Searchbar extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.setState({
-        redirect: true,
-      });
+      redirect: true,
+    });
   };
 
   render() {
-    const { searched, redirect } = this.state;
+    const { searched, visibleSearchbar, redirect } = this.state;
     return (
-        <>
-        {redirect && <Redirect
+      <>
+        {redirect && (
+          <Redirect
             to={{
-              pathname: "/searchresults",
+              pathname: '/searchresults',
               state: { searched },
             }}
-          />}
-         {!redirect && <div>
-            <form onSubmit={this.handleSubmit}>
-              <input
-                type="text"
-                className="input search-bar"
-                name="search"
-                placeholder="Search dolls in catalog"
-                onChange={this.handleChange}
-              />
+          />
+        )}
+        {!redirect && visibleSearchbar && (
+            <div className="search mobile-search">            
+            <form className="search-bar visibleSearchbar" onSubmit={this.handleSubmit}>
+              <input type="text" name="search" placeholder="Search dolls in catalog" onChange={this.handleChange} />
+              <button type="submit" value="submit">
+                <img className="search-icon" src={searchIcon} alt="search" />
+              </button>
+            </form>    
+          </div>
+        )}
+        {!redirect && !visibleSearchbar &&(
+          <div className="search">            
+            <form className="search-bar" onSubmit={this.handleSubmit}>
+              <input type="text" name="search" placeholder="Search dolls in catalog" onChange={this.handleChange} />
               <button type="submit" value="submit">
                 <img className="search-icon" src={searchIcon} alt="search" />
               </button>
             </form>
-          </div>} 
+            <img className="search-mobile" onClick={this.showSearchbar} src={searchIcon} alt="search" />
+          </div>
+        )}
       </>
     );
   }

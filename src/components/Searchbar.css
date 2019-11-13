@@ -1,3 +1,92 @@
+.search {
+  display: flex;
+  flex-direction: column;
+}
+
 .search-icon {
-    width: 20px;
+  width: 20px;
+}
+
+.search-mobile {
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  top: 15px;
+  right: 140px;
+  cursor: pointer;
+}
+
+.search-bar {
+  width: 250px;
+  display: flex;
+  position: absolute;
+  left: 55px;
+  top: -55px;
+}
+
+.visibleSearchbar {
+    top: 10px;
+}
+
+form.search-bar input {
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid grey;
+  float: left;
+  width: 85%;
+  background: #f1f1f1;
+}
+
+form.search-bar button {
+  float: left;
+  width: 15%;
+  padding: 5px;
+  background: #5898be;
+  color: white;
+  font-size: 17px;
+  border: 1px solid #5898be;
+  border-left: none;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 360px) {
+    .visibleSearchbar {
+        width: 290px;
+    }
+}
+
+@media only screen and (min-width: 375px) {
+    .visibleSearchbar {
+        width: 310px;
+    }
+}
+
+@media only screen and (min-width: 411px) {
+    .visibleSearchbar {
+        width: 350px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+  .search-bar {
+    width: 500px;
+    position: relative;
+    top: 0;
+    display: flex;
+  }
+
+  form.search-bar button:hover {
+    background: #fff952;
+  }
+
+  form.search-bar::after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+
+  .search-mobile {
+    display: none;
+  }
 }

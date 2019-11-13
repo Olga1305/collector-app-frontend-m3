@@ -61,6 +61,11 @@ class Navbar extends Component {
             <nav>
               <ul>
                 <li>
+                  <Link to="/" onClick={this.showMenu}>
+                    Home
+                  </Link>
+                </li>
+                <li>
                   <Link to="/login" onClick={this.showMenu}>
                     Log in
                   </Link>
@@ -96,6 +101,11 @@ class Navbar extends Component {
             </header>
             <nav>
               <ul>
+                <li>
+                  <Link to="/" onClick={this.showMenu}>
+                    Home
+                  </Link>
+                </li>
                 <li>
                   <Link to="/profile" onClick={this.showMenu}>
                     Profile
