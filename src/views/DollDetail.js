@@ -163,12 +163,7 @@ class DollDetail extends Component {
       inCollection,
       inWishlist,
     } = this.state;
-    const {
-      match: {
-        params: { brand, id },
-      },
-    } = this.props;
-
+    
     return (
       <>
         {gotToCollection && (
