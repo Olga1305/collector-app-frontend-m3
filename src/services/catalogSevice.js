@@ -21,9 +21,7 @@ class CatalogService {
   getDollById(brand, id){
     return this.axios.get(`/catalog/${brand}/${id}`)
       .then(({ data: doll }) => doll);
-  }
-
-  
+  }  
 
 }
 
