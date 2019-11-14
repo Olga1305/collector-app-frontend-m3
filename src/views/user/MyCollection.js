@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import './MyCollection.css';
 
+import { Spinner } from "react-loading-io";
 import userService from '../../services/userService';
-
 import InfoBoxCollection from '../../components/InfoBoxCollection';
 
 class MyCollection extends Component {
@@ -103,7 +103,7 @@ class MyCollection extends Component {
           </div>
         )}
 
-        {loading && <div className="loading">Loading...</div>}
+        {loading && <div className="loading"><Spinner color={'#5898BE'}/></div>}
       </div>
     );
   }

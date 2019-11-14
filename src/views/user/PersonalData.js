@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Spinner } from "react-loading-io";
 import { withAuth } from '../../Context/AuthContext';
 import userService from '../../services/userService';
 
@@ -103,7 +104,7 @@ class PersonalData extends Component {
 
     return (
       <>
-        {loading && <div className="loading">Loading...</div>}
+        {loading && <div className="loading"><Spinner color={'#5898BE'}/></div>}
         {!loading && (
           <div className="profile">
             <h1>Personal data</h1>
