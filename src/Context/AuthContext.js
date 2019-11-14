@@ -1,6 +1,7 @@
 // @flow
 // eslint-disable-next-line max-classes-per-file
 import React, { Component, createContext } from 'react';
+import { Spinner } from "react-loading-io";
 import authService from '../services/authService';
 
 const AuthContext = createContext();
@@ -116,7 +117,7 @@ export default class AuthProvider extends Component {
     const { isLoading, isLoggedin, user } = this.state;
     const { children } = this.props;
     if (isLoading) {
-      return <div>Loading...</div>;
+      return <div><Spinner color={'#5898BE'}/></div>;
     }
     return (
       <Provider

@@ -3,15 +3,20 @@
     padding-left: 35px;
 }
 
-.info {
+/* .info {
     margin: 30px 10px;
     padding-left: 35px;
-}
+} */
 
 
 @media only screen and (min-width: 768px) {
     .doll-detail {
         display: flex;        
+    }
+
+    .info {
+        margin: 30px 10px;
+        padding-left: 35px;
     }
 
     .carousel {
