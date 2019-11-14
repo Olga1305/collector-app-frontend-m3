@@ -22,6 +22,7 @@ class DollDetail extends Component {
     gotToWishlist: false,
     inCollection: false,
     inWishlist: false,
+    redirect: false,
   };
 
   async componentDidMount() {
@@ -73,20 +74,34 @@ class DollDetail extends Component {
 
   addToCollection = () => {
     const {
-      match: {
+      user, match: {
         params: { id },
       },
     } = this.props;
-    userService.addMyDollToMyCollection(id).then(() => this.setState({ gotToCollection: true }));
+    if (user) {
+      userService.addMyDollToMyCollection(id).then(() => this.setState({ gotToCollection: true }));
+    } else {
+      this.setState({
+        redirect: true,
+      });
+    }
+    
   };
 
   addToWishlist = () => {
     const {
-      match: {
+      user, match: {
         params: { id },
       },
     } = this.props;
-    userService.addMyDollToMyWishlist(id).then(() => this.setState({ gotToWishlist: true }));
+    if (user) {
+      userService.addMyDollToMyWishlist(id).then(() => this.setState({ gotToWishlist: true }));
+    } else {
+      this.setState({
+        redirect: true,
+      });
+    }
+    
   };
 
   calculateAvgEbayPrice = doll => {
@@ -162,10 +177,18 @@ class DollDetail extends Component {
       gotToWishlist,
       inCollection,
       inWishlist,
+      redirect,
     } = this.state;
     
     return (
       <>
+       {redirect && (
+          <Redirect
+            to={{
+              pathname: '/login',
+            }}
+          />
+        )}
         {gotToCollection && (
           <Redirect
             to={{
