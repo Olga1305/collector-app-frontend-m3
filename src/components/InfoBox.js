@@ -74,7 +74,7 @@ class InfoBox extends Component {
                 </div>
                 <div className="doll-info">
                     <Link to={`/catalog/${brand}/${id}`}>
-                      <h4>{name} - {character} - LE{editionSize}</h4>
+                      <h4>{name} - {character}</h4>
                     </Link>                    
                     <p>Mold: {mold}</p>
                     <p>Skin tone: {skinTone}</p> 

@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Catalog from './views/Catalog';
 import DollsList from './views/DollsList';
 import DollDetail from './views/DollDetail';
+import SearchedResults from './views/SearchedResults';
 import Profile from './views/user/Profile';
 import PersonalData from './views/user/PersonalData';
 import UpdatePersonalData from './views/user/UpdatePersonalData';
@@ -45,6 +46,7 @@ class App extends Component {
               <Route exact path="/catalog" component={Catalog} />
               <Route exact path="/catalog/:brand" component={DollsList} />
               <Route exact path="/catalog/:brand/:id" component={DollDetail} />
+              <Route exact path="/searchresults" component={SearchedResults} />
               <PrivateRoute exact path="/profile" component={Profile} />
               <PrivateRoute exact path="/personaldata" component={PersonalData} />
               <PrivateRoute exact path="/personaldata/update" component={UpdatePersonalData} />

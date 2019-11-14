@@ -1,4 +1,4 @@
-/* Header & Nav bar */   
+/* Header & Navbar */   
 
 header{
 	display: flex;
@@ -6,7 +6,8 @@ header{
 	background: #AED7F0;	
 	position: fixed;
 	width: 100%;
-	padding: 15px;
+	height: 37px;
+	padding: 10px;
 	z-index: 2;
 }
 
@@ -15,6 +16,8 @@ header{
 	width:30px;
 	height: 20px;
 	position: relative;
+	top: 7px;
+	left: 5px;
 	z-index: 2;
 }
 
@@ -25,7 +28,6 @@ header{
 	display: block;
 	position: absolute;
 	background: black;
-	/* background: rgb(83, 83, 83); */
 	transition: all 0.25s ease;
 	transform-origin : 0px 100%;
 }
@@ -68,6 +70,7 @@ nav{
 
 .visible_menu{
 	position: fixed;
+	z-index: 1;
 }
 
 .visible_menu nav{
@@ -94,7 +97,7 @@ nav a:hover{
 
 .logo img {
 	float: right;
-	margin: -15px 30px -15px 0;
+	margin: -7px 20px -15px 0;
     height: 50px;
     z-index: 100;
 }

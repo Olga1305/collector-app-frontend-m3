@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import './MyDollDetail.css';
 import { Link } from 'react-router-dom';
 import userService from '../../services/userService';
-import ebayService from '../../services/ebayService';
 import Carousel from 'react-elastic-carousel';
 
 

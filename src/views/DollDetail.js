@@ -6,16 +6,15 @@ import './DollDetail.css';
 import { withAuth } from '../Context/AuthContext';
 import catalogService from '../services/catalogSevice';
 import userService from '../services/userService';
-import ebayService from '../services/ebayService';
 import Carousel from 'react-elastic-carousel';
 import Button from '../components/Button';
-
 
 class DollDetail extends Component {
 
   state = {
     doll: {},
-    ebay: [],
+    dollsOnEbay: undefined,
+    avgEbayPrice: undefined,
     loading: true,
     gotToCollection: false,
     gotToWishlist: false,
@@ -24,30 +23,36 @@ class DollDetail extends Component {
   }
   
   async componentDidMount() {
-    const { match: {params: { brand, id }} } = this.props;
-    const { user } = this.props;
-    
+    const { user, match: {params: { brand, id }} } = this.props;
+    let dollsOnEbay;
+    let avgEbayPrice;        
     try {
       const doll = await catalogService.getDollById(brand, id);
-      // const query = encodeURI(doll.ebayQueries[0]+ ' nrfb');      
-      // const ebay = await ebayService.findByKeyword(`&keywords=${query}`);  
-      // console.log(ebay)
+      if (doll.ebay[0][0].paginationOutput[0].totalEntries[0] === "0") {
+        dollsOnEbay = 0;
+        avgEbayPrice = 0;
+      } else {
+        dollsOnEbay = doll.ebay[0][0].searchResult[0].item.length;
+        avgEbayPrice = this.calculateAvgEbayPrice(doll);        
+      }            
       if (user) {
         const inCollection = await userService.checkIfDollInCollection(id);
         const inWishlist = await userService.checkIfDollInWishlist(id);      
         this.setState({
           doll,
-          // ebay,
+          dollsOnEbay,
+          avgEbayPrice,
           inCollection,
           inWishlist,
           loading: false,
-        }, () => console.log(this.state))
+        })
       } else {
         this.setState({
           doll,
-          // ebay,
+          dollsOnEbay,
+          avgEbayPrice,
           loading: false,
-        }, () => console.log(this.state))
+        })
       }   
     } catch (error) {
       console.log(error);
@@ -71,8 +76,23 @@ class DollDetail extends Component {
       .then(() => this.setState({ gotToWishlist: true }));
   };
 
+  calculateAvgEbayPrice = (doll) => {
+    
+      const sum = [];
+      const quantity = doll.ebay[0][0].searchResult[0].item.length;
+      doll.ebay[0][0].searchResult[0].item.forEach(item => {
+        if (item.sellingStatus[0].currentPrice[0].__value__) {
+          return sum.push(parseInt(item.sellingStatus[0].currentPrice[0].__value__));
+        }
+        return sum;      
+      });
+      const result = parseInt(sum.reduce((a, b) => { return a + b; })/quantity);
+      return result;
+    
+  }
+
   render() {
-    const { doll, loading, gotToCollection, gotToWishlist, inCollection, inWishlist } = this.state;
+    const { doll, dollsOnEbay, avgEbayPrice, loading, gotToCollection, gotToWishlist, inCollection, inWishlist } = this.state;
     const { match: {params: { brand, id }} } = this.props;
     
     return (
@@ -108,6 +128,9 @@ class DollDetail extends Component {
                 <p>Hair: {doll.hair}</p>
                 <p>Edition Size: {doll.editionSize}</p>
                 <p>Release Price: ${doll.releasePrice}</p>
+                <p>NRFB dolls on Ebay(USA): {dollsOnEbay}</p>
+                <p>Average price on Ebay: ${avgEbayPrice}</p>
+               
                 <Button kind={inCollection} disabled={inCollection} onClick={() => this.addToCollection()}>
                 + to my collection
                 </Button> 
@@ -125,8 +148,3 @@ class DollDetail extends Component {
 }
 
 export default withAuth(DollDetail);
-
-
-
-// https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-NAME=FindingService&SERVICE-VERSION=1.13.0&GLOBAL-ID=EBAY-US&SECURITY-APPNAME=OlgaDoku-olgatest-PRD-fb31a1ca7-698edd80&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&itemFilter(0).name=ListingType&itemFilter(0).value(0)=FixedPrice&itemFilter(0).value(1)=StoreInventory&itemFilter(1).name=Currency&itemFilter(1).value=USD&keywords=fashion%20royalty%20adele%20makeda%20spring%20romance%20nrfb
-// https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-NAME=FindingService&SERVICE-VERSION=1.13.0&GLOBAL-ID=EBAY-US&SECURITY-APPNAME=OlgaDoku-olgatest-PRD-fb31a1ca7-698edd80&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&itemFilter(0).name=ListingType&itemFilter(0).value(0)=FixedPrice&itemFilter(0).value(1)=StoreInventory&itemFilter(1).name=Currency&itemFilter(1).value=USD&keywords=fashion%20royalty%20adele%20makeda%20spring%20romance
