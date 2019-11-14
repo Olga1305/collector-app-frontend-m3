@@ -2,9 +2,8 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import './MyWishlist.css';
-
+import { Spinner } from "react-loading-io";
 import userService from '../../services/userService';
-
 import InfoBoxWishlist from '../../components/InfoBoxWishlist';
 
 class MyWishlist extends Component {
@@ -67,7 +66,7 @@ class MyWishlist extends Component {
           </div>
         )}
 
-        {loading && <div className="loading">Loading...</div>}
+        {loading && <div className="loading"><Spinner color={'#5898BE'}/></div>}
       </div>
     );
   }

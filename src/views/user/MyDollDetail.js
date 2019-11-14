@@ -5,6 +5,7 @@ import './MyDollDetail.css';
 import { Link } from 'react-router-dom';
 import userService from '../../services/userService';
 import Carousel from 'react-elastic-carousel';
+import { Spinner } from "react-loading-io";
 
 
 class MyDollDetail extends Component {
@@ -53,7 +54,7 @@ class MyDollDetail extends Component {
               pathname: "/mycollection",
             }}
           />}
-        {loading && <div>Loading...</div> }
+        {loading && <div><Spinner color={'#5898BE'}/></div> }
         {!loading && 
         <div className="doll-detail">
             <div>

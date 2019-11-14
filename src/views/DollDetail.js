@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import './DollDetail.css';
 
+import { Spinner } from "react-loading-io";
 import { withAuth } from '../Context/AuthContext';
 import catalogService from '../services/catalogSevice';
 import userService from '../services/userService';
@@ -107,7 +108,7 @@ class DollDetail extends Component {
               pathname: "/mywishlist",
             }}
           />}    
-        {loading && <div>Loading...</div> }
+        {loading && <div><Spinner color={'#5898BE'}/></div> }
         {!loading && 
         <div className="doll-detail">
             <div>

@@ -1,9 +1,8 @@
 // @flow
 import React, { Component } from 'react';
 import './DollsList.css';
-
+import { Spinner } from "react-loading-io";
 import catalogService from '../services/catalogSevice';
-
 import InfoBox from '../components/InfoBox';
 
 class DollsList extends Component {
@@ -95,8 +94,8 @@ class DollsList extends Component {
             {options}
           </div>
         )}
-
-        {loading && <div className="loading">Loading...</div>}
+        
+        {loading && <div className="loading"><Spinner color={'#5898BE'}/></div>}
       </>
     );
   }
