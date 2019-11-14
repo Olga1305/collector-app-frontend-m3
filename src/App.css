@@ -96,6 +96,37 @@ p {
   transition: all 0.4s ease 0s;
 }
 
+.button-ebay {
+  text-align: center;
+  width: 100px;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  /* text-transform: uppercase; */
+  text-decoration: none;
+  background: #81BADC;
+  padding: 5px;
+  margin: 3px;
+  border-radius: 12px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+}
+
+.button-ebay:hover {
+  background: #5898BE;
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.4s ease 0s;
+}
+
+
+.btn-large {
+  width: 200px;
+}
+
 .button-profile {
   text-align: center;
   width: 250px;
@@ -125,8 +156,6 @@ p {
 .carousel {
   max-width: 660px;
   max-height: 725px;
-  z-index: -100 !important;
-  /* position: relative; */
 }
 
 .carousel img {
@@ -141,4 +170,30 @@ p {
 
 .carousel button:hover {
   background-color: #FFF952;    
+}
+
+table {
+  width:100%;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  font-family: Montserrat;
+  font-size: 16px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+table#t01 tr:nth-child(even) {
+  background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+ background-color: #fff;
+}
+table#t01 th {
+  background-color: #5898BE;
+  color: white;
 }
