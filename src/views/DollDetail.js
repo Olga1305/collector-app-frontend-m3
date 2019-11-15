@@ -8,7 +8,7 @@ import Carousel from 'react-elastic-carousel';
 import { withAuth } from '../Context/AuthContext';
 import catalogService from '../services/catalogSevice';
 import userService from '../services/userService';
-import Button from '../components/Button';
+import ButtonLarge from '../components/ButtonLarge';
 import logoEbay from '../assets/logo-ebay.png';
 
 class DollDetail extends Component {
@@ -228,12 +228,12 @@ class DollDetail extends Component {
               <p>Edition Size: {doll.editionSize}</p>
               <p>Release Price: ${doll.releasePrice}</p>
 
-              <Button kind={inCollection} disabled={inCollection} onClick={() => this.addToCollection()}>
+              <ButtonLarge kind={inCollection} disabled={inCollection} onClick={() => this.addToCollection()}>
                 + to my collection
-              </Button>
-              <Button kind={inWishlist} disabled={inWishlist} onClick={() => this.addToWishlist()}>
+              </ButtonLarge>
+              <ButtonLarge kind={inWishlist} disabled={inWishlist} onClick={() => this.addToWishlist()}>
                 + to my wishlist
-              </Button>
+              </ButtonLarge>
               <table id="t01">
                 <tbody>
                   <tr>

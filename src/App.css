@@ -122,9 +122,60 @@ p {
   transition: all 0.4s ease 0s;
 }
 
+.button-large {
+  text-align: center;
+  width: 210px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #fff952;
+  padding: 10px;
+  margin: 3px;
+  border-radius: 12px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+}
 
-.btn-large {
-  width: 200px;
+.button-large:hover {
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.4s ease 0s;
+}
+
+.button-inactive-large {
+  text-align: center;
+  width: 210px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #DDF0FC;
+  padding: 10px;
+  margin: 3px;
+  border-radius: 12px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+}
+
+#wishlist-btn {
+  width: 215px;
+  text-transform: lowercase;
+  background: #81BADC;
+  color: white;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+#wishlist-btn:hover {
+  background: #5898BE;
 }
 
 .button-profile {

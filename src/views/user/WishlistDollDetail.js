@@ -41,6 +41,15 @@ class WishlistDollDetail extends Component {
       .then(() => this.setState({ redirect: true }));
   };
 
+  fromWishlistToCollection = () => {
+    const { match: { params: { id }} } = this.props;
+    const { myDoll: { doll: { _id }} } = this.state;
+    userService
+      .addMyDollToMyCollection(_id)      
+      .then(() => userService.deleteWishlistDoll(id))
+      .then(() => this.setState({ redirect: true }));
+  }
+
 
   render() {
     const { myDoll, loading, redirect } = this.state;
@@ -78,9 +87,11 @@ class WishlistDollDetail extends Component {
                 <p>Kit: {myDoll.kit}</p>
                 <p>Edition Size: {myDoll.doll.editionSize}</p>
                 <p>Release Price: ${myDoll.doll.releasePrice}</p>
-                <Link className="button" to={`/mywishlist/${myDoll._id}/update`}>Update</Link>
-                <button className="button" onClick={() => this.handleDelete()}>Delete</button>
-                
+                <Link className="button-large" to={`/mywishlist/${myDoll._id}/update`}>Update</Link>
+                <button className="button-large" onClick={() => {if (window.confirm('Are you sure you wish to delete this item?')) this.handleDelete() } }>Delete</button>
+                <button className="button-large" id="wishlist-btn" onClick={() => this.fromWishlistToCollection()}>
+                  + to my collection
+                </button>
             </div>          
 
 

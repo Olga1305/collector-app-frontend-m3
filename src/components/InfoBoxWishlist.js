@@ -27,6 +27,9 @@ const InfoBoxWishlist = props => {
             <button className="button" onClick={() => props.handleDelete(props.id)}>
               Delete
             </button>
+            <button className="button-large" id="wishlist-btn" onClick={() => props.fromWishlistToCollection(props.id)}>
+              + to my collection
+            </button>
           </div>
         </div>
     
