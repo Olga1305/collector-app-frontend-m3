@@ -1,9 +1,8 @@
 // @flow
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import './InfoBox.css';
 
-import { Link } from "react-router-dom";
 import Button from './Button';
 import userService from '../services/userService';
 import { withAuth } from '../Context/AuthContext';

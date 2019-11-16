@@ -11,7 +11,7 @@ import userService from '../services/userService';
 import helpers from '../services/helpers';
 import Error404 from './Error404';
 import ButtonLarge from '../components/ButtonLarge';
-import logoEbay from '../assets/logo-ebay.png';
+import EbayTable from '../components/EbayTable';
 
 class DollDetail extends Component {
   state = {
@@ -52,10 +52,10 @@ class DollDetail extends Component {
     } else {     
     try {
       const doll = await catalogService.getDollById(brand, id);
-      itemsOnEbay = this.itemsOnEbay(doll);
-      avgEbayPrices = this.calculateAvgEbayPrice(doll);
-      ebayUrls = this.generateEbayUrls(doll);
-      change = this.calculateChange(doll.releasePrice, avgEbayPrices);
+      itemsOnEbay = helpers.itemsOnEbay(doll);
+      avgEbayPrices = helpers.calculateAvgEbayPrice(doll);
+      ebayUrls = helpers.generateEbayUrls(doll);
+      change = helpers.calculateChange(doll.releasePrice, avgEbayPrices);
       dollsByMold = this.filterByMold(doll.mold);
 
       if (user) {
@@ -129,61 +129,6 @@ class DollDetail extends Component {
     const searched = catalogService.getDollsByMold(mold)
     return searched;
   }
-
-  itemsOnEbay = doll => {
-    const items = [];
-    doll.ebay.forEach(el => {
-      items.push(parseInt(el[0].paginationOutput[0].totalEntries[0]));
-      return items;
-    });
-    return items;
-  };
-
-  calculateAvgEbayPrice = doll => {
-    const prices = [];
-    doll.ebay.forEach(el => {
-      const sum = [];
-      let quantity;
-      if (el[0].paginationOutput[0].totalEntries[0] === '0') {
-        return prices.push(0);
-      }
-      quantity = el[0].searchResult[0].item.length;
-      el[0].searchResult[0].item.forEach(item => {
-        if (item.sellingStatus[0].currentPrice[0].__value__) {
-          return sum.push(parseInt(item.sellingStatus[0].currentPrice[0].__value__));
-        }
-        return sum;
-      });
-      const result = parseInt(
-        sum.reduce((a, b) => {
-          return a + b;
-        }) / quantity,
-      );
-      prices.push(result);
-      return prices;
-    });
-    return prices;
-  };
-
-  calculateChange = (release, current) => {
-    if (current[0] === 0 && current[1] === 0) {
-      return 0;
-    }
-    if (current[1] > current[0]) {
-      return ((current[1]-release)/release*100).toFixed(2);
-    } 
-      return ((current[0]-release)/release*100).toFixed(2);        
-  }
-
-  generateEbayUrls = doll => {
-    const urls = [];
-    doll.ebayQueries.forEach(el => {
-      const ebayUrl = `https://www.ebay.com/sch/i.html?&_nkw=${encodeURI(el)}`;
-      urls.push(ebayUrl);
-      return urls;
-    });
-    return urls;
-  };
 
   render() {
     const {
@@ -266,60 +211,7 @@ class DollDetail extends Component {
               <p>Hair: {doll.hair}</p>
               <p>Edition Size: {doll.editionSize}</p>
               <p className="price">Release Price: ${doll.releasePrice}</p>
-
-              <h3>Current price increased <span>{change}%</span></h3>              
-              <table id="t01">
-                <tbody>
-                  <tr>
-                    <th>
-                      <img src={logoEbay} alt="dolls" />
-                    </th>
-                    <th>Items</th>
-                    <th>Avg. price</th>
-                    <th>Link</th>
-                  </tr>
-                  <tr>
-                    <td>Complete</td>
-                    <td>{itemsOnEbay[0]}</td>
-                    <td>${avgEbayPrices[0]}</td>
-                    <td>
-                      <Link className="button-ebay" target="_blank" rel="noopener noreferrer" to={ebayUrls[1]}>
-                        See on Ebay
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Nude doll</td>
-                    <td>{itemsOnEbay[1]}</td>
-                    <td>${avgEbayPrices[1]}</td>
-                    <td>
-                      <Link className="button-ebay" target="_blank" rel="noopener noreferrer" to={ebayUrls[2]}>
-                        See on Ebay
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Head only</td>
-                    <td>{itemsOnEbay[2]}</td>
-                    <td>${avgEbayPrices[2]}</td>
-                    <td>
-                      <Link className="button-ebay" target="_blank" rel="noopener noreferrer" to={ebayUrls[3]}>
-                        See on Ebay
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Outfit only</td>
-                    <td>{itemsOnEbay[3]}</td>
-                    <td>${avgEbayPrices[3]}</td>
-                    <td>
-                      <Link className="button-ebay" target="_blank" rel="noopener noreferrer" to={ebayUrls[4]}>
-                        See on Ebay
-                      </Link>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <EbayTable change={change} ebayUrls={ebayUrls} itemsOnEbay={itemsOnEbay} avgEbayPrices={avgEbayPrices} />
             </div>
           </div>
         )}
