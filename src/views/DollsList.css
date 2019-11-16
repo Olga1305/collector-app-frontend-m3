@@ -36,6 +36,7 @@
     }
     .doll-list > .InfoBox {
         display: inline-block;
+        vertical-align: top;
         width:23%;
         height: 420px;
         margin-left: 1%;  

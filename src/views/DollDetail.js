@@ -8,6 +8,8 @@ import Carousel from 'react-elastic-carousel';
 import { withAuth } from '../Context/AuthContext';
 import catalogService from '../services/catalogSevice';
 import userService from '../services/userService';
+import helpers from '../services/helpers';
+import Error404 from './Error404';
 import ButtonLarge from '../components/ButtonLarge';
 import logoEbay from '../assets/logo-ebay.png';
 
@@ -26,6 +28,7 @@ class DollDetail extends Component {
     inCollection: false,
     inWishlist: false,
     redirect: false,
+    validId: true,
   };
 
   async componentDidMount() {
@@ -41,6 +44,12 @@ class DollDetail extends Component {
     let dollsByMold = [];
     let change;
 
+    if (!helpers.isValidId(id)) {
+      this.setState({
+        validId: false,
+        loading: false
+      });
+    } else {     
     try {
       const doll = await catalogService.getDollById(brand, id);
       itemsOnEbay = this.itemsOnEbay(doll);
@@ -82,6 +91,7 @@ class DollDetail extends Component {
         loading: false,
       });
     }
+   }
   }
 
   addToCollection = () => {
@@ -112,8 +122,7 @@ class DollDetail extends Component {
       this.setState({
         redirect: true,
       });
-    }
-    
+    }    
   };
 
   filterByMold = mold => {
@@ -191,10 +200,14 @@ class DollDetail extends Component {
       inCollection,
       inWishlist,
       redirect,
+      validId,
     } = this.state;
     
     return (
       <>
+        {!validId && (
+          <Error404/>
+        )}
        {redirect && (
           <Redirect
             to={{
@@ -221,7 +234,7 @@ class DollDetail extends Component {
             <Spinner color={'#5898BE'} />
           </div>
         )}
-        {!loading && (
+        {!loading && validId && (
           <div className="doll-detail">            
             <div className="carousel-wrap">             
             <h1>
@@ -270,9 +283,9 @@ class DollDetail extends Component {
                     <td>{itemsOnEbay[0]}</td>
                     <td>${avgEbayPrices[0]}</td>
                     <td>
-                      <a className="button-ebay" target="_blank" rel="noopener noreferrer" href={ebayUrls[1]}>
+                      <Link className="button-ebay" target="_blank" rel="noopener noreferrer" to={ebayUrls[1]}>
                         See on Ebay
-                      </a>
+                      </Link>
                     </td>
                   </tr>
                   <tr>
@@ -280,9 +293,9 @@ class DollDetail extends Component {
                     <td>{itemsOnEbay[1]}</td>
                     <td>${avgEbayPrices[1]}</td>
                     <td>
-                      <a className="button-ebay" target="_blank" rel="noopener noreferrer" href={ebayUrls[2]}>
+                      <Link className="button-ebay" target="_blank" rel="noopener noreferrer" to={ebayUrls[2]}>
                         See on Ebay
-                      </a>
+                      </Link>
                     </td>
                   </tr>
                   <tr>
@@ -290,9 +303,9 @@ class DollDetail extends Component {
                     <td>{itemsOnEbay[2]}</td>
                     <td>${avgEbayPrices[2]}</td>
                     <td>
-                      <a className="button-ebay" target="_blank" rel="noopener noreferrer" href={ebayUrls[3]}>
+                      <Link className="button-ebay" target="_blank" rel="noopener noreferrer" to={ebayUrls[3]}>
                         See on Ebay
-                      </a>
+                      </Link>
                     </td>
                   </tr>
                   <tr>
@@ -300,9 +313,9 @@ class DollDetail extends Component {
                     <td>{itemsOnEbay[3]}</td>
                     <td>${avgEbayPrices[3]}</td>
                     <td>
-                      <a className="button-ebay" target="_blank" rel="noopener noreferrer" href={ebayUrls[4]}>
+                      <Link className="button-ebay" target="_blank" rel="noopener noreferrer" to={ebayUrls[4]}>
                         See on Ebay
-                      </a>
+                      </Link>
                     </td>
                   </tr>
                 </tbody>

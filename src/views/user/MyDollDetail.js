@@ -4,8 +4,10 @@ import { Redirect } from 'react-router-dom';
 import './MyDollDetail.css';
 import { Link } from 'react-router-dom';
 import userService from '../../services/userService';
+import helpers from '../../services/helpers';
 import Carousel from 'react-elastic-carousel';
 import { Spinner } from "react-loading-io";
+import Error404 from '../Error404';
 
 
 class MyDollDetail extends Component {
@@ -15,12 +17,19 @@ class MyDollDetail extends Component {
     ebay: [],
     loading: true,
     redirect: false,
+    validId: true,
   }  
   
 
   async componentDidMount() {
     const { match: {params: { id }} } = this.props;
-    
+
+    if (!helpers.isValidId(id)) {
+      this.setState({
+        validId: false,
+        loading: false
+      });
+    } else {     
     try {
       const myDoll = await userService.getMyDollDetail(id);
 
@@ -34,6 +43,7 @@ class MyDollDetail extends Component {
         loading: false,
       })
     }
+   }
   }
 
   handleDelete = () => {   
@@ -44,18 +54,21 @@ class MyDollDetail extends Component {
   };
 
   render() {
-    const { myDoll, loading, redirect } = this.state;
+    const { myDoll, loading, redirect, validId } = this.state;
     const { match: {params: { id }} } = this.props;
     
     return (
       <>
+        {!validId && (
+          <Error404/>
+        )}
         {redirect && <Redirect
             to={{
               pathname: "/mycollection",
             }}
           />}
         {loading && <div><Spinner color={'#5898BE'}/></div> }
-        {!loading && 
+        {!loading && validId &&
         <div className="doll-detail">
             <div>
               

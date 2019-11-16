@@ -4,8 +4,9 @@ import { Redirect } from 'react-router-dom';
 import './MyDollDetail.css';
 import { Link } from 'react-router-dom';
 import userService from '../../services/userService';
+import helpers from '../../services/helpers';
 import Carousel from 'react-elastic-carousel';
-
+import Error404 from '../Error404';
 
 class WishlistDollDetail extends Component {
 
@@ -14,11 +15,17 @@ class WishlistDollDetail extends Component {
     ebay: [],
     loading: true,
     redirect: false,
+    validId: true,
   }    
 
   async componentDidMount() {
     const { match: {params: { id }} } = this.props;
-    
+    if (!helpers.isValidId(id)) {
+      this.setState({
+        validId: false,
+        loading: false
+      });
+    } else {  
     try {
       const myDoll = await userService.getWishlistDollDetail(id);
 
@@ -32,6 +39,7 @@ class WishlistDollDetail extends Component {
         loading: false,
       })
     }
+   }
   }
 
   handleDelete = () => {   
@@ -52,18 +60,21 @@ class WishlistDollDetail extends Component {
 
 
   render() {
-    const { myDoll, loading, redirect } = this.state;
+    const { myDoll, loading, redirect, validId } = this.state;
     const { match: {params: { id }} } = this.props;
     
     return (
       <>        
+        {!validId && (
+          <Error404/>
+        )}
         {redirect && <Redirect
             to={{
               pathname: "/mywishlist",
             }}
           />}
         {loading && <div>Loading...</div> }
-        {!loading && 
+        {!loading && validId &&
         <div className="doll-detail">
             <div>
               
