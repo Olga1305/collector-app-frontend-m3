@@ -56,7 +56,7 @@ class MyCollection extends Component {
       }
       return sum;
     });
-    if (sum === 0) {
+    if (sum.length === 0) {
       result = 0;
       return result;
     }
