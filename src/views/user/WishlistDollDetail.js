@@ -4,8 +4,9 @@ import { Redirect } from 'react-router-dom';
 import './MyDollDetail.css';
 import { Link } from 'react-router-dom';
 import userService from '../../services/userService';
+import helpers from '../../services/helpers';
 import Carousel from 'react-elastic-carousel';
-
+import Error404 from '../Error404';
 
 class WishlistDollDetail extends Component {
 
@@ -14,11 +15,17 @@ class WishlistDollDetail extends Component {
     ebay: [],
     loading: true,
     redirect: false,
+    validId: true,
   }    
 
   async componentDidMount() {
     const { match: {params: { id }} } = this.props;
-    
+    if (!helpers.isValidId(id)) {
+      this.setState({
+        validId: false,
+        loading: false
+      });
+    } else {  
     try {
       const myDoll = await userService.getWishlistDollDetail(id);
 
@@ -32,6 +39,7 @@ class WishlistDollDetail extends Component {
         loading: false,
       })
     }
+   }
   }
 
   handleDelete = () => {   
@@ -41,20 +49,32 @@ class WishlistDollDetail extends Component {
       .then(() => this.setState({ redirect: true }));
   };
 
+  fromWishlistToCollection = () => {
+    const { match: { params: { id }} } = this.props;
+    const { myDoll: { doll: { _id }} } = this.state;
+    userService
+      .addMyDollToMyCollection(_id)      
+      .then(() => userService.deleteWishlistDoll(id))
+      .then(() => this.setState({ redirect: true }));
+  }
+
 
   render() {
-    const { myDoll, loading, redirect } = this.state;
+    const { myDoll, loading, redirect, validId } = this.state;
     const { match: {params: { id }} } = this.props;
     
     return (
       <>        
+        {!validId && (
+          <Error404/>
+        )}
         {redirect && <Redirect
             to={{
               pathname: "/mywishlist",
             }}
           />}
         {loading && <div>Loading...</div> }
-        {!loading && 
+        {!loading && validId &&
         <div className="doll-detail">
             <div>
               
@@ -78,9 +98,11 @@ class WishlistDollDetail extends Component {
                 <p>Kit: {myDoll.kit}</p>
                 <p>Edition Size: {myDoll.doll.editionSize}</p>
                 <p>Release Price: ${myDoll.doll.releasePrice}</p>
-                <Link className="button" to={`/mywishlist/${myDoll._id}/update`}>Update</Link>
-                <button className="button" onClick={() => this.handleDelete()}>Delete</button>
-                
+                <Link className="button-large" to={`/mywishlist/${myDoll._id}/update`}>Update</Link>
+                <button className="button-large" onClick={() => {if (window.confirm('Are you sure you wish to delete this item?')) this.handleDelete() } }>Delete</button>
+                <button className="button-large" id="wishlist-btn" onClick={() => this.fromWishlistToCollection()}>
+                  + to my collection
+                </button>
             </div>          
 
 

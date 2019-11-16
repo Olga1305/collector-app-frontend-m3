@@ -23,6 +23,37 @@ class CatalogService {
       .then(({ data: doll }) => doll);
   }  
 
+  getDollsByMold = async (query) => {
+    try {
+      const dolls = await this.getAllDolls();
+      if (query !== '') {
+        const result = dolls.filter(item => {
+          return (
+            item.mold.toLowerCase().includes(query.toLowerCase()) 
+          );
+        });
+        return result;
+    }    
+  } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getDollsBySkin = async (query) => {
+    try {
+      const dolls = await this.getAllDolls();
+      if (query !== '') {
+        const result = dolls.filter(item => {
+          return (
+            item.skinTone.toLowerCase().includes(query.toLowerCase()) 
+          );
+        });
+        return result;
+    }    
+  } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 const catalogService = new CatalogService();

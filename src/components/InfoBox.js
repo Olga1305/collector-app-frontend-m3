@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import './InfoBox.css';
 
 import { Link } from "react-router-dom";
@@ -12,6 +13,7 @@ class InfoBox extends Component {
     state = {        
         inCollection: false,
         inWishlist: false,
+        redirect: false,
       }
 
       async componentDidMount() {
@@ -31,22 +33,31 @@ class InfoBox extends Component {
       }  
 
       addToCollection = async (id) => {
+        const { user} = this.props;
         try {
-          userService.addMyDollToMyCollection(id);
-          const inCollection = await userService.checkIfDollInCollection(id);
-          const inWishlist = await userService.checkIfDollInWishlist(id);
+          if (user) {
+            userService.addMyDollToMyCollection(id);
+            const inCollection = await userService.checkIfDollInCollection(id);
+            const inWishlist = await userService.checkIfDollInWishlist(id);
+            this.setState(
+              { 
+                inCollection,
+                inWishlist,
+              });
+          }
           this.setState(
             { 
-              inCollection,
-              inWishlist,
-            });
+              redirect: true,
+            });          
         } catch (error) {
           console.log(error);          
         }      
       }
       
       addToWishlist = async (id) => {
+        const { user} = this.props;
         try {
+          if (user) {
             userService.addMyDollToMyWishlist(id);
             const inCollection = await userService.checkIfDollInCollection(id);
             const inWishlist = await userService.checkIfDollInWishlist(id);
@@ -55,6 +66,11 @@ class InfoBox extends Component {
                 inCollection,
                 inWishlist,
               });
+            }
+            this.setState(
+              { 
+                redirect: true,
+              }); 
           } catch (error) {
             console.log(error);          
           }      
@@ -62,10 +78,17 @@ class InfoBox extends Component {
 
       render() {
 
-        const { inCollection, inWishlist } = this.state;
+        const { inCollection, inWishlist, redirect } = this.state;
         const { brand, id, image, name, character, editionSize, mold, skinTone, releasePrice, } = this.props;
 
         return (
+          <>
+          {redirect && <Redirect
+            to={{
+              pathname: "/login",
+            }}
+          />}
+          {!redirect && 
             <div className="InfoBox">
                 <div className="doll-image">
                     <Link to={`/catalog/${brand}/${id}`}>
@@ -87,6 +110,8 @@ class InfoBox extends Component {
                     </Button>                   
                 </div>   
             </div>
+          }
+          </>
         )
     }    
 

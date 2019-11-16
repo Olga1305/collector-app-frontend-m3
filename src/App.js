@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
+import ErrorBoundary from './components/ErrorBoundary';
 import Navbar from './components/Navbar';
 // import Footer from './components/Footer';
 
@@ -20,7 +21,6 @@ import WishlistDollDetail from './views/user/WishlistDollDetail';
 import UpdateWishlistDoll from './views/user/UpdateWishlistDoll';
 
 import Error404 from './views/Error404';
-// import Error500 from './views/Error500';
 
 import Login from './views/auth/Login';
 import Signup from './views/auth/Signup';
@@ -39,6 +39,7 @@ class App extends Component {
           <Navbar />
 
           <div className="content-wrap">
+            <ErrorBoundary>
             <Switch>
               <AnonRoute exact path="/login" component={Login} />
               <AnonRoute exact path="/signup" component={Signup} />
@@ -58,6 +59,7 @@ class App extends Component {
               <PrivateRoute exact path="/mywishlist/:id/update" component={UpdateWishlistDoll} />
               <Route path="*" component={Error404} />
             </Switch>
+            </ErrorBoundary>
           </div>
         </Router>
       </div>

@@ -41,6 +41,22 @@ class MyWishlist extends Component {
     }    
   };
 
+  fromWishlistToCollection = async (id) => {
+    try {
+      const myDoll = await userService.getWishlistDollDetail(id);
+      const dollId = myDoll.doll._id;
+      userService.addMyDollToMyCollection(dollId);
+      await userService.deleteWishlistDoll(id);
+      const dolls = await userService.getMyWishlist();
+      this.setState(
+        {
+          dolls,
+        });
+    } catch (error) {
+      console.log(error);
+    }    
+  }
+
   render() {
     const { dolls, loading } = this.state;
     return (
@@ -59,7 +75,8 @@ class MyWishlist extends Component {
                   name={el.doll.name}
                   condition={el.condition}
                   kit={el.kit}    
-                  handleDelete={this.handleDelete}              
+                  handleDelete={this.handleDelete}  
+                  fromWishlistToCollection={this.fromWishlistToCollection}            
                 ></InfoBoxWishlist>
               );
             })}
