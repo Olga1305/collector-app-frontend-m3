@@ -49,13 +49,18 @@ class MyCollection extends Component {
 
   calculatePurchasePricesSum = (dolls) => {
     let sum = [];
+    let result;
     dolls.forEach(item => {
       if (item.purchasePrice) {
         return sum.push(item.purchasePrice);
       }
       return sum;
     });
-    const result = sum.reduce((a, b) => { return a + b; });
+    if (sum === 0) {
+      result = 0;
+      return result;
+    }
+    result = sum.reduce((a, b) => { return a + b; });
     return result;
   }
 
