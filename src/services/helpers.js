@@ -18,11 +18,10 @@ class Helpers {
     const prices = [];
     doll.ebay.forEach(el => {
       const sum = [];
-      let quantity;
       if (el[0].paginationOutput[0].totalEntries[0] === '0') {
         return prices.push(0);
       }
-      quantity = el[0].searchResult[0].item.length;
+      const quantity = el[0].searchResult[0].item.length;
       el[0].searchResult[0].item.forEach(item => {
         if (item.sellingStatus[0].currentPrice[0].__value__) {
           return sum.push(parseInt(item.sellingStatus[0].currentPrice[0].__value__));

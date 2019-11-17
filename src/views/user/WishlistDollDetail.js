@@ -1,18 +1,22 @@
 // @flow
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import './MyDollDetail.css';
-import { Link } from 'react-router-dom';
 import userService from '../../services/userService';
 import helpers from '../../services/helpers';
 import Carousel from 'react-elastic-carousel';
+import { Spinner } from 'react-loading-io';
 import Error404 from '../Error404';
+import EbayTable from '../../components/EbayTable';
 
 class WishlistDollDetail extends Component {
 
   state = {
     myDoll: {},
-    ebay: [],
+    itemsOnEbay: [],
+    avgEbayPrices: [],
+    change: undefined,
+    ebayUrls: [],
     loading: true,
     redirect: false,
     validId: true,
@@ -20,6 +24,10 @@ class WishlistDollDetail extends Component {
 
   async componentDidMount() {
     const { match: {params: { id }} } = this.props;
+    let itemsOnEbay = [];
+    let avgEbayPrices = [];
+    let ebayUrls = [];
+    let change;
     if (!helpers.isValidId(id)) {
       this.setState({
         validId: false,
@@ -28,9 +36,17 @@ class WishlistDollDetail extends Component {
     } else {  
     try {
       const myDoll = await userService.getWishlistDollDetail(id);
+      itemsOnEbay = helpers.itemsOnEbay(myDoll.doll);
+      avgEbayPrices = helpers.calculateAvgEbayPrice(myDoll.doll);
+      ebayUrls = helpers.generateEbayUrls(myDoll.doll);      
+      change = helpers.calculateChange(myDoll.doll.releasePrice, avgEbayPrices);
 
       this.setState({
         myDoll,
+        itemsOnEbay,
+        avgEbayPrices,
+        change,
+        ebayUrls,
         loading: false,
       })
     } catch (error) {
@@ -58,9 +74,8 @@ class WishlistDollDetail extends Component {
       .then(() => this.setState({ redirect: true }));
   }
 
-
   render() {
-    const { myDoll, loading, redirect, validId } = this.state;
+    const { myDoll, itemsOnEbay, avgEbayPrices, change, ebayUrls, loading, redirect, validId } = this.state;
     const { match: {params: { id }} } = this.props;
     
     return (
@@ -73,12 +88,12 @@ class WishlistDollDetail extends Component {
               pathname: "/mywishlist",
             }}
           />}
-        {loading && <div>Loading...</div> }
+        {loading && <div><Spinner color={'#5898BE'} /></div> }
         {!loading && validId &&
         <div className="doll-detail">
             <div>
               
-              <h1>{myDoll.doll.character} {myDoll.doll.name} - {myDoll.doll.subBrand}</h1>             
+              <h1>{myDoll.doll.subBrand} {myDoll.doll.year}<br/>{myDoll.doll.character} {myDoll.doll.name}</h1>             
               
               <Carousel className="carousel">
                 {myDoll.doll.images.map((image, index) => {
@@ -103,6 +118,7 @@ class WishlistDollDetail extends Component {
                 <button className="button-large" id="wishlist-btn" onClick={() => this.fromWishlistToCollection()}>
                   + to my collection
                 </button>
+                <EbayTable change={change} ebayUrls={ebayUrls} itemsOnEbay={itemsOnEbay} avgEbayPrices={avgEbayPrices} />
             </div>          
 
 

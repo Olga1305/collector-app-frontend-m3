@@ -183,7 +183,7 @@ class DollDetail extends Component {
           <div className="doll-detail">            
             <div className="carousel-wrap">             
             <h1>
-              {doll.character} - {doll.name}<br/>{doll.subBrand} {doll.year}
+            {doll.subBrand} {doll.year}<br/>{doll.character} - {doll.name}
             </h1>
               <Carousel className="carousel">
                 {doll.images.map((image, index) => {

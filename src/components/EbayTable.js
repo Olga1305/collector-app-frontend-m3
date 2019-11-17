@@ -1,13 +1,9 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-// import './InfoBox.css';
 
 import logoEbay from '../assets/logo-ebay.png';
 
-
 class EbayTable extends Component {
-
 
       render() {
 
@@ -16,14 +12,11 @@ class EbayTable extends Component {
             change,
             ebayUrls, } = this.props;
 
-            console.log(this.props)
-
-        return (
-          
+        return (          
           
             <div className="EbayTable">
-                <h3>Current price increased <span>{change}%</span></h3>              
-              <table id="t01">
+                <h3>Original price increased <span>{change}%</span></h3>              
+              <table>
                 <tbody>
                   <tr>
                     <th>

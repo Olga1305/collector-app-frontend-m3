@@ -1,8 +1,7 @@
 // @flow
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import './MyDollDetail.css';
-import { Link } from 'react-router-dom';
 import userService from '../../services/userService';
 import helpers from '../../services/helpers';
 import Carousel from 'react-elastic-carousel';
@@ -42,13 +41,9 @@ class MyDollDetail extends Component {
       try {
         const myDoll = await userService.getMyDollDetail(id);
         itemsOnEbay = helpers.itemsOnEbay(myDoll.doll);
-        console.log(itemsOnEbay)
         avgEbayPrices = helpers.calculateAvgEbayPrice(myDoll.doll);
-        console.log(avgEbayPrices)
         ebayUrls = helpers.generateEbayUrls(myDoll.doll);
-        console.log(ebayUrls)
         change = helpers.calculateChange(myDoll.doll.releasePrice, avgEbayPrices);
-        console.log(change)
 
         this.setState({
           myDoll,
@@ -103,7 +98,7 @@ class MyDollDetail extends Component {
           <div className="doll-detail">
             <div>
               <h1>
-                {myDoll.doll.character} {myDoll.doll.name} - {myDoll.doll.subBrand}
+              {myDoll.doll.subBrand} {myDoll.doll.year}<br/>{myDoll.doll.character} {myDoll.doll.name}
               </h1>
 
               <Carousel className="carousel">
