@@ -10,6 +10,7 @@ import catalogService from '../services/catalogSevice';
 import userService from '../services/userService';
 import helpers from '../services/helpers';
 import Error404 from './Error404';
+import InfoBlock from '../components/InfoBlock';
 import ButtonLarge from '../components/ButtonLarge';
 import EbayTable from '../components/EbayTable';
 
@@ -47,56 +48,57 @@ class DollDetail extends Component {
     if (!helpers.isValidId(id)) {
       this.setState({
         validId: false,
-        loading: false
+        loading: false,
       });
-    } else {     
-    try {
-      const doll = await catalogService.getDollById(brand, id);
-      itemsOnEbay = helpers.itemsOnEbay(doll);
-      avgEbayPrices = helpers.calculateAvgEbayPrice(doll);
-      ebayUrls = helpers.generateEbayUrls(doll);
-      change = helpers.calculateChange(doll.releasePrice, avgEbayPrices);
-      dollsByMold = this.filterByMold(doll.mold);
+    } else {
+      try {
+        const doll = await catalogService.getDollById(brand, id);
+        itemsOnEbay = helpers.itemsOnEbay(doll);
+        avgEbayPrices = helpers.calculateAvgEbayPrice(doll);
+        ebayUrls = helpers.generateEbayUrls(doll);
+        change = helpers.calculateChange(doll.releasePrice, avgEbayPrices);
+        dollsByMold = this.filterByMold(doll.mold);
 
-      if (user) {
-        const inCollection = await userService.checkIfDollInCollection(id);
-        const inWishlist = await userService.checkIfDollInWishlist(id);
+        if (user) {
+          const inCollection = await userService.checkIfDollInCollection(id);
+          const inWishlist = await userService.checkIfDollInWishlist(id);
+          this.setState({
+            doll,
+            itemsOnEbay,
+            avgEbayPrices,
+            change,
+            ebayUrls,
+            dollsByMold,
+            // dollsBySkin,
+            inCollection,
+            inWishlist,
+            loading: false,
+          });
+        } else {
+          this.setState({
+            doll,
+            itemsOnEbay,
+            avgEbayPrices,
+            change,
+            ebayUrls,
+            dollsByMold,
+            // dollsBySkin,
+            loading: false,
+          });
+        }
+      } catch (error) {
+        console.log(error);
         this.setState({
-          doll,
-          itemsOnEbay,
-          avgEbayPrices,
-          change,
-          ebayUrls,
-          dollsByMold,
-          // dollsBySkin,
-          inCollection,
-          inWishlist,
-          loading: false,
-        });
-      } else {
-        this.setState({
-          doll,
-          itemsOnEbay,
-          avgEbayPrices,
-          change,
-          ebayUrls,
-          dollsByMold,
-          // dollsBySkin,
           loading: false,
         });
       }
-    } catch (error) {
-      console.log(error);
-      this.setState({
-        loading: false,
-      });
     }
-   }
   }
 
   addToCollection = () => {
     const {
-      user, match: {
+      user,
+      match: {
         params: { id },
       },
     } = this.props;
@@ -107,12 +109,12 @@ class DollDetail extends Component {
         redirect: true,
       });
     }
-    
   };
 
   addToWishlist = () => {
     const {
-      user, match: {
+      user,
+      match: {
         params: { id },
       },
     } = this.props;
@@ -122,13 +124,13 @@ class DollDetail extends Component {
       this.setState({
         redirect: true,
       });
-    }    
+    }
   };
 
   filterByMold = mold => {
-    const searched = catalogService.getDollsByMold(mold)
+    const searched = catalogService.getDollsByMold(mold);
     return searched;
-  }
+  };
 
   render() {
     const {
@@ -147,13 +149,18 @@ class DollDetail extends Component {
       redirect,
       validId,
     } = this.state;
-    
+
+    const {
+      history: { push },
+      match: {
+        params: { brand },
+      },
+    } = this.props;
+
     return (
       <>
-        {!validId && (
-          <Error404/>
-        )}
-       {redirect && (
+        {!validId && <Error404 />}
+        {redirect && (
           <Redirect
             to={{
               pathname: '/login',
@@ -180,38 +187,46 @@ class DollDetail extends Component {
           </div>
         )}
         {!loading && validId && (
-          <div className="doll-detail">            
-            <div className="carousel-wrap">             
-            <h1>
-            {doll.subBrand} {doll.year}<br/>{doll.character} - {doll.name}
-            </h1>
-              <Carousel className="carousel">
-                {doll.images.map((image, index) => {
-                  return <img src={image} alt="doll" key={`${image}-${index}`} />;
-                })}
-              </Carousel>
+          <div className="doll">
+            <div className="doll-detail">
+              <div className="carousel-wrap">
+                <h1>
+                  {doll.subBrand} {doll.year}
+                  <br />
+                  {doll.character} - {doll.name}
+                </h1>
+                <Carousel className="carousel">
+                  {doll.images.map((image, index) => {
+                    return <img src={image} alt="doll" key={`${image}-${index}`} />;
+                  })}
+                </Carousel>
+              </div>
+              <div className="info">
+                <h2>Catalog doll</h2>
+                <ButtonLarge kind={inCollection} disabled={inCollection} onClick={() => this.addToCollection()}>
+                  + to my collection
+                </ButtonLarge>
+                <ButtonLarge kind={inWishlist} disabled={inWishlist} onClick={() => this.addToWishlist()}>
+                  + to my wishlist
+                </ButtonLarge>
+                <InfoBlock doll={doll} />
+                <EbayTable
+                  change={change}
+                  ebayUrls={ebayUrls}
+                  itemsOnEbay={itemsOnEbay}
+                  avgEbayPrices={avgEbayPrices}
+                />
+              </div>
             </div>
-            <div className="info">
-              <h2>Catalog doll</h2>
-              <ButtonLarge kind={inCollection} disabled={inCollection} onClick={() => this.addToCollection()}>
-                + to my collection
-              </ButtonLarge>
-              <ButtonLarge kind={inWishlist} disabled={inWishlist} onClick={() => this.addToWishlist()}>
-                + to my wishlist
-              </ButtonLarge>
-              {/* <p>Mold: <Link 
-                  to={{
-                  pathname: '/searchresults',
-                  state: { searched: dollsByMold }
-                  }} 
-              >{doll.mold}</Link></p> */}
-              <p>Mold: {doll.mold}</p>
-              <p>Skin Tone: {doll.skinTone}</p>
-              <p>Body Type: {doll.body}</p>
-              <p>Hair: {doll.hair}</p>
-              <p>Edition Size: {doll.editionSize}</p>
-              <p className="price">Release Price: ${doll.releasePrice}</p>
-              <EbayTable change={change} ebayUrls={ebayUrls} itemsOnEbay={itemsOnEbay} avgEbayPrices={avgEbayPrices} />
+            <div className="back">
+              <button
+                className="button-profile"
+                onClick={() => {
+                  push(`/catalog/${brand}`);
+                }}
+              >
+                Back to list
+              </button>
             </div>
           </div>
         )}

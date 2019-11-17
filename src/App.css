@@ -1,5 +1,4 @@
 .main-container {
-  width: calc(100vw + 8px);
   position: relative;
   min-height: calc(-105px + 100vh);
   display: block;
@@ -12,7 +11,8 @@ h2 {
 }
 
 .content-wrap {
-  padding: 65px 10px 75px 10px;
+  width: 98%;
+  padding: 65px 0 75px 20px;
   display: flex;
   justify-content: center;
 }
@@ -95,12 +95,11 @@ p {
 
 .button-ebay {
   text-align: center;
-  width: 70px;
+  width: 80px;
   font-family: Montserrat;
   font-size: 14px;
   font-weight: bold;
   color: white;
-  /* text-transform: uppercase; */
   text-decoration: none;
   background: #81badc;
   padding: 5px;
@@ -209,7 +208,7 @@ p {
 }
 
 table {
-  max-width: 90vw;
+  max-width: 95vw;
   margin-top: 30px;
   margin-bottom: 50px;
   font-family: Montserrat;
@@ -236,6 +235,20 @@ th img {
   width: 70px;
 }
 
+.EbayTable  {
+  display: inline-block;
+}
+
+.EbayTable h3 {
+  margin-top: 10px;
+}
+
+#price-increase  span{
+  font-size: 24px;
+  color: #5898be;
+  cursor: default;
+}
+
 @media only screen and (min-width: 768px) {
   table {
     max-width: 30vw;    
@@ -249,5 +262,9 @@ th img {
 
   th img {
     width: 100px;
+  }
+
+  #price-increase  span{
+    font-size: 36px;
   }
 }

@@ -15,7 +15,7 @@ class EbayTable extends Component {
         return (          
           
             <div className="EbayTable">
-                <h3>Original price increased <span>{change}%</span></h3>              
+                <h3 id="price-increase">Original price increased <span>{change}%</span></h3>              
               <table>
                 <tbody>
                   <tr>

@@ -1,5 +1,5 @@
-.doll-detail {
-   width: 100vw;
+.doll {
+  width: 95vw;
 }
 
 .doll-detail h1 {
@@ -9,9 +9,13 @@
   max-width: 85vw;
 }
 
-.rec-dot_active {
-  background-color: #81badc !important;
-  box-shadow: 0 0 1px 3px #5898be !important;
+.info-blocks {
+  display: flex;
+  flex-direction: column;
+}
+
+.rec-dot {
+  display: none;
 }
 
 .carousel-wrap {
@@ -26,54 +30,105 @@
 }
 
 .carousel img {
-  width: 60vw;
+  width: 100vw;
   max-width: 100%;
   max-height: 100%;
 }
 
 .carousel button {
-  background-color: #6aadd5;
-}
-
-.carousel button:hover {
-  background-color: #fff952;
+  display: none;
 }
 
 .info {
   width: 90vw;
   padding-left: 10px;
+  display: block;
+  height: auto;
+  overflow: auto;
 }
 
 .info h2 {
   text-align: left;
+  text-shadow: 4px 4px #fff952;
+  margin: 0 20px 20px 0;
 }
 
 .info span {
-  font-size: 36px;
-  color: #5898be;
+  font-size: 40px;
+  color: black;
+  cursor: pointer;
+}
+
+.info span:hover {
+  color: #fff952;
+}
+
+.info-title {
+  display: flex;
+}
+
+.info-wish {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-title-wish {
+  display: flex;
+  flex-direction: row;
+}
+
+#btn-wish {
+  margin-bottom: 20px;
+}
+
+.my-info {
+  background-color: #ddf0fc;
+  margin-right: 20px;
+  padding: 30px;
+}
+
+.my-icon {
+  margin-right: 30px;
 }
 
 .price {
   font-size: 22px;
   font-weight: bold;
+  text-shadow: 4px 4px #fff952;
+}
+
+.back {
+  text-align: center;
+  margin-top: -30px;
+}
+
+#coll-btn {
+  width: 300px;
 }
 
 @media only screen and (min-width: 768px) {
   .doll-detail {
     display: flex;
     justify-content: center;
-    
   }
 
   .doll-detail h1 {
-    margin: 20px 0 50px 0;
-    font-size: 36px;    
+    margin: 20px 0;
+    font-size: 36px;
+  }
+
+  .info-blocks {
+    flex-direction: row;
   }
 
   .info {
     margin: 30px 10px;
     padding-left: 35px;
-    width: 25vw;
+    width: 35vw;
+  }
+
+  .info-wish {
+    flex-direction: row;
   }
 
   .carousel-wrap {
@@ -90,5 +145,23 @@
     max-width: 100%;
     max-height: 100%;
     margin-right: 10px;
+  }
+
+  .carousel button {
+    display: block;
+    background-color: #6aadd5;
+  }
+
+  .carousel button:hover {
+    background-color: #fff952;
+  }
+
+  .rec-dot {
+    display: block;
+  }
+
+  .rec-dot_active {
+    background-color: #81badc !important;
+    box-shadow: 0 0 1px 3px #5898be !important;
   }
 }
