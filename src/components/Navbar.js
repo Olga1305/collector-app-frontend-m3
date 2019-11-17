@@ -60,22 +60,22 @@ class Navbar extends Component {
             </header>
             <nav>
               <ul>
-                <li>
+                <li id="home">                 
                   <Link to="/" onClick={this.showMenu}>
                     Home
                   </Link>
                 </li>
-                <li>
+                <li id="login">
                   <Link to="/login" onClick={this.showMenu}>
                     Log in
                   </Link>
                 </li>
-                <li>
+                <li id="signup">
                   <Link to="/signup" onClick={this.showMenu}>
                     Sign up
                   </Link>
                 </li>
-                <li>
+                <li id="catalog">
                   <Link to="/catalog" onClick={this.showMenu}>
                     Catalog
                   </Link>
@@ -101,32 +101,32 @@ class Navbar extends Component {
             </header>
             <nav>
               <ul>
-                <li>
+                <li id="home">
                   <Link to="/" onClick={this.showMenu}>
                     Home
                   </Link>
                 </li>
-                <li>
+                <li id="profile">
                   <Link to="/profile" onClick={this.showMenu}>
                     Profile
                   </Link>
                 </li>
-                <li>
+                <li id="collection">
                   <Link to="/mycollection" onClick={this.showMenu}>
                     My collection
                   </Link>
                 </li>
-                <li>
+                <li id="wishlist">
                   <Link to="/mywishlist" onClick={this.showMenu}>
                     My wishlist
                   </Link>
                 </li>
-                <li>
+                <li id="catalog">
                   <Link to="/catalog" onClick={this.showMenu}>
                     Catalog
                   </Link>
                 </li>
-                <li>
+                <li id="logout">
                   <Link to="/" onClick={handleLogout}>
                     Log out
                   </Link>

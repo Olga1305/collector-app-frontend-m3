@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './DollDetail.css';
 
 import { Spinner } from 'react-loading-io';
