@@ -43,6 +43,7 @@
 
 #auth .inputs label {
   color: #8f8f8f;
+  font-family: Montserrat;
   font-size: 12px;
   font-weight: 300;
   letter-spacing: 1px;
@@ -91,6 +92,7 @@ input[type='password']:focus {
 
 #auth .inputs label.terms {
   float: left;
+  font-family: Montserrat;
   font-size: 14px;
   font-style: italic;
 }
