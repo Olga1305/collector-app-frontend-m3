@@ -43,7 +43,8 @@
 
 #auth .inputs label {
   color: #8f8f8f;
-  font-size: 12px;
+  font-family: Montserrat;
+  font-size: 1rem;
   font-weight: 300;
   letter-spacing: 1px;
   margin-bottom: 7px;
@@ -54,7 +55,8 @@ input::placeholder {
   color: #b5b5b5;
 }
 
-#auth .inputs input[type='email'],
+#auth .inputs input[type='text'], 
+input[type='email'],
 input[type='password'] {
   background: #f5f5f5;
   font-size: 0.9rem;
@@ -68,7 +70,8 @@ input[type='password'] {
   clear: both;
 }
 
-#auth .inputs input[type='email']:focus,
+#auth .inputs input[type='text']:focus,
+input[type='email']:focus,
 input[type='password']:focus {
   background: #fff;
   box-shadow: 0px 0px 0px 3px #fff952, inset 0px 2px 3px rgba(0, 0, 0, 0.2), 0px 5px 5px rgba(0, 0, 0, 0.15);
@@ -91,6 +94,7 @@ input[type='password']:focus {
 
 #auth .inputs label.terms {
   float: left;
+  font-family: Montserrat;
   font-size: 14px;
   font-style: italic;
 }

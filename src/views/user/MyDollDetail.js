@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { Icon } from 'react-fa';

@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../../Context/AuthContext';
@@ -43,6 +42,7 @@ class Login extends Component {
               placeholder="Password"
               name="password"
               value={password}
+              autoComplete="current-password"
               onChange={this.handleChange}
             />
 

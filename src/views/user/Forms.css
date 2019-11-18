@@ -1,0 +1,141 @@
+.form-container {
+    width: 406px;
+    max-width: 406px;
+    margin: 60px auto;
+  }
+
+  .doll-icon {
+      height: 200px;
+  }
+  
+  #doll {
+    padding: 0px 25px 25px;
+    background: #fff;
+    box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.4), 0px 4px 20px rgba(0, 0, 0, 0.33);
+    border-radius: 5px;
+    display: table;
+    position: static;
+  }
+  
+  #doll .form-header {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  #doll .form-header h1 {
+    color: #5898be;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  #doll .form-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  #doll .form-header p {
+    color: #8f8f8f;
+    font-size: 16px;
+    font-weight: 300;
+  }
+  
+  #doll .sep {
+    height: 1px;
+    background: #e8e8e8;
+    width: 406px;
+    margin: 0px -25px;
+  }
+  
+  #doll .inputs {
+    margin-top: 25px;
+  }
+  
+  #doll .inputs label {
+    color: black;
+    font-family: Montserrat;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 7px;
+    display: block;
+  }
+  
+  input::placeholder {
+    color: #b5b5b5;
+  }
+
+  #doll .inputs select[type='text'],
+  input[type='number'] {
+    background: #f5f5f5;
+    font-size: 0.9rem;
+    font-family: Montserrat;
+    border-radius: 3px;
+    border: none;
+    padding: 13px 10px;
+    width: 350px;
+    margin-bottom: 20px;
+    box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.1);
+    clear: both;
+  }
+  
+  #doll .inputs select[type='text']:focus,
+  input[type='number']:focus {
+    background: #fff;
+    box-shadow: 0px 0px 0px 3px #fff952, inset 0px 2px 3px rgba(0, 0, 0, 0.2), 0px 5px 5px rgba(0, 0, 0, 0.15);
+    outline: none;
+  }
+
+  
+  #doll .inputs input[type='text'],
+  input[type='number'] {
+    background: #f5f5f5;
+    font-size: 0.9rem;
+    font-family: Montserrat;
+    border-radius: 3px;
+    border: none;
+    padding: 13px 10px;
+    width: 330px;
+    margin-bottom: 20px;
+    box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.1);
+    clear: both;
+  }
+  
+  #doll .inputs input[type='text']:focus,
+  input[type='number']:focus {
+    background: #fff;
+    box-shadow: 0px 0px 0px 3px #fff952, inset 0px 2px 3px rgba(0, 0, 0, 0.2), 0px 5px 5px rgba(0, 0, 0, 0.15);
+    outline: none;
+  }
+
+  
+  #doll .inputs #submit {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px 0;
+    color: #fff;
+    font-family: Montserrat;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #81badc;
+    border-radius: 25px;
+    border: none;
+    transition: all 0.4s ease 0s;
+    box-shadow: 0px 5px 5px rgba(000, 000, 000, 0.1), inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+    text-shadow: 0px 1px 3px rgba(000, 000, 000, 0.3), 0px 0px 0px rgba(255, 255, 255, 0);
+    display: table;
+    position: static;
+    clear: both;
+  }
+  
+  #doll .inputs #submit:hover {
+    background: #5898be;
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    transition: all 0.4s ease 0s;
+  }
+  
