@@ -1,0 +1,137 @@
+.auth-container {
+  width: 406px;
+  max-width: 406px;
+  margin: 60px auto;
+}
+
+#auth {
+  padding: 0px 25px 25px;
+  background: #fff;
+  box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.4), 0px 4px 20px rgba(0, 0, 0, 0.33);
+  border-radius: 5px;
+  display: table;
+  position: static;
+}
+
+#auth .header {
+  margin-bottom: 20px;
+}
+
+#auth .header h1 {
+  color: #5898be;
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#auth .header p {
+  color: #8f8f8f;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+#auth .sep {
+  height: 1px;
+  background: #e8e8e8;
+  width: 406px;
+  margin: 0px -25px;
+}
+
+#auth .inputs {
+  margin-top: 25px;
+}
+
+#auth .inputs label {
+  color: #8f8f8f;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-bottom: 7px;
+  display: block;
+}
+
+input::placeholder {
+  color: #b5b5b5;
+}
+
+#auth .inputs input[type='email'],
+input[type='password'] {
+  background: #f5f5f5;
+  font-size: 0.9rem;
+  font-family: Montserrat;
+  border-radius: 3px;
+  border: none;
+  padding: 13px 10px;
+  width: 330px;
+  margin-bottom: 20px;
+  box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.1);
+  clear: both;
+}
+
+#auth .inputs input[type='email']:focus,
+input[type='password']:focus {
+  background: #fff;
+  box-shadow: 0px 0px 0px 3px #fff952, inset 0px 2px 3px rgba(0, 0, 0, 0.2), 0px 5px 5px rgba(0, 0, 0, 0.15);
+  outline: none;
+}
+
+#auth .inputs .checkboxy {
+  display: block;
+  position: static;
+  height: 25px;
+  margin-top: 10px;
+  clear: both;
+}
+
+#auth .inputs input[type='checkbox'] {
+  float: left;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+#auth .inputs label.terms {
+  float: left;
+  font-size: 14px;
+  font-style: italic;
+}
+
+#auth .inputs #submit {
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px 0;
+  color: #fff;
+  font-family: Montserrat;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #81badc;
+  border-radius: 25px;
+  border: none;
+  transition: all 0.4s ease 0s;
+  box-shadow: 0px 5px 5px rgba(000, 000, 000, 0.1), inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+  text-shadow: 0px 1px 3px rgba(000, 000, 000, 0.3), 0px 0px 0px rgba(255, 255, 255, 0);
+  display: table;
+  position: static;
+  clear: both;
+}
+
+#auth .inputs #submit:hover {
+  background: #5898be;
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.4s ease 0s;
+}
+
+.auth-link a {
+    color: #5898be;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.auth-link {
+    color: #8f8f8f;
+}

@@ -1,13 +1,13 @@
 // @flow
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import './MyDollDetail.css';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import { Icon } from 'react-fa';
 import userService from '../../services/userService';
 import helpers from '../../services/helpers';
 import Carousel from 'react-elastic-carousel';
 import { Spinner } from 'react-loading-io';
 import Error404 from '../Error404';
+import InfoBlock from '../../components/InfoBlock';
 import EbayTable from '../../components/EbayTable';
 
 class MyDollDetail extends Component {
@@ -42,13 +42,9 @@ class MyDollDetail extends Component {
       try {
         const myDoll = await userService.getMyDollDetail(id);
         itemsOnEbay = helpers.itemsOnEbay(myDoll.doll);
-        console.log(itemsOnEbay)
         avgEbayPrices = helpers.calculateAvgEbayPrice(myDoll.doll);
-        console.log(avgEbayPrices)
         ebayUrls = helpers.generateEbayUrls(myDoll.doll);
-        console.log(ebayUrls)
         change = helpers.calculateChange(myDoll.doll.releasePrice, avgEbayPrices);
-        console.log(change)
 
         this.setState({
           myDoll,
@@ -78,11 +74,6 @@ class MyDollDetail extends Component {
 
   render() {
     const { myDoll, itemsOnEbay, avgEbayPrices, change, ebayUrls, loading, redirect, validId } = this.state;
-    const {
-      match: {
-        params: { id },
-      },
-    } = this.props;
 
     return (
       <>
@@ -100,37 +91,50 @@ class MyDollDetail extends Component {
           </div>
         )}
         {!loading && validId && (
-          <div className="doll-detail">
-            <div>
-              <h1>
-                {myDoll.doll.character} {myDoll.doll.name} - {myDoll.doll.subBrand}
-              </h1>
+          <div className="doll">
+            <div className="doll-detail">
+              <div className="carousel-wrap">
+                <h1>
+                  {myDoll.doll.subBrand} {myDoll.doll.year}
+                  <br />
+                  {myDoll.doll.character} - {myDoll.doll.name}
+                </h1>
 
-              <Carousel className="carousel">
-                {myDoll.doll.images.map((image, index) => {
-                  return <img src={image} alt="doll" key={`${image}-${index}`} />;
-                })}
-              </Carousel>
+                <Carousel className="carousel">
+                  {myDoll.doll.images.map((image, index) => {
+                    return <img src={image} alt="doll" key={`${image}-${index}`} />;
+                  })}
+                </Carousel>
+              </div>
+              <div className="info">
+                <div className="info-title">
+                  <h2>My collection doll</h2>
+                  <Icon className="my-icon" name="trash" onClick={() => this.handleDelete()} />
+                </div>
+                <div className="info-blocks">
+                  <div className="my-info">
+                    <p>Condition: {myDoll.condition}</p>
+                    <p>Kit: {myDoll.kit}</p>
+                    <p>Purchase way: {myDoll.purchaseWay}</p>
+                    <p>Purchase Price: ${myDoll.purchasePrice}</p>
+                    <Link to={`/mycollection/${myDoll._id}/update`}>
+                      <Icon className="my-icon" name="edit" />
+                    </Link>
+                  </div>
+                  <InfoBlock doll={myDoll.doll} />
+                </div>
+                <EbayTable
+                  change={change}
+                  ebayUrls={ebayUrls}
+                  itemsOnEbay={itemsOnEbay}
+                  avgEbayPrices={avgEbayPrices}
+                />
+              </div>
             </div>
-            <div className="info">
-              <h2>My collection doll:</h2>
-              <p>Mold: {myDoll.doll.mold}</p>
-              <p>Skin Tone: {myDoll.doll.skinTone}</p>
-              <p>Hair: {myDoll.doll.hair}</p>
-              <p>Condition: {myDoll.condition}</p>
-              <p>Kit: {myDoll.kit}</p>
-              <p>Edition Size: {myDoll.doll.editionSize}</p>
-              <p>Release Price: ${myDoll.doll.releasePrice}</p>
-              <p>Purchase date: {myDoll.purchaseDate}</p>
-              <p>Purchase way: {myDoll.purchaseWay}</p>
-              <p>Purchase Price: ${myDoll.purchasePrice}</p>
-              <Link className="button" to={`/mycollection/${myDoll._id}/update`}>
-                Update
+            <div className="back">
+              <Link className="button-profile" id="coll-btn" to="/mycollection">
+                Back to collection
               </Link>
-              <button className="button" onClick={() => this.handleDelete()}>
-                Delete
-              </button>
-              <EbayTable change={change} ebayUrls={ebayUrls} itemsOnEbay={itemsOnEbay} avgEbayPrices={avgEbayPrices} />
             </div>
           </div>
         )}

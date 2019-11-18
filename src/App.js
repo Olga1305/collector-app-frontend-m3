@@ -30,15 +30,14 @@ import { withAuth } from './Context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import AnonRoute from './components/AnonRoute';
 
-class App extends Component {
+class App extends Component { 
   // eslint-disable-next-line class-methods-use-this
   render() {
     return (
       <div className="main-container">
         <Router>
-          <Navbar />
-
-          <div className="content-wrap">
+          <Navbar/>
+          <div className="content-wrap" >
             <ErrorBoundary>
             <Switch>
               <AnonRoute exact path="/login" component={Login} />

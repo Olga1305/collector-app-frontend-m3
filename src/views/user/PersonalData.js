@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Spinner } from "react-loading-io";
+import { Spinner } from 'react-loading-io';
 import { withAuth } from '../../Context/AuthContext';
 import userService from '../../services/userService';
 
@@ -104,7 +104,11 @@ class PersonalData extends Component {
 
     return (
       <>
-        {loading && <div className="loading"><Spinner color={'#5898BE'}/></div>}
+        {loading && (
+          <div className="loading">
+            <Spinner color={'#5898BE'} />
+          </div>
+        )}
         {!loading && (
           <div className="profile">
             <h1>Personal data</h1>
@@ -113,20 +117,16 @@ class PersonalData extends Component {
             </div>
             <p>Level: {level}</p>
             <div className="ltl-avatars">
-            {avatars.map((el, index) => {
-              return (
-                <div className="ltl-avtr" key={`${index}`}>
-                  <img src={el} alt="avatar" />
-                </div>
-              );
-            })}
-
+              {avatars.map((el, index) => {
+                return (
+                  <div className="ltl-avtr" key={`${index}`}>
+                    <img src={el} alt="avatar" />
+                  </div>
+                );
+              })}
             </div>
-            
 
             <div className="profile-btns">
-              
-
               <p>Username: {user.username}</p>
               <p>Email: {user.email}</p>
               <Link className="button-profile" to="/personaldata/update">
