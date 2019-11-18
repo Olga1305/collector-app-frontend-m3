@@ -1,6 +1,4 @@
-// @flow
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import './MyWishlist.css';
 import { Spinner } from "react-loading-io";
 import userService from '../../services/userService';

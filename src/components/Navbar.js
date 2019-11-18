@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo02.png';
@@ -19,7 +18,6 @@ class Navbar extends Component {
     });
   };
 
-
   render() {
     const { visibleMenu } = this.state;
     const { user, handleLogout } = this.props;
@@ -34,7 +32,7 @@ class Navbar extends Component {
                 <span></span>
                 <span></span>
               </div>
-              <Searchbar/>
+              <Searchbar />
               <div className="logo">
                 <Link to="/">
                   <img src={logo} alt="logo" />
@@ -51,7 +49,7 @@ class Navbar extends Component {
                 <span></span>
                 <span></span>
               </div>
-              <Searchbar/>
+              <Searchbar />
               <div className="logo">
                 <Link to="/" onClick={this.showMenu}>
                   <img src={logo} alt="logo" />
@@ -60,7 +58,7 @@ class Navbar extends Component {
             </header>
             <nav>
               <ul>
-                <li id="home">                 
+                <li id="home">
                   <Link to="/" onClick={this.showMenu}>
                     Home
                   </Link>
@@ -92,7 +90,7 @@ class Navbar extends Component {
                 <span></span>
                 <span></span>
               </div>
-              <Searchbar/>
+              <Searchbar />
               <div className="logo">
                 <Link to="/" onClick={this.showMenu}>
                   <img src={logo} alt="logo" />

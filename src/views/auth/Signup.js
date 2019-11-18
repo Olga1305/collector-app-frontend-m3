@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../../Context/AuthContext';
@@ -7,6 +6,7 @@ import './Auth.css';
 
 class Signup extends Component {
   state = {
+    username: '',
     email: '',
     password: '',
   };
@@ -18,15 +18,16 @@ class Signup extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
-    const { email, password } = this.state;
+    const { username, email, password } = this.state;
     this.props.handleSignup({
+      username,
       email,
       password,
     });
   };
 
   render() {
-    const { email, password } = this.state;
+    const { username, email, password } = this.state;
     return (
       <div className="auth-container">
         <form id="auth" onSubmit={this.handleFormSubmit}>
@@ -37,11 +38,13 @@ class Signup extends Component {
           </div>
           <div className="sep"></div>
           <div className="inputs">
-            <input type="email" placeholder="Email" name="email" value={email} onChange={this.handleChange} autoFocus />
+            <input type="text" placeholder="Username" name="username" autoComplete="username" value={username} onChange={this.handleChange} autoFocus />
+            <input type="email" placeholder="Email" name="email" value={email} onChange={this.handleChange} />
             <input
               type="password"
               placeholder="Password"
               name="password"
+              autoComplete="new-password"
               value={password}
               onChange={this.handleChange}
             />

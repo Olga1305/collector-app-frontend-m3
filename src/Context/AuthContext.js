@@ -1,4 +1,3 @@
-// @flow
 // eslint-disable-next-line max-classes-per-file
 import React, { Component, createContext } from 'react';
 import { Spinner } from "react-loading-io";
@@ -15,7 +14,7 @@ export const withAuth = Comp => {
     render() {
       return (
         <AuthConsumer>
-          {({ isLoading, isLoggedin, user, handleSignup, handleLogin, handleLogout }) => (
+          {({ isLoading, isLoggedin, user, handleSignup, handleLogin, handleLogout, handleProfileUpdate }) => (
             <Comp
               {...this.props}
               isLoading={isLoading}
@@ -24,6 +23,7 @@ export const withAuth = Comp => {
               handleSignup={handleSignup}
               handleLogin={handleLogin}
               handleLogout={handleLogout}
+              handleProfileUpdate={handleProfileUpdate}
             />
           )}
         </AuthConsumer>
@@ -113,6 +113,23 @@ export default class AuthProvider extends Component {
       });
   };
 
+  handleProfileUpdate = user => {
+    authService
+      .updateMyPersonalData(user)
+      .then(updatedUser => {
+        this.setState({
+          isLoggedin: true,
+          user: updatedUser,
+          isLoading: false,
+        });
+      })
+      .catch(() => {
+        this.setState({
+          isLoading: false,
+        });
+      });
+  };
+
   render() {
     const { isLoading, isLoggedin, user } = this.state;
     const { children } = this.props;
@@ -128,6 +145,7 @@ export default class AuthProvider extends Component {
           handleSignup: this.handleSignup,
           handleLogin: this.handleLogin,
           handleLogout: this.handleLogout,
+          handleProfileUpdate: this.handleProfileUpdate,
         }}
       >
         {children}

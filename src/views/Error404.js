@@ -4,8 +4,6 @@ import './Error404.css';
 
 import errorImg from '../assets/error02.png';
 
-
-
 const Error404 = () => {
   return (
     <div className="error404">

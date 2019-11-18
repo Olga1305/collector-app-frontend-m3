@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 import { Spinner } from 'react-loading-io';
 import './Forms.css';
@@ -8,8 +7,7 @@ import userService from '../../services/userService';
 class UpdateWishlistDoll extends Component {
   state = {
     doll: {},
-    loading: true,
-    
+    loading: true,    
   };
 
   async componentDidMount() {

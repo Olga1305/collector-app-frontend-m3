@@ -9,8 +9,8 @@ class AuthService {
   }
 
   signup(user) {
-    const { email, password } = user;
-    return this.auth.post('/signup', {email, password})
+    const { username, email, password } = user;
+    return this.auth.post('/signup', {username, email, password})
       .then(({ data }) => data);
   }
 
@@ -23,6 +23,12 @@ class AuthService {
   logout() {
     return this.auth.get('/logout', {})
       .then(response => response.data)
+  }
+
+  updateMyPersonalData(user) {
+    const { username, email } = user;
+    return this.auth.put(`/personaldata/update`, {username, email})
+      .then(({ data }) => data);
   }
 
   me(user) {

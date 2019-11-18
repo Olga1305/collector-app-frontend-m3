@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 
 import logoEbay from '../assets/logo-ebay.png';
