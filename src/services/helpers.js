@@ -1,5 +1,4 @@
 class Helpers {
-
   isValidId = id => {
     if (id.match(/^[0-9a-fA-F]{24}$/)) return true;
     return false;
@@ -13,7 +12,7 @@ class Helpers {
     });
     return items;
   };
-  
+
   calculateAvgEbayPrice = doll => {
     const prices = [];
     doll.ebay.forEach(el => {
@@ -38,7 +37,7 @@ class Helpers {
     });
     return prices;
   };
-  
+
   calculateChange = (release, current) => {
     if (current[0] === 0 && current[1] === 0) {
       return 0;
@@ -48,7 +47,8 @@ class Helpers {
     }
     return (((current[0] - release) / release) * 100).toFixed(2);
   };
-  
+
+
   generateEbayUrls = doll => {
     const urls = [];
     doll.ebayQueries.forEach(el => {

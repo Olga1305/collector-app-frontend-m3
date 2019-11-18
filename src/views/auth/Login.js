@@ -2,45 +2,61 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../../Context/AuthContext';
+import logo from '../../assets/logo02.png';
+import './Auth.css';
 
 class Login extends Component {
   state = {
-    username: "",
-    password: "",
-  }
+    email: '',
+    password: '',
+  };
 
-  handleChange = (e) => {  
-    const {name, value} = e.target;
-    this.setState({[name]: value});
-  }
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
 
-  handleFormSubmit = (e) => {
+  handleFormSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
     this.props.handleLogin({
       email,
-      password
-    })
-  }
+      password,
+    });
+  };
 
   render() {
     const { email, password } = this.state;
     return (
-      <div>
-        <h1>Log in</h1>
-        <form onSubmit={this.handleFormSubmit}>
-          <label>Email:</label>
-          <input type="text" name="email" value={email} onChange={this.handleChange}/><br/>
-          <label>Password:</label>
-          <input type="password" name="password" value={password} onChange={this.handleChange} /><br/>
-          <input className="button" type="submit" value="Login" />
+      <div className="auth-container">
+        <form id="auth" onSubmit={this.handleFormSubmit}>
+          <div className="header">
+            <img className="auth-logo" src={logo} alt="logo" />
+            <h1>Log in</h1>
+            <p>Log in to see your collection</p>
+          </div>
+          <div className="sep"></div>
+          <div className="inputs">
+            <input type="email" placeholder="Email" name="email" value={email} onChange={this.handleChange} autoFocus />
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+
+            <input id="submit" type="submit" value="Log in" />
+          </div>
+          <p className="auth-link">
+            Don't have account?{' '}
+            <Link className="auth-link" to={'/signup'}>
+              Sign up
+            </Link>
+          </p>
         </form>
-        <p>Don't have account? 
-          <Link className="button" to={"/signup"}>Sign up</Link>
-        </p>
       </div>
-      
-    )
+    );
   }
 }
 
