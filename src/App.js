@@ -47,12 +47,6 @@ class App extends Component {
                 <Route exact path="/catalog/:brand" component={DollsList} />
                 <Route exact path="/catalog/:brand/:id" component={DollDetail} />
                 <Route exact path="/searchresults" component={SearchedResults} />
-                {/* <Route
-                  exact
-                  path="/searchresults"
-                  render={(props) => <SearchedResults {...props} />}
-                /> */}
-
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <PrivateRoute exact path="/personaldata" component={PersonalData} />
                 <PrivateRoute exact path="/personaldata/update" component={UpdatePersonalData} />

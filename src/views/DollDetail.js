@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import './DollDetail.css';
 
 import { Spinner } from 'react-loading-io';
@@ -38,11 +38,6 @@ class DollDetail extends Component {
         params: { brand, id },
       },
     } = this.props;
-    let itemsOnEbay = [];
-    let avgEbayPrices = [];
-    let ebayUrls = [];
-    let dollsByMold = [];
-    let change;
 
     if (!helpers.isValidId(id)) {
       this.setState({
@@ -52,11 +47,13 @@ class DollDetail extends Component {
     } else {
       try {
         const doll = await catalogService.getDollById(brand, id);
-        itemsOnEbay = helpers.itemsOnEbay(doll);
-        avgEbayPrices = helpers.calculateAvgEbayPrice(doll);
-        ebayUrls = helpers.generateEbayUrls(doll);
-        change = helpers.calculateChange(doll.releasePrice, avgEbayPrices);
-        dollsByMold = this.filterByMold(doll.mold);
+        const dollsByMold = await catalogService.getDollsByMold(doll.mold);
+        const dollsBySkin = await catalogService.getDollsBySkin(doll.skinTone);
+        const itemsOnEbay = helpers.itemsOnEbay(doll);
+        const avgEbayPrices = helpers.calculateAvgEbayPrice(doll);
+        const ebayUrls = helpers.generateEbayUrls(doll);
+        const change = helpers.calculateChange(doll.releasePrice, avgEbayPrices);
+        
 
         if (user) {
           const inCollection = await userService.checkIfDollInCollection(id);
@@ -68,7 +65,7 @@ class DollDetail extends Component {
             change,
             ebayUrls,
             dollsByMold,
-            // dollsBySkin,
+            dollsBySkin,
             inCollection,
             inWishlist,
             loading: false,
@@ -81,7 +78,7 @@ class DollDetail extends Component {
             change,
             ebayUrls,
             dollsByMold,
-            // dollsBySkin,
+            dollsBySkin,
             loading: false,
           });
         }
@@ -126,10 +123,6 @@ class DollDetail extends Component {
     }
   };
 
-  filterByMold = mold => {
-    const searched = catalogService.getDollsByMold(mold);
-    return searched;
-  };
 
   render() {
     const {
@@ -208,7 +201,7 @@ class DollDetail extends Component {
                 <ButtonLarge kind={inWishlist} disabled={inWishlist} onClick={() => this.addToWishlist()}>
                   + to my wishlist
                 </ButtonLarge>
-                <InfoBlock doll={doll} />
+                <InfoBlock doll={doll} dollsByMold={dollsByMold} dollsBySkin={dollsBySkin} />
                 <EbayTable
                   change={change}
                   ebayUrls={ebayUrls}

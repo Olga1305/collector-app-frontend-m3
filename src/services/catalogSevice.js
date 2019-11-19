@@ -28,37 +28,17 @@ class CatalogService {
       .then(({ data: dolls }) => dolls);
   }
 
-  getDollsByMold = async (query) => {
-    try {
-      const dolls = await this.getAllDolls();
-      if (query !== '') {
-        const result = dolls.filter(item => {
-          return (
-            item.mold.toLowerCase().includes(query.toLowerCase()) 
-          );
-        });
-        return result;
-    }    
-  } catch (error) {
-      console.log(error);
-    }
+  getDollsByMold(mold) {
+    const splited = mold.split('/');
+    return this.axios.get(`/searchresults/mold/${splited[0]}`)
+      .then(({ data: dolls }) => dolls);
   }
 
-  getDollsBySkin = async (query) => {
-    try {
-      const dolls = await this.getAllDolls();
-      if (query !== '') {
-        const result = dolls.filter(item => {
-          return (
-            item.skinTone.toLowerCase().includes(query.toLowerCase()) 
-          );
-        });
-        return result;
-    }    
-  } catch (error) {
-      console.log(error);
-    }
+  getDollsBySkin(skin) {
+    return this.axios.get(`/searchresults/skintone/${skin}`)
+      .then(({ data: dolls }) => dolls);
   }
+
 }
 
 const catalogService = new CatalogService();
