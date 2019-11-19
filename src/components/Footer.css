@@ -2,37 +2,31 @@
 
 .footer {
   position: absolute;
-  bottom: 0;
-  /* max-width: 540px; */
-  width: 100%;
+  bottom: -10px;
+  width: 98vw;
   padding: 10px;
-  height: 60px;
-  background: #2EB2FF;
+  height: 80px;
+  background-color: #5898BE;
   z-index: 2;
 }
 
-.footer-icons {
-  float: left;
-
-  div {
-    display: inline-block;
-    padding: 5px;
-
-    img {
-      height: 35px;
-    }
-  }
-}
 
 .about {
-  float: right;
-  margin-right: 0.6em;
+  display: flex;
+  justify-content: space-between;  
+  padding: 0 10px;
+  color: white;
+}
 
-  a,
+.about a,
   a:visited {
-    color: white;
-    font-family: 'Raleway', Arial, sans-serif;
-    font-size: 1.5rem;
+    color: white;    
+    font-weight: bold;
     text-decoration: none;
   }
-}
+
+  @media only screen and (min-width: 768px) {
+    .footer {
+      height: 50px;
+    }
+  }
