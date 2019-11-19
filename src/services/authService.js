@@ -20,6 +20,12 @@ class AuthService {
       .then(({ data }) => data);
   }
 
+  sociallogin(user) {
+    const { _profile: { email } } = user;
+    return this.auth.post('/sociallogin', {email})
+      .then(({ data }) => data);
+  }
+
   logout() {
     return this.auth.get('/logout', {})
       .then(response => response.data)

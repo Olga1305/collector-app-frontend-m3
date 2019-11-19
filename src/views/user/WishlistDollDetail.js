@@ -30,7 +30,7 @@ class WishlistDollDetail extends Component {
         params: { id },
       },
     } = this.props;
-    
+
     if (!helpers.isValidId(id)) {
       this.setState({
         validId: false,
@@ -92,8 +92,18 @@ class WishlistDollDetail extends Component {
   };
 
   render() {
-    const { myDoll, itemsOnEbay, avgEbayPrices, change, ebayUrls, dollsByMold,
-      dollsBySkin, loading, redirect, validId } = this.state;
+    const {
+      myDoll,
+      itemsOnEbay,
+      avgEbayPrices,
+      change,
+      ebayUrls,
+      dollsByMold,
+      dollsBySkin,
+      loading,
+      redirect,
+      validId,
+    } = this.state;
     const {
       match: {
         params: { id },

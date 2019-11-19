@@ -4,6 +4,8 @@ import { withAuth } from '../../Context/AuthContext';
 import logo from '../../assets/logo02.png';
 import './Auth.css';
 
+import SociaAuth from './SocialAuth';
+
 class Signup extends Component {
   state = {
     username: '',
@@ -28,6 +30,7 @@ class Signup extends Component {
 
   render() {
     const { username, email, password } = this.state;
+    
     return (
       <div className="auth-body">
         <div className="auth-container">
@@ -69,7 +72,8 @@ class Signup extends Component {
                 Log in
               </Link>
             </p>
-          </form>
+            <SociaAuth/>
+          </form>          
         </div>
       </div>
     );

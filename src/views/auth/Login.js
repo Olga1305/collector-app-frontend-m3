@@ -4,6 +4,8 @@ import { withAuth } from '../../Context/AuthContext';
 import logo from '../../assets/logo02.png';
 import './Auth.css';
 
+import SociaAuth from './SocialAuth';
+
 class Login extends Component {
   state = {
     email: '',
@@ -62,6 +64,7 @@ class Login extends Component {
                 Sign up
               </Link>
             </p>
+            <SociaAuth/>
           </form>
         </div>
       </div>
