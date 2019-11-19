@@ -4,7 +4,7 @@ import './App.css';
 
 import ErrorBoundary from './components/ErrorBoundary';
 import Navbar from './components/Navbar';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 
 import Catalog from './views/Catalog';
 import DollsList from './views/DollsList';
@@ -60,6 +60,7 @@ class App extends Component {
               </Switch>
             </ErrorBoundary>
           </div>
+          <Footer/>
         </Router>
       </div>
     );
