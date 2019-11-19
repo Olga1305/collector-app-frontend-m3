@@ -18,8 +18,7 @@
   color: white;
 }
 
-.about a,
-  a:visited {
+.about a {
     color: white;    
     font-weight: bold;
     text-decoration: none;
