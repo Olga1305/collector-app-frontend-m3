@@ -40,10 +40,11 @@ class InfoBox extends Component {
           inCollection,
           inWishlist,
         });
-      }
-      this.setState({
-        redirect: true,
-      });
+      } else {
+        this.setState({
+          redirect: true,
+        });
+      }      
     } catch (error) {
       console.log(error);
     }
@@ -60,10 +61,12 @@ class InfoBox extends Component {
           inCollection,
           inWishlist,
         });
+      } else {
+        this.setState({
+          redirect: true,
+        });
       }
-      this.setState({
-        redirect: true,
-      });
+      
     } catch (error) {
       console.log(error);
     }
