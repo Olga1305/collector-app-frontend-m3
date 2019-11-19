@@ -78,7 +78,7 @@ class MyCollection extends Component {
   render() {
     const { dolls, releaseValue, purchaseValue, loading } = this.state;
     return (
-      <div>
+      <>
         {!loading && (
           <div className="MyCollection">
             <h1>My collection</h1>
@@ -107,7 +107,7 @@ class MyCollection extends Component {
         )}
 
         {loading && <div className="loading"><Spinner color={'#5898BE'}/></div>}
-      </div>
+      </>
     );
   }
 }

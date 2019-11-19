@@ -18,10 +18,15 @@ class CatalogService {
       .then(({ data: dolls }) => dolls)
   }
 
-  getDollById(brand, id){
+  getDollById(brand, id) {
     return this.axios.get(`/catalog/${brand}/${id}`)
       .then(({ data: doll }) => doll);
   }  
+
+  getDollsByQuery(query) {
+    return this.axios.post(`/searchresults`, {query})
+      .then(({ data: dolls }) => dolls);
+  }
 
   getDollsByMold = async (query) => {
     try {
