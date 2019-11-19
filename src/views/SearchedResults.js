@@ -9,12 +9,10 @@ class SearchedResults extends Component {
   };
 
   async componentDidMount() {
-    try {     
-      
-        this.setState({          
-          loading: false,
-        });     
-           
+    try {
+      this.setState({
+        loading: false,
+      });
     } catch (error) {
       console.log(error);
       this.setState({
@@ -22,7 +20,6 @@ class SearchedResults extends Component {
       });
     }
   }
-
 
   render() {
     const { searched } = this.props.location.state;
@@ -38,6 +35,7 @@ class SearchedResults extends Component {
         {!loading && (
           <div className="doll-list">
             <h1 className="doll-list-h1">Search results</h1>
+            <h2>Found items: {searched.length}</h2>
             {searched.map(doll => {
               return (
                 <InfoBox

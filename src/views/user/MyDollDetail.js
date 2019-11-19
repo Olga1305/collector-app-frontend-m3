@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { Icon } from 'react-fa';
+import catalogService from '../../services/catalogSevice';
 import userService from '../../services/userService';
 import helpers from '../../services/helpers';
 import Carousel from 'react-elastic-carousel';
@@ -16,6 +17,8 @@ class MyDollDetail extends Component {
     avgEbayPrices: [],
     change: undefined,
     ebayUrls: [],
+    dollsByMold: [],
+    dollsBySkin: [],
     loading: true,
     redirect: false,
     validId: true,
@@ -27,10 +30,6 @@ class MyDollDetail extends Component {
         params: { id },
       },
     } = this.props;
-    let itemsOnEbay = [];
-    let avgEbayPrices = [];
-    let ebayUrls = [];
-    let change;
 
     if (!helpers.isValidId(id)) {
       this.setState({
@@ -40,10 +39,12 @@ class MyDollDetail extends Component {
     } else {
       try {
         const myDoll = await userService.getMyDollDetail(id);
-        itemsOnEbay = helpers.itemsOnEbay(myDoll.doll);
-        avgEbayPrices = helpers.calculateAvgEbayPrice(myDoll.doll);
-        ebayUrls = helpers.generateEbayUrls(myDoll.doll);
-        change = helpers.calculateChange(myDoll.doll.releasePrice, avgEbayPrices);
+        const dollsByMold = await catalogService.getDollsByMold(myDoll.doll.mold);
+        const dollsBySkin = await catalogService.getDollsBySkin(myDoll.doll.skinTone);
+        const itemsOnEbay = helpers.itemsOnEbay(myDoll.doll);
+        const avgEbayPrices = helpers.calculateAvgEbayPrice(myDoll.doll);
+        const ebayUrls = helpers.generateEbayUrls(myDoll.doll);
+        const change = helpers.calculateChange(myDoll.doll.releasePrice, avgEbayPrices);
 
         this.setState({
           myDoll,
@@ -51,6 +52,8 @@ class MyDollDetail extends Component {
           avgEbayPrices,
           change,
           ebayUrls,
+          dollsByMold,
+          dollsBySkin,
           loading: false,
         });
       } catch (error) {
@@ -72,7 +75,18 @@ class MyDollDetail extends Component {
   };
 
   render() {
-    const { myDoll, itemsOnEbay, avgEbayPrices, change, ebayUrls, loading, redirect, validId } = this.state;
+    const {
+      myDoll,
+      itemsOnEbay,
+      avgEbayPrices,
+      change,
+      ebayUrls,
+      dollsByMold,
+      dollsBySkin,
+      loading,
+      redirect,
+      validId,
+    } = this.state;
 
     return (
       <>
@@ -120,7 +134,7 @@ class MyDollDetail extends Component {
                       <Icon className="my-icon" name="edit" />
                     </Link>
                   </div>
-                  <InfoBlock doll={myDoll.doll} />
+                  <InfoBlock doll={myDoll.doll} dollsByMold={dollsByMold} dollsBySkin={dollsBySkin} />
                 </div>
                 <EbayTable
                   change={change}
