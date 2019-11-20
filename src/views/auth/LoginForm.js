@@ -28,7 +28,7 @@ class LoginForm extends Component {
                 value={password}
                 onChange={handleChange}
               />
-              <input id="submit" type="submit" value="Sign up" />
+              <input id="submit" type="submit" value="Log in" />
             </div>
             <p className="auth-link">
               Don't have account?{' '}
