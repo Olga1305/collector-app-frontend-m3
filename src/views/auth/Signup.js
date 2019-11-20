@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import SweetAlert from 'react-bootstrap-sweetalert';
 import { withAuth } from '../../Context/AuthContext';
-import logo from '../../assets/logo02.png';
+import SignupForm from './SignupForm';
 import './Auth.css';
 
 class Signup extends Component {
@@ -9,6 +9,8 @@ class Signup extends Component {
     username: '',
     email: '',
     password: '',
+    emptyAlert: false,
+    passwordAlert: false,
   };
 
   handleChange = e => {
@@ -19,59 +21,88 @@ class Signup extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
     const { username, email, password } = this.state;
-    this.props.handleSignup({
-      username,
-      email,
-      password,
+    if (username === '' || email === '' || password === '') {
+      this.setState({
+        emptyAlert: true,
+      });
+    }
+    if (!this.checkPassword(password)) {
+      this.setState({
+        passwordAlert: true,
+      });
+    } else {
+      this.props.handleSignup({
+        username,
+        email,
+        password,
+      });
+    }
+  };
+
+  checkPassword = string => {
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    if (regex.test(string)) {
+      return true;
+    }
+    return false;
+  };
+
+  onConfirm = () => {
+    this.setState({
+      emptyAlert: false,
+      passwordAlert: false,
     });
   };
 
   render() {
-    const { username, email, password } = this.state;
+    const { username, email, password, emptyAlert, passwordAlert } = this.state;
     return (
-      <div className="auth-body">
-        <div className="auth-container">
-          <form id="auth" onSubmit={this.handleFormSubmit}>
-            <div className="header">
-              <img className="auth-logo" src={logo} alt="logo" />
-              <h1>Sign Up</h1>
-              <p>Fill out this form to join</p>
-            </div>
-            <div className="sep"></div>
-            <div className="inputs">
-              <input
-                type="text"
-                placeholder="Username"
-                name="username"
-                autoComplete="username"
-                value={username}
-                onChange={this.handleChange}
-                autoFocus
-              />
-              <input type="email" placeholder="Email" name="email" value={email} onChange={this.handleChange} />
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                autoComplete="new-password"
-                value={password}
-                onChange={this.handleChange}
-              />
-              <div className="checkboxy">
-                <input name="cecky" id="checky" value="1" type="checkbox" />
-                <label className="terms">I accept the terms of use</label>
-              </div>
-              <input id="submit" type="submit" value="Sign up" />
-            </div>
-            <p className="auth-link">
-              Already have an account?{' '}
-              <Link className="auth-link" to={'/login'}>
-                Log in
-              </Link>
-            </p>
-          </form>
-        </div>
-      </div>
+      <>
+        {passwordAlert && (
+          <>
+            <SweetAlert
+              warning
+              confirmBtnBsStyle="warning"
+              confirmBtnCssClass="alert-btn"
+              title="Password alert"
+              onConfirm={this.onConfirm}
+            >
+              The password should contain 6-20 characters, 1 numeric digit, 1 uppercase and 1 lowercase letter
+            </SweetAlert>
+          </>
+        )}
+
+        {emptyAlert && (
+          <>
+            <SweetAlert
+              warning
+              confirmBtnBsStyle="warning"
+              confirmBtnCssClass="alert-btn"
+              title="Empty fields"
+              onConfirm={this.onConfirm}
+            >
+              The fields can't be empty!
+            </SweetAlert>
+            <SignupForm
+              username={username}
+              email={email}
+              password={password}
+              handleChange={this.handleChange}
+              handleFormSubmit={this.handleFormSubmit}
+            />
+          </>
+        )}
+
+        {!emptyAlert && (
+          <SignupForm
+            username={username}
+            email={email}
+            password={password}
+            handleChange={this.handleChange}
+            handleFormSubmit={this.handleFormSubmit}
+          />
+        )}
+      </>
     );
   }
 }

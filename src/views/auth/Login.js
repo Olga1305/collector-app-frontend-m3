@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import SweetAlert from 'react-bootstrap-sweetalert';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../../Context/AuthContext';
-import logo from '../../assets/logo02.png';
+import LoginForm from './LoginForm';
 import './Auth.css';
 
 class Login extends Component {
   state = {
     email: '',
     password: '',
+    emptyAlert: false,
   };
 
   handleChange = e => {
@@ -18,53 +20,98 @@ class Login extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
-    this.props.handleLogin({
-      email,
-      password,
+    if (email === '' || password === '') {
+      this.setState({
+        emptyAlert: true,
+      });
+    } else {
+      this.props.handleLogin({
+        email,
+        password,
+      });
+    }   
+  };
+
+  onConfirm = () => {
+    this.setState({
+      emptyAlert: false,
     });
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, emptyAlert } = this.state;
     return (
-      <div className="auth-body">
-        <div className="auth-container">
-          <form id="auth" onSubmit={this.handleFormSubmit}>
-            <div className="header">
-              <img className="auth-logo" src={logo} alt="logo" />
-              <h1>Log in</h1>
-              <p>Log in to see your collection</p>
-            </div>
-            <div className="sep"></div>
-            <div className="inputs">
-              <input
-                type="email"
-                placeholder="Email"
-                name="email"
-                value={email}
-                onChange={this.handleChange}
-                autoFocus
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={password}
-                autoComplete="current-password"
-                onChange={this.handleChange}
-              />
+      <>
+      {emptyAlert && (
+          <>
+            <SweetAlert
+              warning
+              confirmBtnBsStyle="warning"
+              confirmBtnCssClass="alert-btn"
+              title="Empty fields"
+              onConfirm={this.onConfirm}
+            >
+              The fields can't be empty!
+            </SweetAlert>
+            <LoginForm              
+              email={email}
+              password={password}
+              handleChange={this.handleChange}
+              handleFormSubmit={this.handleFormSubmit}
+            />
+          </>
+        )}
 
-              <input id="submit" type="submit" value="Log in" />
-            </div>
-            <p className="auth-link">
-              Don't have account?{' '}
-              <Link className="auth-link" to={'/signup'}>
-                Sign up
-              </Link>
-            </p>
-          </form>
-        </div>
-      </div>
+        {!emptyAlert && (
+          <LoginForm
+            email={email}
+            password={password}
+            handleChange={this.handleChange}
+            handleFormSubmit={this.handleFormSubmit}
+          />
+        )}
+
+      </>
+
+
+      // <div className="auth-body">
+      //   <div className="auth-container">
+      //     <form id="auth" onSubmit={this.handleFormSubmit}>
+      //       <div className="header">
+      //         <img className="auth-logo" src={logo} alt="logo" />
+      //         <h1>Log in</h1>
+      //         <p>Log in to see your collection</p>
+      //       </div>
+      //       <div className="sep"></div>
+      //       <div className="inputs">
+      //         <input
+      //           type="email"
+      //           placeholder="Email"
+      //           name="email"
+      //           value={email}
+      //           onChange={this.handleChange}
+      //           autoFocus
+      //         />
+      //         <input
+      //           type="password"
+      //           placeholder="Password"
+      //           name="password"
+      //           value={password}
+      //           autoComplete="current-password"
+      //           onChange={this.handleChange}
+      //         />
+
+      //         <input id="submit" type="submit" value="Log in" />
+      //       </div>
+      //       <p className="auth-link">
+      //         Don't have account?{' '}
+      //         <Link className="auth-link" to={'/signup'}>
+      //           Sign up
+      //         </Link>
+      //       </p>
+      //     </form>
+      //   </div>
+      // </div>
     );
   }
 }

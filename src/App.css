@@ -10,7 +10,7 @@ h2 {
 }
 
 .content-wrap {
-  width: 98%;
+  width: calc(-16px + 98vw);
   min-height: calc(-155px + 100vh);
   padding: 65px 0 80px 20px;
   display: flex;
