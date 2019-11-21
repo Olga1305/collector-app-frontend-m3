@@ -4,8 +4,9 @@ import './App.css';
 
 import ErrorBoundary from './components/ErrorBoundary';
 import Navbar from './components/Navbar';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 
+import Home from './views/Home';
 import Catalog from './views/Catalog';
 import DollsList from './views/DollsList';
 import DollDetail from './views/DollDetail';
@@ -42,7 +43,7 @@ class App extends Component {
               <Switch>
                 <AnonRoute exact path="/login" component={Login} />
                 <AnonRoute exact path="/signup" component={Signup} />
-                <Route exact path="/" component={Catalog} />
+                <Route exact path="/" component={Home} />
                 <Route exact path="/catalog" component={Catalog} />
                 <Route exact path="/catalog/:brand" component={DollsList} />
                 <Route exact path="/catalog/:brand/:id" component={DollDetail} />
@@ -60,6 +61,7 @@ class App extends Component {
               </Switch>
             </ErrorBoundary>
           </div>
+          <Footer/>
         </Router>
       </div>
     );

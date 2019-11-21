@@ -74,7 +74,7 @@ class InfoBox extends Component {
 
   render() {
     const { inCollection, inWishlist, redirect } = this.state;
-    const { brand, id, image, name, character, editionSize, mold, skinTone, releasePrice } = this.props;
+    const { brand, id, image, name, character, mold, skinTone, releasePrice } = this.props;
 
     return (
       <>

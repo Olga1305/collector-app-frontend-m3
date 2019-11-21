@@ -92,23 +92,8 @@ class WishlistDollDetail extends Component {
   };
 
   render() {
-    const {
-      myDoll,
-      itemsOnEbay,
-      avgEbayPrices,
-      change,
-      ebayUrls,
-      dollsByMold,
-      dollsBySkin,
-      loading,
-      redirect,
-      validId,
-    } = this.state;
-    const {
-      match: {
-        params: { id },
-      },
-    } = this.props;
+    const { myDoll, itemsOnEbay, avgEbayPrices, change, ebayUrls, dollsByMold,
+      dollsBySkin, loading, redirect, validId } = this.state;
 
     return (
       <>

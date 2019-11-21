@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './Footer.css';
 
-
 class Footer extends Component {
-
-    render() {        
-        return (            
-             
-            <footer className="footer">
-                <div class="about"><Link to="#">About</Link></div>
-            </footer>        
-            
-        )
-    }
+  // eslint-disable-next-line class-methods-use-this
+  render() {
+    return (
+      <footer className="footer">
+        <div className="about">
+        <p>© Doll Collector by Olga Dokukova, 2019</p>
+          <p><a target="_blank" rel="noopener noreferrer" href="https://slides.com/olga1305/doll-collector/#/">About the project</a></p>
+        </div>
+      </footer>
+    );
+  }
 }
 
 export default Footer;

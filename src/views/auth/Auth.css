@@ -149,3 +149,12 @@ input[type='password']:focus {
 .auth-link {
   color: #8f8f8f;
 }
+
+.alert-btn {
+  width: 60px;
+  padding: 5px;
+  background: #5898BE;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}

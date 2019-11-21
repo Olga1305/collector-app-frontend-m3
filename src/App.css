@@ -1,6 +1,5 @@
 .main-container {
   position: relative;
-  min-height: calc(-105px + 100vh);
   display: block;
   margin: -8px;
 }
@@ -11,8 +10,9 @@ h2 {
 }
 
 .content-wrap {
-  width: 98%;
-  padding: 65px 0 75px 20px;
+  width: calc(-16px + 98vw);
+  min-height: calc(-155px + 100vh);
+  padding: 65px 0 80px 20px;
   display: flex;
   justify-content: center;
 }
