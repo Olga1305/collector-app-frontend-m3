@@ -39,7 +39,6 @@ const Home = () => {
             <div className="home-img">
               <img className="img" src={doll04} alt="doll" />
             </div>
-
             <div className="home-text">
               <h2>Explore the catalog</h2>
               <p>

@@ -220,6 +220,7 @@
   #top-text {
     width: 700px;
     margin-right: 100px;
+    margin-top: 90px;
   }
 
   #top-img {
@@ -229,9 +230,9 @@
 
   #top-img img {
     position: relative;
-    left: -90px;
+    left: -200px;
     top: 140px;
-    height: 600px;
+    height: 700px;
   }
 
   #manual {
@@ -240,11 +241,15 @@
 
   #manual img {
     height: 500px;
-    padding-top: 140px;
+    padding-top: 130px;
     margin-left: 50px;
   }
 
   #middle-img {
     display: block;
+  }
+
+  .bottom-text h2 {
+    margin-top: 10px;
   }
 }
