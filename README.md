@@ -2,7 +2,7 @@
 
 ## Description
 
-Webapp that helps to organize your doll collection.
+Webapp that helps to organize your fashion dolls collection.
 
 ## User Stories / MVP
 
@@ -56,14 +56,95 @@ List of other features outside of the MVPs scope:
 - As a user I want to have alerts about Ebay listing of the dolls from my wishlist at several price
 - As a user I want to have my selling list (public)
 
+## Models
+
+**_User Model_**
+
+```javascript
+ {
+    email: { type: String, required: true, unique: true },
+    hashedPassword: { type: String, required: true },
+    username: { type: String, unique: true },
+},
+{
+    timestamps: true,
+}
+
+```
+
+**_MyDoll Model_**
+
+```javascript
+{
+    owner: { type: Schema.Types.ObjectID, ref: 'User' },
+    favOwner: { type: Schema.Types.ObjectID, ref: 'User' },
+    doll: { type: Schema.Types.ObjectID, ref: 'Doll' },
+    purchaseDate: { type: Date },
+    purchasePrice: { type: Number },
+    purchaseWay: { type: String },
+    condition: { type: String, default: 'Perfect' },
+    kit: { type: String, default: 'Complete' },
+  },
+  {
+    timestamps: true,
+  }
+```
+
+**_Doll Model_**
+
+```javascript
+  {
+    subBrand: { type: String },
+    name: { type: String },
+    character: { type: String },
+    mold: { type: String },
+    body: { type: String },
+    skinTone: { type: String },
+    hair: { type: String },
+    images: [{ type: String }],
+    collectionName: { type: String },
+    distributedBy: { type: String },
+    year: { type: Number },
+    editionSize: { type: Number },
+    releasePrice: { type: Number },
+    ebayQueries: [{ type: String }],   // Backlog, depends on Ebay API
+  },
+  {
+    timestamps: true,
+  }
+```
+
+## Routes (MVP) / API endpoints
+
+| Type/Model | Name | Method | Endpoint | Description | Body | Redirects |
+| :---: | :--- | :--- | :--- | :--- | :--- | :--- |
+| Auth | Me | GET | /me | Check session status | - |  |
+| Auth | Sign Up | POST | /signup | Sign up a user | {email, password} | /catalog  | 
+| Auth | Log In | POST | /login | Log in a user | {email, password} | /catalog | 
+| Auth | Log out | GET | /logout | Log out a user | - |  | 
+|  | Home | GET | / | Show home page | - |  | 
+| Doll | Catalog | GET | /catalog | User sees the catalog | - |  | 
+| Doll | Doll Details | GET | /catalog/:dollID | User sees the doll details | - |  | 
+| User | Profile | GET | /profile | User sees his/her profile | - |  | 
+| User | Profile | PUT | /profile | User updates his/her profile | {username, email} | /profile |
+| MyDoll | My collection | GET | /mycollection | User sees his/her collection | - |  | 
+| MyDoll | Add doll to collection | POST | /mycollection | User adds the doll to his/her collection | {dollID} | /mycollection/:MyDollID |
+| MyDoll | Update doll info | PUT | /mycollection/:MyDollID | User updates his/her doll info | {purchaseDate, purchasePrice, purchaseWay, condition, kit} | /mycollection/:MyDollID |
+| MyDoll | Delete from collection | DELETE | /mycollection/:MyDollID | User deletes the doll from collection | - |  | 
+| MyDoll | My wishlist | GET | /mywishlist | User sees his/her wishlist | - |  | 
+| MyDoll | Add doll to collection | POST | /mycollection | User adds the doll to his/her wishlist | {dollID} | /mywishlist/:MyDollID |
+| MyDoll | Update doll info | PUT | /mywishlist/:MyDollID | User updates his/her doll info | {condition, kit} | /mywishlist/:MyDollID |
+| MyDoll | Delete from wishlist | DELETE | /mywishlist/:MyDollID | User deletes the doll from wishlist | - |  |  
+
+
 
 ## Git
 
-[Repository Link Frontend](https://github.com/Olga1305/collector-app-frontend-m3)
+[Backend Repository Link](https://github.com/Olga1305/collector-app-backend-m3)
 
-[Repository Link Backend](https://github.com/Olga1305/collector-app-backend-m3)
+[Frontend Repository Link](https://github.com/Olga1305/collector-app-frontend-m3)
 
-[Deploy Link](deploy)
+[Deploy Link](https://doll-collector.netlify.com/)
 
 ### Slides
 
