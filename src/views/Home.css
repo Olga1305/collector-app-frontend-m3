@@ -217,6 +217,11 @@
     height: 600px;
   }
 
+  #top-text {
+    width: 700px;
+    margin-right: 100px;
+  }
+
   #top-img {
     display: block;
     width: 0%;
@@ -224,8 +229,8 @@
 
   #top-img img {
     position: relative;
-    left: -250px;
-    top: 80px;
+    left: -90px;
+    top: 140px;
     height: 600px;
   }
 
@@ -235,7 +240,8 @@
 
   #manual img {
     height: 500px;
-    padding-top: 80px;
+    padding-top: 140px;
+    margin-left: 50px;
   }
 
   #middle-img {
