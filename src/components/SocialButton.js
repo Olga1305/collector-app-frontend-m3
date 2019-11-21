@@ -7,15 +7,13 @@ import { GoogleLoginButton } from 'react-social-login-buttons';
 class SocialButton extends Component {
   static propTypes = {
     triggerLogin: PropTypes.func.isRequired,
-    triggerLogout: PropTypes.func.isRequired,
-    handleSocialLogin: PropTypes.func.isRequired,
   };
 
   render() {
-    const { children, handleSocialLogin, triggerLogin, triggerLogout, ...props } = this.props;
+    const { children, triggerLogin, ...props } = this.props;
 
     return (
-      <GoogleLoginButton onClick={handleSocialLogin} {...props}>
+      <GoogleLoginButton onClick={triggerLogin} {...props}>
         {children}
       </GoogleLoginButton>
     );

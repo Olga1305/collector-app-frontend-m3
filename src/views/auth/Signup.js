@@ -4,8 +4,6 @@ import { withAuth } from '../../Context/AuthContext';
 import SignupForm from './SignupForm';
 import './Auth.css';
 
-import SociaAuth from './SocialAuth';
-
 class Signup extends Component {
   state = {
     username: '',

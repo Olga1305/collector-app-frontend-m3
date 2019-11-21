@@ -103,6 +103,7 @@ export default class AuthProvider extends Component {
         });
       })
       .catch(() => {
+        this.handleLogout();
         this.setState({
           isLoading: false,
         });
@@ -152,7 +153,7 @@ export default class AuthProvider extends Component {
     const { isLoading, isLoggedin, user } = this.state;
     const { children } = this.props;
     if (isLoading) {
-      return <div><Spinner color={'#5898BE'}/></div>;
+      return <div className="spinner"><Spinner color={'#5898BE'}/></div>;
     }
     return (
       <Provider

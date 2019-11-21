@@ -22,7 +22,7 @@ class AuthService {
 
   sociallogin(user) {
     const { _profile: { email } } = user;
-    return this.auth.post('/sociallogin', {email})
+    return this.auth.post(`/sociallogin/${email}`)
       .then(({ data }) => data);
   }
 

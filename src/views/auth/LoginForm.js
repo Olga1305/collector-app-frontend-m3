@@ -4,6 +4,8 @@ import { withAuth } from '../../Context/AuthContext';
 import logo from '../../assets/logo02.png';
 import './Auth.css';
 
+import SocialAuth from './SocialAuth';
+
 class LoginForm extends Component {
   render() {
     const { email, password, handleChange, handleFormSubmit } = this.props;
@@ -37,6 +39,7 @@ class LoginForm extends Component {
               </Link>
             </p>
           </form>
+          <SocialAuth />
         </div>
       </div>
     );

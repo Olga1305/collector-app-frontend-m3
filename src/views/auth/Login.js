@@ -4,8 +4,6 @@ import { withAuth } from '../../Context/AuthContext';
 import LoginForm from './LoginForm';
 import './Auth.css';
 
-import SociaAuth from './SocialAuth';
-
 class Login extends Component {
   state = {
     email: '',

@@ -50,6 +50,11 @@ p {
   font-size: 18px;
 }
 
+.spinner {
+  display: flex;
+  justify-content: center;
+}
+
 .button {
   text-align: center;
   width: 100px;
